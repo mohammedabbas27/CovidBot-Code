@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-test": "babel src\\test\\covidbot-test.js --out-file dist\\covidbot-test.js",
-    "build-prod": "babel src\\prod\\covidbot-prod.js --out-file dist\\covidbot-prod.js"
+    "build-dev": "babel src\\dev\\covidbot-dev.js --out-file dist\\covidbot-dev.js",
+    "build-test": "babel src\\test\\covidbot-test.js --out-file dist\\covidbot-test.js"
 
   },
   "keywords": [],
