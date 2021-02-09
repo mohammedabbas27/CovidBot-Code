@@ -1,0 +1,19 @@
+{
+  "name": "covidbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-test": "babel src\\test\\covidbot-test.js --out-file dist\\covidbot-test.js",
+    "build-prod": "babel src\\prod\\covidbot-prod.js --out-file dist\\covidbot-prod.js"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13"
+  }
+}
