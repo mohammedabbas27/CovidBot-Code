@@ -29,790 +29,805 @@ function main() {
         '<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu&display=swap"rel="stylesheet"/>'
       );
 
-      /* Load Font Awesome Kit */
-      $.getScript("https://kit.fontawesome.com/5730140e2c.js", function () {});
-
-      const CHATBOT_ICON_PATH = "https://aibot.neurosoph.com:5000/MasChat.png";
+      const CHATBOT_ICON_PATH =
+        "https://aibot.neurosoph.com:5000/Chatbot_Icon_01-Green.png";
 
       var htmlMarkup = `
-  <div class="chatbot-container">
-    <div id="chatbot-logos-container" title="COVID-19 Chatbot">
-          <div class="chatbot-welcome-text">
-            <span class="close-welcome-message" style="display:flex;align-self:flex-end"><i role="button"
-                class="material-icons">close</i></span>
-            <div>
-                <h5 id="chatbot-welcome-popup">Have a COVID-19 Vaccination Question? </h5>
-                </div>
-          </div>
-          <div role="button"
-                tabindex=0 class="chatbot-logo" id="chatbot-logo">
-            <img class="chatbot-img" alt="COVID-19 Chatbot" src="${CHATBOT_ICON_PATH}" />
-          </div>
-        </div>
-
-        <div class="chatbot-widget" id="chatbot-widget">
-          <div class="chatbot-header">
-            <!--Add the name of the bot here -->
-            <span aria-label="COVID-19 Chatbot Window" id="chatbot-logo-tagline" tabindex=0 style="color: white; margin-left: 5px"
-              >COVID-19</span
-            >
-            <div style="float:right;display:flex;">
-              <span role="button" tabindex=0 aria-label="Decrease Chatbot Font Size" class="chatbot-action-btns" id="chatbot-decrease-font">
-              A<span>-</span>
-              <!-- <i class="material-icons">expand_more</i> -->
-            </span>
-              <span role="button" tabindex=0 aria-label="Increase Chatbot Font Size" class="chatbot-action-btns" id="chatbot-increase-font">
-              A<span>+</span>
-              <!-- <i class="material-icons">expand_less</i> -->
-            </span>
-
-            <span tabindex=0 aria-label="Reset Chatbot" title="Reset Chabot" class="chatbot-action-btns chatbot-hide-elem" id="chatbot-reset-bot">
-              <i
-                title="Reset bot"
-                class="fas fa-history chatbot-reset-bot"
-                style="margin-top: 3px"
-              ></i>
-            </span>
-
-            <span aria-label="Chatbot Help Shortcuts" style="margin-top: 5px;" tabindex=0 aria-expanded="false" role="button" class="chatbot-action-btns" id="chatbot-setting-container">
-              <i class="material-icons">help</i>
-            </span>
-              <div tabindex=-1 class="chatbot-settings chatbot-hide-elem" id="chatbot-settings">
-                <div>
-                  <ul>
-                    <li class="chatbot-shortcut-list">
-                      <span tabindex=0 id="first-shortcut" class="chatbot-shortcuts-info">
-                        <span class="chatbot-settings-label">Toggle Bot:</span>
-                        <span class="chatbot-settings-value">Alt + o</span>
-                      </span>
-                    </li>
-                    <li class="chatbot-shortcut-list">
-                      <span tabindex=0 class="chatbot-shortcuts-info">
-                        <span class="chatbot-settings-label">Increase Font:</span>
-                        <span class="chatbot-settings-value">Alt + <span id="increase-font-icon" class="material-icons">trending_flat</span></span>
-                      </span>
-                    </li>
-                    <li class="chatbot-shortcut-list">
-                      <span tabindex=0 class="chatbot-shortcuts-info">
-                        <span class="chatbot-settings-label">Decrease Font:</span>
-                        <span class="chatbot-settings-value">Alt + <span id="decrease-font-icon" class="material-icons">trending_flat</span></span>
-                      </span>
-                    </li>
-                    <li class="chatbot-shortcut-list">
-                      <span tabindex=0 class="chatbot-shortcuts-info">
-                        <span class="chatbot-settings-label">Minimize Bot:</span>
-                        <span class="chatbot-settings-value">Alt + m </span>
-                      </span>
-                    </li>
-                    <li class="chatbot-shortcut-list">
-                      <span tabindex=0 class="chatbot-shortcuts-info">
-                        <span class="chatbot-settings-label">Close Bot:</span>
-                        <span class="chatbot-settings-value">Alt + c </span>
-                      </span>
-                    </li>
-                    ${
-                      isWebSpeechSupported()
-                        ? '<li class="chatbot-shortcut-list"><span tabindex=0 class="chatbot-shortcuts-info"><span class="chatbot-settings-label">Toggle Mic:</span><span class="chatbot-settings-value">Alt + r </span></span></li>'
-                        : ""
-                    }
-                    <li class="chatbot-shortcut-list">
-                      <span tabindex=0 id="last-shortcut" class="chatbot-shortcuts-info">
-                        <span class="chatbot-settings-label">Toggle Help:</span>
-                        <span class="chatbot-settings-value">Alt + i </span>
-                      </span>
-                    </li>
-                    <li class="chatbot-hide-elem">
-                      <span tabindex=0 class="chatbot-shortcuts-info">
-                        <span class="chatbot-settings-label">Reset Bot:</span>
-                        <span class="chatbot-settings-value">Alt + q </span>
-                      </span>
-                    </li>
-                  </ul>
+        <div class="chatbot-container">
+          <div id="chatbot-logos-container">
+                <div class="chatbot-welcome-text">
+                  
+                  <div class="chatbot-inner-bubble">
+                    <span style="display:flex;">
+                    <div tabindex=0 role="button" class="chatbot-welcome-image-container chatbot-logo">
+                    <img alt="Covid-19 Chatbot Icon" style="width:70px;margin-left: 35px;" src="${CHATBOT_ICON_PATH}"/>
+                    </div>
+                    <div class="close-welcome-message"><i role="button"
+                      class="material-icons">close</i></div>
+                    </span>
+                      <h5 class="chatbot-logo" id="chatbot-welcome-popup">Have a COVID-19 Vaccination Question? </h5>
+                      </div>
                 </div>
               </div>
-              <span
-            role="button"
-              tabindex=0
-              aria-label="Minnimize Chatbot"
-              class="chatbot-action-btns"
-              style="margin-top: 0px;padding-top:0px"
-              id="minimize"
-            >
-              <i class="material-icons">minimize</i>
-            </span>
-            <span
-            role="button"
-            aria-label="Close Chatbot"
-            tabindex=0
-              style="
-                color: white;
-                margin-right: 5px;
-                margin-top: 5px;
-              "
-              id="chatbot-close"
-            >
-              <i class="material-icons">close</i>
-            </span>
-            </div>
-            <div>
-              <span
-                title="Chatbot"
-                style="
-                  color: white;
-                  margin-left: 5px;
-                  font-size: small;
-                  font-style: italic;
-                  display: block;
-                "
-                >Chatbot
-              </span>
-            </div>
-          </div>
-          <!--Chatbot contents goes here -->
 
-          <div class="chatbot-canvas" id="chatbot-canvas">
-            <div class="chatbot-clearfix"></div>
-            <div class="chatbot-msgs" id="chatbot-msgs" style="margin-top: 10px"></div>
-          </div>
+              <div class="chatbot-widget" id="chatbot-widget">
+                <div class="chatbot-header">
+                  <!--Add the name of the bot here -->
+                  <span aria-label="COVID-19 Chatbot Window" id="chatbot-logo-tagline" tabindex=0 style="color: white; margin-left: 5px"
+                    >COVID-19</span
+                  >
+                  <div style="float:right;display:flex;">
+                    <span role="button" tabindex=0 aria-label="Decrease Chatbot Font Size" class="chatbot-action-btns" id="chatbot-decrease-font">
+                    A<span>-</span>
+                    <!-- <i class="material-icons">expand_more</i> -->
+                  </span>
+                    <span role="button" tabindex=0 aria-label="Increase Chatbot Font Size" class="chatbot-action-btns" id="chatbot-increase-font">
+                    A<span>+</span>
+                    <!-- <i class="material-icons">expand_less</i> -->
+                  </span>
 
-          <!--user typing indicator -->
-          <div class="chatbot-keypad">
-          <label for="chatbot-keypad" class="visuallyHidden" >Ask a Covid-19 Question</label>
-            <input
-              type="text"
-              id="chatbot-keypad"
-              disabled
-              tabindex=0
-              class="chatbot-user-input browser-default"
-              placeholder="Ask a Covid-19 Question"
-              autocomplete="off"
-            />
+                  <span tabindex=0 aria-label="Reset Chatbot" title="Reset Chabot" class="chatbot-action-btns chatbot-hide-elem" id="chatbot-reset-bot">
+                    <i
+                      title="Reset bot"
+                      class="fas fa-history chatbot-reset-bot"
+                      style="margin-top: 3px"
+                    ></i>
+                  </span>
 
-            <div class="chatbot-popup">
-              <span role="button"
-                tabindex=0
-                aria-label="Turn on Microphone"
-                id="chatbot-mic-btn-off"><i
-                class="fas fa-microphone fa-2x"
-                style="margin-left: 3px; margin-top: 5px"
-              ></i></span>
-              <span class="chatbot-popuptext" id="chatbot-myPopup">Go on i'm Listening!</span>
-              <div
-                id="chatbot-mic-btn-on"
-                tabindex=0
-                aria-label="Turn off Microphone"
-                role=button
-              <i
-                class="fas fa-microphone-alt fa-2x chatbot-hide-elem"
-                style="margin-left: 3px; margin-top: 5px"
-              ></i>
+                  <span aria-label="Chatbot Help Shortcuts" style="margin-top: 5px;" tabindex=0 aria-expanded="false" role="button" class="chatbot-action-btns" id="chatbot-setting-container">
+                    <i class="material-icons">help</i>
+                  </span>
+                    <div tabindex=-1 class="chatbot-settings chatbot-hide-elem" id="chatbot-settings">
+                      <div>
+                        <ul style="list-style: none;padding-left: 10px;">
+                          <li class="chatbot-shortcut-list">
+                            <span tabindex=0 id="first-shortcut" class="chatbot-shortcuts-info">
+                              <span class="chatbot-settings-label">Close/reopen window:</span>
+                              <span class="chatbot-settings-value">Alt + o</span>
+                            </span>
+                          </li>
+                          <li class="chatbot-shortcut-list">
+                            <span tabindex=0 class="chatbot-shortcuts-info">
+                              <span class="chatbot-settings-label">Increase font:</span>
+                              <span class="chatbot-settings-value">Alt + <span id="increase-font-icon" class="material-icons">trending_flat</span></span>
+                            </span>
+                          </li>
+                          <li class="chatbot-shortcut-list">
+                            <span tabindex=0 class="chatbot-shortcuts-info">
+                              <span class="chatbot-settings-label">Decrease font:</span>
+                              <span class="chatbot-settings-value">Alt + <span id="decrease-font-icon" class="material-icons">trending_flat</span></span>
+                            </span>
+                          </li>
+                          <li class="chatbot-shortcut-list">
+                            <span tabindex=0 class="chatbot-shortcuts-info">
+                              <span class="chatbot-settings-label">Minimize window:</span>
+                              <span class="chatbot-settings-value">Alt + m </span>
+                            </span>
+                          </li>
+                          <li class="chatbot-shortcut-list">
+                            <span tabindex=0 class="chatbot-shortcuts-info">
+                              <span class="chatbot-settings-label">Close window:</span>
+                              <span class="chatbot-settings-value">Alt + c </span>
+                            </span>
+                          </li>
+                          ${
+                            isWebSpeechSupported()
+                              ? '<li class="chatbot-shortcut-list"><span tabindex=0 class="chatbot-shortcuts-info"><span class="chatbot-settings-label">Turn off/Turn on Mic:</span><span class="chatbot-settings-value">Alt + r </span></span></li>'
+                              : ""
+                          }
+                          <li class="chatbot-shortcut-list">
+                            <span tabindex=0 id="last-shortcut" class="chatbot-shortcuts-info">
+                              <span class="chatbot-settings-label">Close/Reopen help:</span>
+                              <span class="chatbot-settings-value">Alt + i </span>
+                            </span>
+                          </li>
+                          <li class="chatbot-hide-elem">
+                            <span tabindex=0 class="chatbot-shortcuts-info">
+                              <span class="chatbot-settings-label">Reset Bot:</span>
+                              <span class="chatbot-settings-value">Alt + q </span>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <span
+                  role="button"
+                    tabindex=0
+                    aria-label="Minnimize Chatbot"
+                    class="chatbot-action-btns"
+                    style="margin-top: 0px;padding-top:0px"
+                    id="minimize"
+                  >
+                    <i class="material-icons">minimize</i>
+                  </span>
+                  <span
+                  role="button"
+                  aria-label="Close Chatbot"
+                  tabindex=0
+                    style="
+                      color: white;
+                      margin-right: 5px;
+                      margin-top: 5px;
+                    "
+                    id="chatbot-close"
+                  >
+                    <i class="material-icons">close</i>
+                  </span>
+                  </div>
+                  <div>
+                    <span
+                      title="Chatbot"
+                      class="chatbot-sub-tagline"
+                      >Ask a COVID-19 vaccine question
+                    </span>
+                  </div>
+                </div>
+                <!--Chatbot contents goes here -->
+
+                <div class="chatbot-canvas" id="chatbot-canvas">
+                  <div class="chatbot-clearfix"></div>
+                  <div class="chatbot-msgs" id="chatbot-msgs" style="margin-top: 10px"></div>
+                </div>
+
+                <!--user typing indicator -->
+                <div class="chatbot-keypad">
+                  <input
+                    maxlength="120"
+                    type="text"
+                    id="chatbot-keypad"
+                    disabled
+                    tabindex=0
+                    class="chatbot-user-input browser-default"
+                    placeholder="Ask a COVID-19 vaccine question"
+                    autocomplete="off"
+                  />
+
+                  <div class="chatbot-popup">
+                    <span role="button"
+                      tabindex=0
+                      aria-label="Turn on Microphone"
+                      id="chatbot-mic-btn-off"><span class="material-icons" style="font-size: 38px;margin-top: 16px;color: #388557;font-weight: bold;">mic</span></span>
+                    <span class="chatbot-popuptext" id="chatbot-myPopup">Go on i'm Listening!</span>
+                    <div
+                      id="chatbot-mic-btn-on"
+                      tabindex=0
+                      aria-label="Turn off Microphone"
+                      role=button
+                      <span class="material-icons chatbot-hide-elem" style="font-size: 38px;margin-top: 10px;color: #e82719;font-weight: bold;">mic</span>
+                    </div>
+
+                  </div>
+                  <span aria-label="Send"
+                    role="button"
+                    tabindex=0
+                    id="chatbot-send-btn">
+                    <span class="material-icons" style="margin-top: 14px;font-size: 34px;color: #388557;">send</span></span>
+                  <i
+                    title="Reset bot"
+                    role="button"
+                    tabindex=0
+                    class="fas fa-history fa-2x chatbot-reset-bot chatbot-hide-elem"
+                    style="cursor: pointer; margin-left: 3px; margin-top: 5px"
+                  ></i>
+                </div>
               </div>
-
+              <!--bot widget -->
             </div>
-            <span aria-label="Send"
-              role="button"
-              tabindex=0
-              id="chatbot-send-btn">
-              <i
-              class="fas fa-paper-plane fa-2x"
-              style="margin-left: 3px; margin-top: 5px"
-            ></i>
-            </span>
-
-            <i
-              title="Reset bot"
-              role="button"
-              tabindex=0
-              class="fas fa-history fa-2x chatbot-reset-bot chatbot-hide-elem"
-              style="cursor: pointer; margin-left: 3px; margin-top: 5px"
-            ></i>
-          </div>
-        </div>
-        <!--bot widget -->
-      </div>
-  `;
+        `;
 
       var cssMarkup = `
-
-      .chatbot-container *{
-        outline:none;
-      }
-
-      #increase-font-icon{
-        transform: rotate(270deg);
-      }
-      #decrease-font-icon{
-        transform: rotate(90deg);
-      }
-      .visuallyHidden {
-        border: 0;
-        clip: rect(0, 0, 0, 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-    .chatbot-welcome-tagline{
-        margin: 8px;
-        margin-top: 35px;
-    }
-    .chatbot-container{
-        line-height: 1.6;
-    }
-    .close-welcome-message{
-      cursor:pointer;
-    }
-    .chatbot-welcome-text {
-        width: 180px;
-        background: #388557;
-        color: #fff;
-        border-radius: 12px;
-        padding: 8px 0;
-        position: absolute;
-        z-index: 999;
-        bottom: 114%;
-        left: -50%;
-        margin-left: -80px;
-        font-size: 16px;
-        padding: 6px;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 0.25rem 0.5rem rgb(1 1 1 / 50%);
-        animation:fadeWelcomeText 0.5s 1;
-        -webkit-animation:fadeWelcomeText 0.5s 1;
-        animation-fill-mode: forwards;
-        animation-delay:5s;
-        -webkit-animation-delay:5s; /* Safari and Chrome */
-        -webkit-animation-fill-mode: forwards;
-    }
-
-    @keyframes fadeWelcomeText{
-      from {opacity :1;}
-      to {opacity :0;}
-  }
-
-  @-webkit-keyframes fadeWelcomeText{
-      from {opacity :1;}
-      to {opacity :0;}
-  }
-  .chatbot-welcome-text::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 98%;
-      margin-left: -35px;
-      border-width: 9px;
-      border-style: solid;
-      border-color: #388557 transparent transparent transparent;
-    }
-    #chatbot-welcome-popup{
-      margin: 8px;
-      margin-right: 10px;
-      color: white;
-      font-size:18px;
-    }
-  .chatbot-bot-msg overflow-scroll {
-    height: 250px;
-    overflow-y: scroll;
-  }
-  .fa-paper-plane:before {
-    content: "\\f1d8";
-    color: #388557;
-  }
-
-  .fa-microphone:before,
-  .fa-microphone-alt:before,
-  .fa-history:before {
-    color: #388557;
-  }
-
-  .fa-microphone-alt:before {
-    color: #e82719;
-  }
-
-  .chatbot-widget {
-    display: flex;
-    flex-direction: column;
-    max-height: 590px;
-    width: 480px;
-    right: 15px;
-    height: 72%;
-    bottom: 5%;
-    position: fixed;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0px 2px 10px 1px #b5b5b5;
-    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
-    z-index: 999;
-    font-weight: 400;
-    background: #f7f8f9;
-    display:none;
-  }
-
-  .chatbot-header {
-    height: 60px;
-    background-color: #388557;
-    border-radius: 10px 10px 0px 0px;
-    padding: 5px;
-    font-size: 20px;
-  }
-
-  .chatbot-canvas {
-    width:100%;
-    padding: 5px;
-    padding-top: 0px;
-    margin-top: 5px;
-    border-radius: 1px;
-    overflow-y: scroll;
-    transition: 0.2s;
-    height: calc(100% - 140px);
-  }
-
-  .chatbot-msgs{
-    margin-top: 10px;
-  }
-
-  div.chatbot-canvas::-webkit-scrollbar,
-  div.chatbot-settings::-webkit-scrollbar,
-  div.chatbot-bot-msg::-webkit-scrollbar {
-    width: 4px;
-    /* remove scrollbar space /
-      background: transparent;
-      / optional: just make scrollbar invisible */
-  }
-
-  /* Track */
-
-  div.chatbot-canvas::-webkit-scrollbar-track,
-  div.chatbot-settings::-webkit-scrollbar-track,
-  div.chatbot-bot-msg::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 20px;
-  }
-
-  /* Handle */
-
-  div.chatbot-canvas::-webkit-scrollbar-thumb,
-  div.chatbot-settings::-webkit-scrollbar-thumb,
-  div.chatbot-bot-msg::-webkit-scrollbar-thumb {
-    background: #388557;
-    border-radius: 5px;
-  }
-
-  /* Handle on hover */
-
-  div.chatbot-canvas::-webkit-scrollbar-thumb:hover,
-  div.chatbot-settings::-webkit-scrollbar-thumb:hover,
-  div.chatbot-bot-msg::-webkit-scrollbar-thumb:hover {
-    background: #b30000;
-  }
-
-  #chatbot-close,
-  #minimize {
-    cursor: pointer;
-  }
-
-  .chatbot-clearfix {
-    margin-top: 2px;
-    margin-bottom: 2px;
-  }
-
-  .chatbot-bot-msg {
-    float: left;
-    margin-top: 5px;
-    background: #ffffff;
-    box-shadow: 2px 5px 5px 1px #efeef5;
-    border: 1px solid #ffffff;
-    margin-left: 0.5em;
-    padding: 0.6em 1em;
-    border-radius: 1.5em;
-    max-width: 90%;
-    min-width: 25%;
-    font-size: 16px;
-    word-wrap: break-word;
-    box-sizing: border-box;
-    /* max-height: 250px;
-    overflow-y: auto;*/
-  }
-
-  .chatbot-user-msg {
-    animation: animateElement linear 0.2s;
-    animation-iteration-count: 1;
-    margin-top: 5px;
-    word-wrap: break-word;
-    padding: 0.6em 1em;
-    float: right;
-    margin-right: 0.5em;
-    background: #388557;
-    border: 1px solid #388557;
-    color: #fff;
-    border-radius: 1.5em;
-    margin-bottom: 0.15em;
-    font-size: 16px;
-    max-width: 55%;
-    min-width: 25%;
-    line-height: 1.5em;
-    box-sizing: border-box;
-  }
-
-  .chatbot-msg-card {
-    padding-right: 15px;
-  }
-
-  .chatbot-suggestions {
-    padding: 5px;
-    width: 100%;
-    border-radius: 10px;
-    background: #ffffff;
-    box-shadow: 2px 5px 5px 1px #dbdade;
-  }
-
-  .chatbot-keypad {
-    display: flex;
-    align-items:center;
-    height: 45px;
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-  }
-
-  .chatbot-keypad > * {
-      padding-right: 5px;
-  }
-
-  .chatbot-user-input {
-    background: #f1f0f0;
-    width: 100%;
-    margin-left: 4%;
-    border-radius: 20px;
-    box-shadow: 0px 2px 10px 1px #b5b5b5;
-    border: 0;
-    padding-left: 15px;
-    height: 35px;
-  }
-
-  .chatbot-keypad input:focus {
-    outline: none;
-  }
-
-  .chatbot-buttons-menu {
-    padding: 5px;
-    max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .chatbot-list {
-    padding: 5px;
-    max-width: 100%;
-  }
-
-  .chatbot-menu-chips {
-    border: 3px solid;
-    display: inline-block;
-    padding: .4em 1em;
-    text-decoration: none;
-    transition: all .4s ease;
-    line-height: 1.4;
-    margin-right: 3px;
-    text-align: center;
-    margin-bottom: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    box-shadow: 0 0.25rem 0.5rem rgb(1 1 1 / 25%);
-    font-weight: 550;
-    background-color: #388557;
-    border-color: transparent;
-    color: #fff;
-    border-radius: 7px;
-  }
-
-  .chatbot-menu-chips:hover {
-    box-shadow: 4px 6px 15px 1px rgba(33, 63, 88, 0.25);
-  }
-
-  @keyframes animateElement {
-    0% {
-      opacity: 0;
-      transform: translate(0px, 10px);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translate(0px, 0px);
-    }
-  }
-
-  .chatbot-img {
-    width: 100%;
-    padding: 2%;
-  }
-
-  #chatbot-logos-container {
-    position: fixed;
-    bottom: 55px;
-    right: 16px;
-    width: 100px;
-    height: 12%;
-    transition: 0.35s;
-    transform: translate(400%);
-    z-index: 999;
-  }
-
-  .chatbot-logo {
-    padding: 5px;
-    width: 64%;
-    cursor: pointer;
-    position: relative;
-    float: left;
-  }
-
-  .chatbot-button-suggestions {
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  .jc-bs3-container {
-    width: 30%;
-  }
-
-  #chatbot-send-btn:hover,
-  #chatbot-mic-btn-on:hover,
-  #chatbot-mic-btn-off:hover {
-    cursor: pointer;
-  }
-
-  .chatbot-popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  /* The actual popup */
-
-  .chatbot-popup .chatbot-popuptext {
-    visibility: hidden;
-    width: 117px;
-    background: #388557;
-    color: #fff;
-    text-align: center;
-    border-radius: 12px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-  }
-
-  /* Popup arrow */
-
-  .chatbot-popup .chatbot-popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 69%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-  }
-
-  /* Toggle this class - hide and show the popup */
-
-  .chatbot-popup .chatbot-show-elem {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
-  }
-
-  /* Add animation (fade in the popup) */
-
-  @-webkit-keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
-
-  .chatbot-popup .chatbot-show-elem {
-  }
-
-  .chatbot-hide-elem {
-    display: none;
-  }
-
-  .chatbot-activate-mini {
-    color: #2ab6e9;
-  }
-
-  .scroll {
-    overflow-y: scroll;
-    height: 300px;
-  }
-
-  .chatbot-clearfix {
-    clear: both;
-  }
-
-  div#chatbot-loading-msg {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  div#chatbot-loading-msg .chatbot-loading-dot {
-    display: inline-block;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    margin-right: 3px;
-    background: #388557;
-    animation: chatbot-loading-msg 1.3s linear infinite;
-  }
-
-  div#chatbot-loading-msg .chatbot-loading-dot:nth-child(2) {
-    animation-delay: -1.1s;
-  }
-
-  div#chatbot-loading-msg .chatbot-loading-dot:nth-child(3) {
-    animation-delay: -0.9s;
-  }
-
-  @keyframes chatbot-loading-msg {
-    0%,
-    60%,
-    100% {
-      transform: initial;
-    }
-
-    30% {
-      transform: translateY(-15px);
-    }
-  }
-
-  .chatbot-shortcuts-info {
-    flex-direction: row;
-    margin-bottom: 10px;
-  }
-
-  .chatbot-shortcuts-info > * {
-    float: left;
-  }
-
-  .chatbot-settings {
-    right: 10%;
-    background-color: #ffffff;
-    border: 2px solid #c1ced4;
-    text-align: center;
-    border-radius: 12px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    padding: 10px;
-    color: #000000;
-    text-align: left;
-    font-size: 16px;
-    max-height: 180px;
-    overflow-y: scroll;
-    top: 65px;
-  }
-
-  .chatbot-settings::before {
-    content: "";
-    position: absolute;
-    top: -16px;
-    left: 69%;
-    margin-left: 44px;
-    border-width: 7px;
-    border-style: solid;
-    border-color: transparent transparent #c1ced4 transparent;
-  }
-
-  .chatbot-action-btns {
-    color: white;
-    margin-right: 5px;
-    padding-top: 2px;
-    cursor: pointer;
-    visibility: visible;
-    padding-left: 5px;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-  }
-
-  .chatbot-hide-elem {
-    visibility: hidden;
-  }
-
-  .chatbot-settings-value {
-    display:flex;
-    padding-left: 5px;
-    font-style: italic;
-  }
-
-  #chatbot-reset-bot i::before {
-    color: white;
-  }
-
-  #chatbot-mic-btn-on,
-  #chatbot-mic-btn-off,
-  #chatbot-send-btn {
-    font-size: 30px;
-    padding-left: 3px;
-  }
-
-  .chatbot-reset-bot {
-    padding-left: 3px;
-  }
-
-  #chatbot-keypad {
-    font-size: 15px;
-    height: 35px;
-  }
-  .yes-no-btn{
-    padding: 8px;
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-  .chatbot-bot-msg a {
-    color: #388557;
-  }
-
-  @media (max-width: 720px) {
-    .chatbot-widget {
-      max-width: calc(100% - 40px);
-    }
-  }
-
-  .fa-2x {
-      font-size: 32px;
-  }
-
-  .chatbot-bot-msg a {
-      font-weight: bold;
-  }
-  `;
+            .chatbot-sub-tagline{
+              color: white;
+              margin-left: 5px;
+              font-size: small;
+              font-style: italic;
+              display: block;
+              white-space: pre;
+            }
+            .chatbot-inner-bubble:after {
+                content: ' ';
+                position: absolute;
+                width: 0;
+                height: 0;
+                left: auto;
+                right: 38px;
+                bottom: -20px;
+                border: 12px solid;
+                border-color: #ebf3ee #ebf3ee transparent transparent;
+                z-index: 2;
+            }
+            .chatbot-welcome-image-container{
+              display: flex;
+              flex-grow: 2;
+              align-items: center;
+              justify-content: center;
+            }
+            .chatbot-container *{
+              outline:none;
+            }
+
+            #increase-font-icon{
+              transform: rotate(270deg);
+            }
+            #decrease-font-icon{
+              transform: rotate(90deg);
+            }
+            .visuallyHidden {
+              border: 0;
+              clip: rect(0, 0, 0, 0);
+              height: 1px;
+              margin: -1px;
+              overflow: hidden;
+              padding: 0;
+              position: absolute;
+              width: 1px;
+          }
+          .chatbot-welcome-tagline{
+              margin: 8px;
+              margin-top: 35px;
+          }
+          .chatbot-container{
+              line-height: 1.6;
+          }
+          .close-welcome-message{
+            cursor:pointer;
+            display:flex;
+            margin-top:10px;
+          }
+
+          .close-welcome-message i{
+            font-size: 38px;
+            font-weight: 1000;
+          }
+          .chatbot-welcome-text {
+              max-width: 210px;
+              background: #ebf3ee;
+              color: #388557;
+              border-radius: 12px;
+              padding: 8px 0;
+              position: absolute;
+              z-index: 999;
+              bottom: 20%;
+              left: -76%;
+              margin-left: -80px;
+              font-size: 16px;
+              padding: 6px;
+              display: flex;
+              flex-direction: column;
+              box-shadow: 0 0.25rem 0.5rem rgb(1 1 1 / 50%);
+              animation:fadeWelcomeText1 0.5s 1;
+              -webkit-animation:fadeWelcomeText1 0.5s 1;
+              animation-fill-mode: forwards;
+              animation-delay:5s;
+              -webkit-animation-delay:5s; /* Safari and Chrome */
+              -webkit-animation-fill-mode: forwards;
+              border-radius: 40px;
+              border: 6px solid #97c2a9;
+          }
+
+          @keyframes fadeWelcomeText{
+            from {opacity :1;}
+            to {opacity :0;}
+        }
+
+        @-webkit-keyframes fadeWelcomeText{
+            from {opacity :1;}
+            to {opacity :0;}
+        }
+        .chatbot-welcome-text::after {
+            content: ' ';
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: auto;
+            right: 30px;
+            bottom: -40px;
+            border: 20px solid;
+            border-color: #97c2a9 #97c2a9 transparent transparent;
+            border-bottom-right-radius: 10px;
+          }
+          .chatbot-welcome-text.shift{
+            left:0%;
+          }
+          #chatbot-welcome-popup{
+            margin: 8px;
+            margin-right: 10px;
+            color: #388557;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+          }
+        .chatbot-bot-msg overflow-scroll {
+          height: 250px;
+          overflow-y: scroll;
+        }
+        .fa-paper-plane:before {
+          content: "\\f1d8";
+          color: #388557;
+        }
+
+        .chatbot-widget {
+          display: flex;
+          flex-direction: column;
+          max-height: 590px;
+          width: 480px;
+          right: 15px;
+          height: 72%;
+          bottom: 5%;
+          position: fixed;
+          border-radius: 10px 10px 10px 10px;
+          box-shadow: 0px 2px 10px 1px #b5b5b5;
+          -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+          z-index: 999;
+          font-weight: 400;
+          background: #f7f8f9;
+          display:none;
+        }
+
+        .chatbot-header {
+          height: 60px;
+          background-color: #388557;
+          border-radius: 10px 10px 0px 0px;
+          padding: 5px;
+          font-size: 20px;
+        }
+
+        .chatbot-canvas {
+          width:100%;
+          padding: 5px;
+          padding-top: 0px;
+          margin-top: 5px;
+          border-radius: 1px;
+          overflow-y: scroll;
+          transition: 0.2s;
+          height: calc(100% - 140px);
+        }
+
+        .chatbot-msgs{
+          margin-top: 10px;
+        }
+
+        div.chatbot-canvas::-webkit-scrollbar,
+        div.chatbot-settings::-webkit-scrollbar,
+        div.chatbot-bot-msg::-webkit-scrollbar {
+          width: 4px;
+          /* remove scrollbar space /
+            background: transparent;
+            / optional: just make scrollbar invisible */
+        }
+
+        /* Track */
+
+        div.chatbot-canvas::-webkit-scrollbar-track,
+        div.chatbot-settings::-webkit-scrollbar-track,
+        div.chatbot-bot-msg::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 5px grey;
+          border-radius: 20px;
+        }
+
+        /* Handle */
+
+        div.chatbot-canvas::-webkit-scrollbar-thumb,
+        div.chatbot-settings::-webkit-scrollbar-thumb,
+        div.chatbot-bot-msg::-webkit-scrollbar-thumb {
+          background: #388557;
+          border-radius: 5px;
+        }
+
+        /* Handle on hover */
+
+        div.chatbot-canvas::-webkit-scrollbar-thumb:hover,
+        div.chatbot-settings::-webkit-scrollbar-thumb:hover,
+        div.chatbot-bot-msg::-webkit-scrollbar-thumb:hover {
+          background: #b30000;
+        }
+
+        #chatbot-close,
+        #minimize {
+          cursor: pointer;
+        }
+
+        .chatbot-clearfix {
+          margin-top: 2px;
+          margin-bottom: 2px;
+        }
+
+        .chatbot-bot-msg {
+          float: left;
+          margin-top: 5px;
+          background: #ffffff;
+          box-shadow: 2px 5px 5px 1px #efeef5;
+          border: 1px solid #ffffff;
+          margin-left: 0.5em;
+          padding: 0.6em 1em;
+          border-radius: 1.5em;
+          max-width: 90%;
+          min-width: 25%;
+          font-size: 16px;
+          word-wrap: break-word;
+          box-sizing: border-box;
+          /* max-height: 250px;
+          overflow-y: auto;*/
+        }
+
+        .chatbot-user-msg {
+          animation: animateElement linear 0.2s;
+          animation-iteration-count: 1;
+          margin-top: 5px;
+          word-wrap: break-word;
+          padding: 0.6em 1em;
+          float: right;
+          margin-right: 0.5em;
+          background: #388557;
+          border: 1px solid #388557;
+          color: #fff;
+          border-radius: 1.5em;
+          margin-bottom: 0.15em;
+          font-size: 16px;
+          max-width: 55%;
+          min-width: 25%;
+          line-height: 1.5em;
+          box-sizing: border-box;
+        }
+
+        .chatbot-msg-card {
+          padding-right: 15px;
+        }
+
+        .chatbot-suggestions {
+          padding: 5px;
+          width: 100%;
+          border-radius: 10px;
+          background: #ffffff;
+          box-shadow: 2px 5px 5px 1px #dbdade;
+        }
+
+        .chatbot-keypad {
+          display: flex;
+          align-items:center;
+          height: 45px;
+          position: absolute;
+          bottom: 10px;
+          width: 100%;
+        }
+
+        .chatbot-keypad > * {
+            padding-right: 5px;
+        }
+
+        .chatbot-user-input {
+          background: #f1f0f0;
+          width: 100%;
+          margin-left: 4%;
+          border-radius: 20px;
+          box-shadow: 0px 2px 10px 1px #b5b5b5;
+          border: 0;
+          padding-left: 15px;
+          height: 35px;
+        }
+
+        .chatbot-keypad input:focus {
+          outline: none;
+        }
+
+        .chatbot-buttons-menu {
+          padding: 5px;
+          max-width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .chatbot-list {
+          padding: 5px;
+          max-width: 100%;
+        }
+
+        .chatbot-menu-chips {
+          border: 3px solid;
+          display: inline-block;
+          padding: .4em 1em;
+          text-decoration: none;
+          transition: all .4s ease;
+          line-height: 1.4;
+          margin-right: 3px;
+          text-align: center;
+          margin-bottom: 5px;
+          cursor: pointer;
+          font-size: 14px;
+          box-shadow: 0 0.25rem 0.5rem rgb(1 1 1 / 25%);
+          font-weight: 550;
+          background-color: #388557;
+          border-color: transparent;
+          color: #fff;
+          border-radius: 7px;
+        }
+
+        .chatbot-menu-chips:hover {
+          box-shadow: 4px 6px 15px 1px rgba(33, 63, 88, 0.25);
+        }
+
+        @keyframes animateElement {
+          0% {
+            opacity: 0;
+            transform: translate(0px, 10px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translate(0px, 0px);
+          }
+        }
+
+        .chatbot-img {
+          width: 100%;
+          padding: 2%;
+        }
+
+        #chatbot-logos-container {
+          position: fixed;
+          bottom: 55px;
+          right: 16px;
+          width: 100px;
+          height: 12%;
+          transition: 0.35s;
+          transform: translate(400%);
+          z-index: 999;
+        }
+
+        .chatbot-button-suggestions {
+          background-color: transparent;
+          box-shadow: none;
+        }
+
+        .jc-bs3-container {
+          width: 30%;
+        }
+
+        #chatbot-send-btn:hover,
+        #chatbot-mic-btn-on:hover,
+        #chatbot-mic-btn-off:hover {
+          cursor: pointer;
+        }
+
+        .chatbot-popup {
+          position: relative;
+          display: inline-block;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+        /* The actual popup */
+
+        .chatbot-popup .chatbot-popuptext {
+          visibility: hidden;
+          width: 117px;
+          background: #388557;
+          color: #fff;
+          text-align: center;
+          border-radius: 12px;
+          padding: 8px 0;
+          position: absolute;
+          z-index: 1;
+          bottom: 125%;
+          left: 50%;
+          margin-left: -80px;
+        }
+
+        /* Popup arrow */
+
+        .chatbot-popup .chatbot-popuptext::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 69%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #388557 transparent transparent transparent;
+        }
+
+        /* Toggle this class - hide and show the popup */
+
+        .chatbot-popup .chatbot-show-elem {
+          visibility: visible;
+          -webkit-animation: fadeIn 1s;
+          animation: fadeIn 1s;
+        }
+
+        /* Add animation (fade in the popup) */
+
+        @-webkit-keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+
+          to {
+            opacity: 1;
+          }
+        }
+
+        .chatbot-popup .chatbot-show-elem {
+        }
+
+        .chatbot-hide-elem {
+          display: none;
+        }
+
+        .chatbot-activate-mini {
+          color: #2ab6e9;
+        }
+
+        .scroll {
+          overflow-y: scroll;
+          height: 300px;
+        }
+
+        .chatbot-clearfix {
+          clear: both;
+        }
+
+        div#chatbot-loading-msg {
+          position: relative;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        div#chatbot-loading-msg .chatbot-loading-dot {
+          display: inline-block;
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          margin-right: 3px;
+          background: #388557;
+          animation: chatbot-loading-msg 1.3s linear infinite;
+        }
+
+        div#chatbot-loading-msg .chatbot-loading-dot:nth-child(2) {
+          animation-delay: -1.1s;
+        }
+
+        div#chatbot-loading-msg .chatbot-loading-dot:nth-child(3) {
+          animation-delay: -0.9s;
+        }
+
+        @keyframes chatbot-loading-msg {
+          0%,
+          60%,
+          100% {
+            transform: initial;
+          }
+
+          30% {
+            transform: translateY(-15px);
+          }
+        }
+
+        .chatbot-shortcuts-info {
+          display:flex;
+          flex-direction: column;
+          margin-bottom: 10px;
+        }
+
+        .chatbot-shortcuts-info > * {
+          float: left;
+        }
+
+        .chatbot-settings {
+          right: 10%;
+          background-color: #ffffff;
+          border: 2px solid #c1ced4;
+          text-align: center;
+          border-radius: 12px;
+          padding: 8px 0;
+          position: absolute;
+          z-index: 1;
+          padding: 10px;
+          color: #000000;
+          text-align: left;
+          font-size: 16px;
+          max-height: 180px;
+          overflow-y: scroll;
+          top: 65px;
+        }
+
+        .chatbot-settings::before {
+          content: "";
+          position: absolute;
+          top: -16px;
+          left: 69%;
+          margin-left: 44px;
+          border-width: 7px;
+          border-style: solid;
+          border-color: transparent transparent #c1ced4 transparent;
+        }
+
+        .chatbot-action-btns {
+          color: white;
+          margin-right: 5px;
+          padding-top: 2px;
+          cursor: pointer;
+          visibility: visible;
+          padding-left: 5px;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -o-user-select: none;
+          user-select: none;
+        }
+
+
+        .chatbot-settings-value {
+          display:flex;
+          padding-left: 5px;
+          font-style: italic;
+        }
+
+        #chatbot-reset-bot i::before {
+          color: white;
+        }
+
+        #chatbot-mic-btn-on,
+        #chatbot-mic-btn-off,
+        #chatbot-send-btn {
+          font-size: 30px;
+          padding-left: 3px;
+        }
+
+        .chatbot-reset-bot {
+          padding-left: 3px;
+        }
+
+        #chatbot-keypad {
+          font-size: 14px;
+          height: 35px;
+        }
+        .yes-no-btn{
+          padding: 8px;
+          padding-left: 22px;
+          padding-right: 22px;
+        }
+        .chatbot-bot-msg a {
+          color: #388557;
+        }
+
+        @media (max-width: 720px) {
+          .chatbot-widget {
+            max-width: calc(100% - 40px);
+          }
+        }
+
+        .fa-2x {
+            font-size: 32px;
+        }
+
+        .chatbot-bot-msg a {
+            font-weight: bold;
+        }
+        .chatbot-settings-label{
+          font-weight:bold;
+        }
+
+        .chatbot-logo{
+          cursor:pointer;
+        }
+
+        .limit-reached{
+              box-shadow: 0px 0px 10px 2px #d89595;
+         }
+        `;
 
       /* Attach the chatbot-StyleSheet to the body of the page */
       var style = document.createElement("style");
@@ -824,10 +839,6 @@ function main() {
       div.innerHTML = DOMPurify.sanitize(htmlMarkup);
       document.body.appendChild(div);
 
-      $(document).ready(function () {
-        $("#chatbot-logo").focus();
-      });
-
       /* Configuration Variables */
       var crypto = window.crypto || window.msCrypto;
       var chatBotOpened = false;
@@ -836,15 +847,44 @@ function main() {
       var maximumFontSize = 22;
       var isClosed = false;
       var sessionStarted = false;
-      const idPayload = getUid();
+      let idPayload = null;
       var enableTextBotIcon = false;
-      const API_END_POINT =
-        "https://aibot.neurosoph.com:5000/webhooks/rest/webhook";
       var fontSize = 16;
       var isNewSession = false;
       var firstMessageSent = false;
       var noUserInput = false;
       var msg = "";
+      var botUserHistory = "";
+      const BOT_USER_HISTORY = "user-bot-history";
+      const CHATBOT_SESSION_ID = "chatbot-session-id";
+      const CHATBOT_TAB_COUNT = "chatbot-tab-count";
+      const INPUT_CHAR_LIMIT = 119;
+      const API_END_POINT =
+        "https://aibot.neurosoph.com:5000/webhooks/rest/webhook";
+      // const API_END_POINT =
+      //   "https://561df67b866f.ngrok.io/webhooks/rest/webhook";
+
+      $(document).ready(function () {
+        $(".chatbot-logo").eq(0).focus();
+        if (localStorage.getItem(CHATBOT_TAB_COUNT)) {
+          localStorage.setItem(
+            CHATBOT_TAB_COUNT,
+            parseInt(localStorage.getItem(CHATBOT_TAB_COUNT)) + 1
+          );
+        } else {
+          localStorage.setItem(CHATBOT_TAB_COUNT, 1);
+        }
+
+        if (getBotUserHistory()) {
+          loadHistoryToChatbot(getBotUserHistory());
+        }
+        if (getBotSessionId()) {
+          idPayload = getBotSessionId();
+        } else {
+          idPayload = getUid();
+          setBotSessionId(idPayload);
+        }
+      });
 
       /* Animate the chatbot from right to left */
 
@@ -884,6 +924,48 @@ function main() {
           ("SpeechRecognition" in window || "webkitSpeechRecognition" in window)
           ? true
           : false;
+      }
+
+      function getBotUserHistory() {
+        let lSBotUserHistory = localStorage.getItem(BOT_USER_HISTORY);
+        let sSBotUserHistory = sessionStorage.getItem(BOT_USER_HISTORY);
+        if (lSBotUserHistory) {
+          sessionStorage.setItem(BOT_USER_HISTORY, lSBotUserHistory);
+          return lSBotUserHistory;
+        } else if (sSBotUserHistory) {
+          localStorage.setItem(BOT_USER_HISTORY, sSBotUserHistory);
+          return sSBotUserHistory;
+        }
+        return null;
+      }
+
+      function getBotSessionId() {
+        let lSChatBotSessionId = localStorage.getItem(CHATBOT_SESSION_ID);
+        let sSChatBotSessionId = sessionStorage.getItem(CHATBOT_SESSION_ID);
+        if (lSChatBotSessionId) {
+          sessionStorage.setItem(CHATBOT_SESSION_ID, lSChatBotSessionId);
+          return lSChatBotSessionId;
+        } else if (sSChatBotSessionId) {
+          localStorage.setItem(CHATBOT_SESSION_ID, sSChatBotSessionId);
+          return sSChatBotSessionId;
+        }
+        return null;
+      }
+
+      function setBotSessionId(id) {
+        localStorage.setItem(CHATBOT_SESSION_ID, id);
+        sessionStorage.setItem(CHATBOT_SESSION_ID, id);
+      }
+
+      function setBotUserHistory() {
+        localStorage.setItem(BOT_USER_HISTORY, $(".chatbot-msgs").html());
+        sessionStorage.setItem(BOT_USER_HISTORY, $(".chatbot-msgs").html());
+      }
+
+      function loadHistoryToChatbot(history) {
+        $(".chatbot-msgs").html(history);
+        sessionStarted = true;
+        $("#chatbot-keypad").attr("disabled", false);
       }
 
       function toggleMicrophoneMessage() {
@@ -1058,21 +1140,21 @@ function main() {
           `<p class="chatbot-user-msg" style="font-size:${fontSize}px" tabindex=0>` +
           val +
           ' </p><div class="chatbot-clearfix"></div>';
-        $($(DOMPurify.sanitize(userResponse)))
-          .appendTo(".chatbot-msgs")
-          .show("slow");
+        userResponse = DOMPurify.sanitize(userResponse);
+        setBotUserHistory();
+        $(userResponse).appendTo(".chatbot-msgs").show("slow");
         $(".chatbot-user-input").val("");
         $(".chatbot-suggestions").remove();
         noUserInput = false;
         var botResponse =
           `<div class="chatbot-bot-msg" tabindex=0 aria-label="loading for bot response" id="typing" style="font-size:${fontSize}px;border:0px;background:transparent;box-shadow:none">` +
           `<div id="chatbot-loading-msg">
-                  <span class="chatbot-loading-dot"></span>
-                  <span class="chatbot-loading-dot"></span>
-                  <span class="chatbot-loading-dot"></span>
-                  </div>` +
+                        <span class="chatbot-loading-dot"></span>
+                        <span class="chatbot-loading-dot"></span>
+                        <span class="chatbot-loading-dot"></span>
+                        </div>` +
           '</div><div class="chatbot-clearfix"></div>';
-        addBotResponse(botResponse);
+        addBotResponse(botResponse, false);
         $(".chatbot-user-msg").last().nextAll(".chatbot-bot-msg:first").focus();
         scrollToBottomOfResults();
       }
@@ -1104,8 +1186,8 @@ function main() {
           contentType: "application/json",
           data: dataTobeSent,
           success: function (data, textStatus) {
-            var firstMessage = $("#chatbot-msgs").eq(0);
-            if (!firstMessage) {
+            var firstMessage = $("#chatbot-msgs").eq(0).children().length;
+            if (firstMessage == 0) {
               if (data.length > 1) {
                 data.pop();
               }
@@ -1129,11 +1211,14 @@ function main() {
       }
 
       /* Add the bot response to the window */
-      function addBotResponse(markup) {
-        $(DOMPurify.sanitize(markup))
-          .appendTo(".chatbot-msgs")
-          .hide()
-          .fadeIn(200);
+      function addBotResponse(markup, store = true) {
+        markup = DOMPurify.sanitize(markup, { ADD_ATTR: ["target"] });
+        $(markup).appendTo(".chatbot-msgs").hide().fadeIn(50);
+        setTimeout(() => {
+          if (store) {
+            setBotUserHistory();
+          }
+        }, 50);
       }
 
       /* Set bot response */
@@ -1185,9 +1270,9 @@ function main() {
                   var markup = data.text + "<div><form class='diseases'>";
                   checkboxes.forEach((box) => {
                     markup += `<div style="display:flex;align-items:center">
-                      <input type="checkbox" id="${box}" name="${box}" value="${box}">
-                      <label style="padding-left:5px;" for="${box}"> ${box}</label></div>
-                      `;
+                            <input type="checkbox" id="${box}" name="${box}" value="${box}">
+                            <label style="padding-left:5px;" for="${box}"> ${box}</label></div>
+                            `;
                   });
                   markup += `</form></div>`;
                   var botResponse =
@@ -1215,13 +1300,14 @@ function main() {
                     for (var prop in links[i]) {
                       var link = links[i][prop][0];
                       var textToReplace = links[i][prop][1];
-                      var anchorLink = `<a href="${link}" target="_blank">${textToReplace}</a>`;
+                      var anchorLink = `<a class="chatbot-links" href="${link}" >${textToReplace}</a>`;
                       linkData = linkData.replace(delimeter, anchorLink);
                     }
                   }
 
                   markup +=
                     linkData + '</p><div class="chatbot-clearfix"></div>';
+
                   addBotResponse(markup);
                 } else if (type == "hyper_bullets") {
                   var hyperPoints = data.hyper_bullets;
@@ -1229,9 +1315,9 @@ function main() {
                   hyperPoints.forEach((point) => {
                     //   markup += `<li>${point}</li>`;
                     for (var prop in point) {
-                      var text = point[prop][0];
-                      var link = point[prop][1];
-                      markup += `<li><a href=${link} target="_blank">${text}</a></li>`;
+                      var link = point[prop][0];
+                      var text = point[prop][1];
+                      markup += `<li><a class="chatbot-links" href="${link}" >${text}</a></li>`;
                     }
                   });
                   markup += `</ul>`;
@@ -1260,7 +1346,7 @@ function main() {
                     }
                   });
                   markup += val[i].text.split(delimeter)[0];
-                  markup += `<a href="${delimeter}" target="_blank">${
+                  markup += `<a class="chatbot-links" href="${delimeter}" >${
                     val[i].text.split(delimeter)[1]
                   }</a> `;
                   markup += '</p><div class="chatbot-clearfix"></div>';
@@ -1364,17 +1450,17 @@ function main() {
         setTimeout(function () {
           var suggestions = textToAdd;
           var suggLength = textToAdd.length;
-          $(
-            ' <div class="chatbot-msg-card"> <div class="chatbot-button-suggestions chatbot-suggestions"><div class="' +
-              type +
-              '"></div></div></diV>'
-          )
-            .appendTo(".chatbot-msgs")
-            .hide()
-            .fadeIn(1000);
+          // $(
+          //   ' <div class="chatbot-msg-card"> <div class="chatbot-button-suggestions chatbot-suggestions"><div class="' +
+          //     type +
+          //     '"></div></div></diV>'
+          // )
+          //   .appendTo(".chatbot-msgs")
+          //   .hide()
+          //   .fadeIn(1000);
           // Loop through suggestions
+          var markup = ``;
           for (let i = 0; i < suggLength; i++) {
-            var markup = ``;
             markup += `<div role="button" style="font-size:${fontSize}px" class="chatbot-menu-chips ${
               suggestions[i].payload === "/yes" ||
               suggestions[i].payload === "/no"
@@ -1390,8 +1476,16 @@ function main() {
               "'>" +
               suggestions[i].title +
               "</div>";
-            $(markup).appendTo("." + type);
+
+            // $(markup).appendTo("." + type);
           }
+          markup = ` <div class="chatbot-msg-card"> <div class="chatbot-button-suggestions chatbot-suggestions"><div class="${type}">${markup}</div></div></diV>`;
+          $.when($(markup).appendTo(".chatbot-msgs").hide().fadeIn(50)).done(
+            function () {
+              setBotUserHistory();
+            }
+          );
+
           scrollToBottomOfResults();
         }, 500);
       }
@@ -1446,11 +1540,33 @@ function main() {
         showChatBot();
         setTimeout(() => {
           $("#chatbot-logo-tagline").focus();
+          scrollToBottomOfResults();
         }, 50);
-        scrollToBottomOfResults();
+      }
+
+      function clearHistory() {
+        localStorage.removeItem(CHATBOT_SESSION_ID);
+        localStorage.removeItem(BOT_USER_HISTORY);
+        localStorage.removeItem(CHATBOT_TAB_COUNT);
+
+        // sessionStorage.removeItem(CHATBOT_SESSION_ID);
+        // sessionStorage.removeItem(BOT_USER_HISTORY);
+        // sessionStorage.removeItem(CHATBOT_TAB_COUNT);
       }
 
       /* *** EVENT Listeners *** */
+      $(window).on("beforeunload", function (e) {
+        if (localStorage.getItem(CHATBOT_TAB_COUNT)) {
+          let chatbotTabId = parseInt(localStorage.getItem(CHATBOT_TAB_COUNT));
+          if (chatbotTabId == 1) {
+            clearHistory();
+          } else localStorage.setItem(CHATBOT_TAB_COUNT, chatbotTabId - 1);
+        }
+      });
+
+      $("#chatbot-keypad").on("cut copy paste", function (e) {
+        e.preventDefault();
+      });
 
       $(".chatbot-welcome-text").on(
         "animationend webkitAnimationEnd",
@@ -1497,13 +1613,17 @@ function main() {
 
       /* Close Welcome Message */
       $(".close-welcome-message").click(function () {
-        $(".chatbot-welcome-text").addClass("chatbot-hide-elem");
+        $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
+        $(".close-welcome-message").addClass("chatbot-hide-elem");
+        $(".chatbot-welcome-text").addClass("shift");
       });
 
       $(".close-welcome-message").keypress(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
-          $(".chatbot-welcome-text").addClass("chatbot-hide-elem");
+          $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
+          $(".close-welcome-message").addClass("chatbot-hide-elem");
+          $(".chatbot-welcome-text").addClass("shift");
         }
       });
 
@@ -1520,11 +1640,11 @@ function main() {
       });
 
       /* Toggle chatbot */
-      $("#chatbot-logo").click(function () {
+      $(".chatbot-logo").click(function () {
         launchChatbot();
       });
 
-      $("#chatbot-logo").keypress(function (e) {
+      $(".chatbot-logo").keypress(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
           launchChatbot();
@@ -1557,6 +1677,7 @@ function main() {
       /* Close Chatbot */
       $("#chatbot-close").click(function () {
         closeChatbot();
+        clearHistory();
       });
 
       $("#chatbot-close").keypress(function (e) {
@@ -1570,6 +1691,14 @@ function main() {
       $("#chatbot-keypad").on("keydown", function (e) {
         if ($("#chatbot-keypad").val() === "" && e.keyCode == 191) {
           e.preventDefault();
+        }
+      });
+
+      $("#chatbot-keypad").on("keyup", function (e) {
+        if ($("#chatbot-keypad").val().length > INPUT_CHAR_LIMIT) {
+          $("#chatbot-keypad").addClass("limit-reached");
+        } else {
+          $("#chatbot-keypad").removeClass("limit-reached");
         }
       });
 
@@ -1602,7 +1731,7 @@ function main() {
           if (chatBotOpened) {
             $("#minimize").click();
           } else {
-            $("#chatbot-logo").click();
+            $(".chatbot-logo").click();
           }
         }
         if (e.altKey && e.keyCode == 77) {
@@ -1645,6 +1774,30 @@ function main() {
         }
       }
       document.addEventListener("keyup", doc_keyUp, false);
+      $(window).blur(function (e) {
+        if ($("#chatbot-widget").is(":visible")) hideChatBot();
+      });
+      $(window).focus(function (e) {
+        let chatbotCanvas = $(".chatbot-msgs").html();
+        if (
+          chatbotCanvas.length > 0 &&
+          localStorage.getItem(BOT_USER_HISTORY) == null
+        ) {
+          sessionStarted = false;
+          clearHistory();
+        }
+        let chatbotHistory = getBotUserHistory();
+        if (chatbotHistory) {
+          if (chatbotHistory.length > chatbotCanvas.length) {
+            loadHistoryToChatbot(chatbotHistory);
+            scrollToBottomOfResults();
+          }
+        } else {
+          if (chatbotCanvas.length > 0) {
+            sessionStarted = false;
+          }
+        }
+      });
     }
   );
 }
