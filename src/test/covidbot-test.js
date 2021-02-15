@@ -171,6 +171,7 @@ function main() {
 
                 <!--user typing indicator -->
                 <div class="chatbot-keypad">
+                  <label class="visuallyHidden" for="chatbot-keypad">Ask a COVID-19 vaccine question</label>
                   <input
                     maxlength="120"
                     type="text"
