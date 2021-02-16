@@ -159,7 +159,7 @@ function main() {
             </div>
             <div>
               <span
-                title="COVID-19 Chatbot"
+                title="Vaccine chat"
                 class="chatbot-sub-tagline"
                 >Ask a COVID-19 vaccine question
               </span>
