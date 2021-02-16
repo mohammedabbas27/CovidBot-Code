@@ -44,7 +44,7 @@ function main() {
               <div class="close-welcome-message"><i
                 class="material-icons">close</i></div>
               </div>
-                <h5 aria-hidden="true" tabindex=-1 class="chatbot-logo" id="chatbot-welcome-popup">Have a COVID-19 Vaccination Question? </h5>
+                <h5 aria-hidden="true" tabindex=-1 class="chatbot-logo" id="chatbot-welcome-popup">Have a COVID-19 vaccine question?</h5>
                 </div>
           </div>
         </div>
@@ -52,8 +52,8 @@ function main() {
         <div class="chatbot-widget" id="chatbot-widget">
           <div class="chatbot-header">
             <!--Add the name of the bot here -->
-            <span aria-label="COVID-19 Chatbot Window" id="chatbot-logo-tagline" tabindex=0 style="color: white; margin-left: 5px"
-              >COVID-19 Chatbot</span>
+            <span aria-label="Vaccine chat Window" id="chatbot-logo-tagline" tabindex=0 style="color: white; margin-left: 5px"
+              >Vaccine chat</span>
             <div style="float:right;display:flex;">
               <span data-tooltipid="tooltip-dec-font" role="button" tabindex=0 aria-label="Decrease Chatbot Font Size" class="chatbot-action-btns" id="chatbot-decrease-font">
               A<span>-</span>
@@ -883,10 +883,10 @@ function main() {
       const CHATBOT_SESSION_ID = "chatbot-session-id";
       const CHATBOT_TAB_COUNT = "chatbot-tab-count";
       const INPUT_CHAR_LIMIT = 119;
-      const API_END_POINT =
-        "https://chatbot.neurosoph.io:15005/webhooks/rest/webhook";
       // const API_END_POINT =
-      //   "https://aibot.neurosoph.com:5000/webhooks/rest/webhook";
+      //   "https://chatbot.neurosoph.io:15005/webhooks/rest/webhook";
+      const API_END_POINT =
+        "https://aibot.neurosoph.com:5000/webhooks/rest/webhook";
       // const API_END_POINT =
       //   "https://561df67b866f.ngrok.io/webhooks/rest/webhook";
 
