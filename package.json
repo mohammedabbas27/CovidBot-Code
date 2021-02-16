@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-dev": "babel src\\dev\\covidbot-dev.js --out-file dist\\covidbot-dev.js",
-    "build-test": "babel src\\test\\covidbot-test.js --out-file dist\\covidbot-test.js",
+    "build-dev": "babel src/dev/covidbot-dev.js --out-file dist/covidbot-dev.js",
+    "build-test": "babel src/test/covidbot-test.js --out-file dist/covidbot-test.js",
     "build-both": "npm-run-all build-dev build-test"
   },
   "keywords": [],
