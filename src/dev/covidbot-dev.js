@@ -52,8 +52,8 @@ function main() {
         <div class="chatbot-widget" id="chatbot-widget">
           <div class="chatbot-header">
             <!--Add the name of the bot here -->
-            <span aria-label="Vaccine chat Window" id="chatbot-logo-tagline" tabindex=0 style="color: white; margin-left: 5px"
-              >Vaccine chat</span>
+            <span aria-label="Vaccine chat window" id="chatbot-logo-tagline" tabindex=0 style="color: white; margin-left: 5px"
+              >Vaccine Chat</span>
             <div style="float:right;display:flex;">
               <span data-tooltipid="tooltip-dec-font" role="button" tabindex=0 aria-label="Decrease Chatbot Font Size" class="chatbot-action-btns" id="chatbot-decrease-font">
               A<span>-</span>
