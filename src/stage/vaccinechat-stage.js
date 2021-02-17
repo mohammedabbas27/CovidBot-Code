@@ -1,5 +1,4 @@
 /* Load Jquery */
-
 (function () {
   var script = document.createElement("SCRIPT");
   script.src =
@@ -29,8 +28,7 @@ function main() {
         '<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu&display=swap"rel="stylesheet"/>'
       );
 
-      const CHATBOT_ICON_PATH =
-        "https://aibot.neurosoph.com:5000/Chatbot_Icon_01-Green.png";
+      const CHATBOT_ICON_PATH = "https://www.mass.gov/media/2246916/download";
 
       var htmlMarkup = `
   <div class="chatbot-container">
@@ -52,7 +50,7 @@ function main() {
         <div class="chatbot-widget" id="chatbot-widget">
           <div class="chatbot-header">
             <!--Add the name of the bot here -->
-            <span aria-label="Vaccine chat window" id="chatbot-logo-tagline" tabindex=0 style="color: white; margin-left: 5px"
+            <span aria-label="Vaccine chat Window" id="chatbot-logo-tagline" tabindex=0 style="color: white; margin-left: 5px"
               >Vaccine Chat</span>
             <div style="float:right;display:flex;">
               <span data-tooltipid="tooltip-dec-font" role="button" tabindex=0 aria-label="Decrease Chatbot Font Size" class="chatbot-action-btns" id="chatbot-decrease-font">
@@ -159,7 +157,7 @@ function main() {
             </div>
             <div>
               <span
-                title="Vaccine chat"
+                title="COVID-19 Chatbot"
                 class="chatbot-sub-tagline"
                 >Ask a COVID-19 vaccine question
               </span>
@@ -194,10 +192,11 @@ function main() {
               <span class="chatbot-popuptext" id="chatbot-myPopup">Go on i'm Listening!</span>
               <div
                 id="chatbot-mic-btn-on"
+                class="chatbot-hide-elem"
                 tabindex=0
                 aria-label="Turn off Microphone"
                 role="button" >
-                <span class="material-icons chatbot-hide-elem" style="font-size: 38px;margin-top: 10px;color: #e82719;font-weight: bold;">mic</span>
+                <span class="material-icons" style="font-size: 38px;margin-top: 16px;color: #e82719;font-weight: bold;">mic</span>
               </div>
               </div>
             <div id="tooltip-voice" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="inset: -29px auto auto 327.72px;">Chat with your voice</div>
@@ -222,7 +221,6 @@ function main() {
   `;
 
       var cssMarkup = `
-
       .tooltip{
         position: absolute;
         background: #555856;
@@ -231,7 +229,6 @@ function main() {
         color: white;
         font-size: 14px;
       }
-
       .chatbot-logo img{
         width:70px;
         margin-left: 35px;
@@ -345,7 +342,7 @@ function main() {
       height: 0;
       left: auto;
       right: 30px;
-      bottom: -39px;
+      bottom: -42px;
       border: 20px solid;
       border-color: #97c2a9 #97c2a9 transparent transparent;
       border-bottom-right-radius: 10px;
@@ -851,6 +848,46 @@ function main() {
   .limit-reached{
         box-shadow: 0px 0px 10px 2px #d89595;
    }
+
+   @media (max-width: 540px){
+    .close-welcome-message i{
+      font-size:25px;
+    }
+    #chatbot-welcome-popup{
+      font-size: 1.1rem;
+    }
+    .chatbot-welcome-text{
+      max-width: 161px;
+      bottom: -27%;
+      left: -20%;
+    }
+
+    .chatbot-logo img{
+      width:50px;
+    }
+
+    .chatbot-welcome-text.shift{
+      left: 51%;
+    }
+    #chatbot-logo-tagline{
+      font-size:16px;
+    }
+    .chatbot-action-btns{
+      margin-right: 3px;
+    }
+    .chatbot-inner-bubble:after{
+      right: 32px;
+      bottom: -18px;
+      border: 10px solid;
+      border-color: #ebf3ee #ebf3ee transparent transparent;
+    }
+    .chatbot-welcome-text::after{
+      right: 29px;
+      bottom: -26px;
+      border: 13px solid;
+      border-color: #97c2a9 #97c2a9 transparent transparent;
+    }
+   }
   `;
 
       /* Attach the chatbot-StyleSheet to the body of the page */
@@ -883,12 +920,9 @@ function main() {
       const CHATBOT_SESSION_ID = "chatbot-session-id";
       const CHATBOT_TAB_COUNT = "chatbot-tab-count";
       const INPUT_CHAR_LIMIT = 119;
-      // const API_END_POINT =
-      //   "https://chatbot.neurosoph.io:15005/webhooks/rest/webhook";
+      var isTouch = "ontouchstart" in window;
       const API_END_POINT =
-        "https://aibot.neurosoph.com:5000/webhooks/rest/webhook";
-      // const API_END_POINT =
-      //   "https://561df67b866f.ngrok.io/webhooks/rest/webhook";
+        "https://chatbot.stage.neurosoph.io:15005/webhooks/rest/webhook";
 
       $(document).ready(function () {
         $(".chatbot-welcome-image-container.chatbot-logo").focus();
@@ -920,7 +954,8 @@ function main() {
         document.querySelector("#chatbot-logos-container").style.transform =
           "translate(20%)";
       }, 400);
-      msg = "Sorry, the chatbot is offline. Please try again later.";
+      msg =
+        "Sorry, the chat is offline. Please try again later. You can also call <a href='tel:2-1-1'>2-1-1</a> to speak with a person about the vaccine, or try <a href='https://search.mass.gov/'>searching on mass.gov</a>";
 
       /* Disable chatbot on language change */
       var observer = new MutationObserver(function (event) {
@@ -1260,7 +1295,8 @@ function main() {
         setTimeout(function () {
           if (val.length < 1) {
             /* if there is no response from Rasa */
-            msg = "Sorry, the chatbot is offline. Please try again later.";
+            msg =
+              "Sorry, the chat is offline. Please try again later. You can also call <a href='tel:2-1-1'>2-1-1</a> to speak with a person about the vaccine, or try <a href='https://search.mass.gov/'>searching on mass.gov</a>";
             var markup =
               `<p class="chatbot-bot-msg" style="font-size:${fontSize}px;" tabindex=0>` +
               msg +
@@ -1575,27 +1611,24 @@ function main() {
         localStorage.removeItem(CHATBOT_SESSION_ID);
         localStorage.removeItem(BOT_USER_HISTORY);
         localStorage.removeItem(CHATBOT_TAB_COUNT);
-
-        // sessionStorage.removeItem(CHATBOT_SESSION_ID);
-        // sessionStorage.removeItem(BOT_USER_HISTORY);
-        // sessionStorage.removeItem(CHATBOT_TAB_COUNT);
       }
 
       function showTooltip(e) {
-        // $(".toolip").each(el => {
-        //   el.addClass("chatbot-hide-elem");
-        // });
-        let id = this.dataset.tooltipid;
-        setTimeout(() => {
-          $(`#${id}`).removeClass("chatbot-hide-elem");
-        }, 100);
+        if (!isTouch) {
+          let id = this.dataset.tooltipid;
+          setTimeout(() => {
+            $(`#${id}`).removeClass("chatbot-hide-elem");
+          }, 100);
+        }
       }
 
       function hideTooltip(e) {
-        let id = this.dataset.tooltipid;
-        setTimeout(() => {
-          $(`#${id}`).addClass("chatbot-hide-elem");
-        }, 100);
+        if (!isTouch) {
+          let id = this.dataset.tooltipid;
+          setTimeout(() => {
+            $(`#${id}`).addClass("chatbot-hide-elem");
+          }, 100);
+        }
       }
 
       /* *** EVENT Listeners *** */

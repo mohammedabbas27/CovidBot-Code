@@ -27,16 +27,16 @@ npm i
 To compile the code for production environments...
 
 ```sh
-npm build-test
+npm build-prod
 ```
 
 To compile the code for for dev environments...
 
 ```sh
-npm build-dev
+npm build-stage
 ```
 
-To compile the code for for both dev and prod/test environments...
+To compile the code for for both dev and prod/stage environments...
 
 ```sh
 npm build-both
@@ -44,11 +44,11 @@ npm build-both
 
 ## Directory Structure
 
-| Directory | Purpose                                                |
-| --------- | ------------------------------------------------------ |
-| dist      | Contains the code post compiling                       |
-| src/dev   | Contains the Javascript used for dev environment       |
-| src/test  | Contains the Javascript used for prod/test environment |
+| Directory | Purpose                                            |
+| --------- | -------------------------------------------------- |
+| dist      | Contains the code post compiling                   |
+| src/prod  | Contains the Javascript used for prod environment  |
+| src/stage | Contains the Javascript used for stage environment |
 
 ## Variables
 

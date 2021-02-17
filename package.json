@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-dev": "babel src/dev/covidbot-dev.js --out-file dist/covidbot-dev.js",
-    "build-test": "babel src/test/covidbot-test.js --out-file dist/covidbot-test.js",
-    "build-both": "npm-run-all build-dev build-test"
+    "build-stage": "babel src/stage/vaccinechat-stage.js --out-file dist/vaccinechat-stage.js",
+    "build-prod": "babel src/prod/vaccinechat-prod.js --out-file dist/vaccinechat-prod.js",
+    "build-both": "npm-run-all build-stage build-prod"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.12.13",
-    "@babel/core": "^7.12.13",
-    "@babel/preset-env": "^7.12.13",
+    "@babel/core": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
     "npm-run-all": "^4.1.5"
   }
 }
