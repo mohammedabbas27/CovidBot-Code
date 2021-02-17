@@ -30,16 +30,22 @@ To compile the code for production environments...
 npm build-prod
 ```
 
-To compile the code for for dev environments...
+To compile the code for for stage environments...
 
 ```sh
 npm build-stage
 ```
 
-To compile the code for for both dev and prod/stage environments...
+To compile the code for for dev environments...
 
 ```sh
-npm build-both
+npm build-dev
+```
+
+To compile the code for for dev, stage and prod environments...
+
+```sh
+npm build-all
 ```
 
 ## Directory Structure
@@ -49,6 +55,7 @@ npm build-both
 | dist      | Contains the code post compiling                   |
 | src/prod  | Contains the Javascript used for prod environment  |
 | src/stage | Contains the Javascript used for stage environment |
+| src/dev   | Contains the Javascript used for dev environment   |
 
 ## Variables
 

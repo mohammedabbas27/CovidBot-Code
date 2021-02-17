@@ -6,7 +6,8 @@
   "scripts": {
     "build-stage": "babel src/stage/vaccinechat-stage.js --out-file dist/vaccinechat-stage.js",
     "build-prod": "babel src/prod/vaccinechat-prod.js --out-file dist/vaccinechat-prod.js",
-    "build-both": "npm-run-all build-stage build-prod"
+    "build-dev": "babel src/dev/vaccinechat-dev.js --out-file dist/vaccinechat-dev.js",
+    "build-all": "npm-run-all build-stage build-prod build-dev"
   },
   "keywords": [],
   "author": "",
