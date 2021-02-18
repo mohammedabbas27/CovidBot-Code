@@ -1509,6 +1509,8 @@ function main() {
 
       /* Hide Chatbot */
       function hideChatBot() {
+        isChatbotOpen = false;
+        updateChatbotWindowState(isChatbotOpen);
         chatBotOpened = false;
         setTimeout(() => {
           $("#chatbot-widget").css({ display: "none" });
@@ -1519,6 +1521,8 @@ function main() {
 
       /* Show Chatbot */
       function showChatBot() {
+        isChatbotOpen = true;
+        updateChatbotWindowState(isChatbotOpen);
         chatBotOpened = true;
         setTimeout(() => {
           $("#chatbot-widget").css({ display: "block" });
@@ -1536,7 +1540,6 @@ function main() {
 
       /* Pre-checkss for Hiding Chatbot */
       function handleChatBotHiding() {
-        console.log("mini", isChatbotIconMini);
         if (isChatbotIconMini) {
           $(".chatbot-logo-mini").toggleClass("chatbot-hide-elem");
         } else {
@@ -1640,8 +1643,6 @@ function main() {
       }
 
       function launchChatbot() {
-        isChatbotOpen = true;
-        updateChatbotWindowState(isChatbotOpen);
         if ($("#chatbot-msgs").text().length == 0 || !sessionStarted) {
           sessionStarted = true;
           isNewSession = true;
@@ -1657,14 +1658,14 @@ function main() {
         }, 50);
       }
 
-      function clearHistory() {
+      function clearLocalStorage() {
         localStorage.removeItem(CHATBOT_SESSION_ID);
         localStorage.removeItem(BOT_USER_HISTORY);
-        localStorage.removeItem(CHATBOT_TAB_COUNT);
+      }
 
-        // sessionStorage.removeItem(CHATBOT_SESSION_ID);
-        // sessionStorage.removeItem(BOT_USER_HISTORY);
-        // sessionStorage.removeItem(CHATBOT_TAB_COUNT);
+      function clearSessionHistory() {
+        sessionStorage.removeItem(CHATBOT_SESSION_ID);
+        sessionStorage.removeItem(BOT_USER_HISTORY);
       }
 
       function showTooltip(e) {
@@ -1695,7 +1696,10 @@ function main() {
         if (localStorage.getItem(CHATBOT_TAB_COUNT)) {
           let chatbotTabId = parseInt(localStorage.getItem(CHATBOT_TAB_COUNT));
           if (chatbotTabId == 1) {
-            clearHistory();
+            clearLocalStorage();
+            localStorage.removeItem(CHATBOT_TAB_COUNT);
+            localStorage.removeItem(CHATBOT_MINI_ICON_STATE);
+            localStorage.removeItem(CHATBOT_WINDOW_OPEN_STATE);
           } else localStorage.setItem(CHATBOT_TAB_COUNT, chatbotTabId - 1);
         }
       });
@@ -1819,16 +1823,12 @@ function main() {
 
       /* Minnimze Chatbot */
       $("#minimize").click(function () {
-        isChatbotOpen = false;
-        updateChatbotWindowState(isChatbotOpen);
         hideChatBot();
       });
 
       $("#minimize").keypress(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
-          isChatbotOpen = false;
-          updateChatbotWindowState(isChatbotOpen);
           hideChatBot();
         }
       });
@@ -1841,7 +1841,8 @@ function main() {
         isChatbotOpen = false;
         updateChatbotWindowState(isChatbotOpen);
         closeChatbot();
-        clearHistory();
+        clearLocalStorage();
+        sessionStorage.removeItem(BOT_USER_HISTORY);
       });
 
       $("#chatbot-close").keypress(function (e) {
@@ -1947,32 +1948,38 @@ function main() {
         // if ($("#chatbot-widget").is(":visible")) hideChatBot();
       });
       $(window).focus(function (e) {
+        if (getChatbotIconState() && !isChatbotIconMini) {
+          isChatbotIconMini = true;
+          switchChatbotIcons();
+        }
+        if (getChatbotWindowState()) {
+          if (!isChatbotOpen) {
+            showChatBot();
+          }
+        } else {
+          if (isChatbotOpen) {
+            hideChatBot();
+          }
+        }
         let chatbotCanvas = $(".chatbot-msgs").html();
         if (
           chatbotCanvas.length > 0 &&
           localStorage.getItem(BOT_USER_HISTORY) == null
         ) {
           sessionStarted = false;
-          clearHistory();
+          clearLocalStorage();
+          return;
         }
         let chatbotHistory = getBotUserHistory();
         if (chatbotHistory) {
-          if (chatbotHistory.length > chatbotCanvas.length) {
+          //   if (chatbotHistory.length > chatbotCanvas.length) {
+          if (chatbotHistory.length > 0) {
             loadHistoryToChatbot(chatbotHistory);
             scrollToBottomOfResults();
           }
         } else {
           if (chatbotCanvas.length > 0) {
             sessionStarted = false;
-          }
-        }
-        if (getChatbotWindowState()) {
-          if (!isChatbotOpen) {
-            launchChatbot();
-          }
-        } else {
-          if (isChatbotOpen) {
-            hideChatBot();
           }
         }
       });
