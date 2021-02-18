@@ -2021,13 +2021,25 @@ function main() {
             hideChatBot();
           }
         }
+
+        /* POTENTIAL FIX STRT*/
+        console.log("Current Session Id", getBotSessionId());
+        if (getBotSessionId()) {
+          idPayload = getBotSessionId();
+          console.log("Session ID found in Storage :", idPayload);
+        } else {
+          idPayload = getUid();
+          console.log("New Chatbot Session id is:", idPayload);
+          setBotSessionId(idPayload);
+        }
+        /* POTENTIAL FIX END*/
         let chatbotCanvas = $(".chatbot-msgs").html();
         if (
           chatbotCanvas.length > 0 &&
           localStorage.getItem(BOT_USER_HISTORY) == null
         ) {
           sessionStarted = false;
-          clearLocalStorage();
+          //clearLocalStorage(); POTENTIAL FIX
           return;
         }
         let chatbotHistory = getBotUserHistory();
