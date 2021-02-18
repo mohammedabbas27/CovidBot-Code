@@ -7,7 +7,11 @@
     "build-stage": "babel src/stage/vaccinechat-stage.js --out-file dist/vaccinechat-stage.js",
     "build-prod": "babel src/prod/vaccinechat-prod.js --out-file dist/vaccinechat-prod.js",
     "build-dev": "babel src/dev/vaccinechat-dev.js --out-file dist/vaccinechat-dev.js",
-    "build-all": "npm-run-all build-stage build-prod build-dev"
+    "build-dev1": "babel src/dev/vaccinechat-dev-version-1.js --out-file dist/vaccinechat-dev-version-1.js",
+    "build-dev2": "babel src/dev/vaccinechat-dev-version-2.js --out-file dist/vaccinechat-dev-version-2.js",
+    "build-dev3": "babel src/dev/vaccinechat-dev-version-3.js --out-file dist/vaccinechat-dev-version-3.js",
+    "build-all": "npm-run-all build-stage build-prod build-dev",
+    "build-all-dev": "npm-run-all build-dev1 build-dev2 build-dev3"
   },
   "keywords": [],
   "author": "",

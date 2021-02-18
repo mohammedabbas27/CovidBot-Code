@@ -34,7 +34,7 @@ function main() {
       var htmlMarkup = `
         <div class="chatbot-container">
         <div class="chatbot-logo-mini chatbot-hide-elem">
-            <img src="http://chatbot.neurosoph.com/chatbot/State-2-Icon_Mobile_01.png"/>
+            <span>Vaccine<br/> Chat</span>
         </div>
           <div id="chatbot-logos-container">
                 <div class="chatbot-welcome-text">
@@ -226,17 +226,26 @@ function main() {
 
       var cssMarkup = `
 
-      .chatbot-logo-mini{
-        bottom: 0;
-        position: fixed;
-        right: 0;
-        z-index: 90;
-        cursor: pointer;
-      }
+            .chatbot-logo-mini{
+              bottom: 15px;
+              position: fixed;
+              right: -18px;
+              z-index: 90;
+              cursor: pointer;
+              background-color: #fff;
+              border-radius: 5px 5px 0 0;
+              border: solid rgba(56,133,87,.5);
+              border-width: 4px 4px 0;
+              color: #388557;
+              display: block;
+              font-size: 1.5rem;
+              font-weight: 400;
+              letter-spacing: .03rem;
+              padding: 0 10px;
+              transform: rotate(270deg);
+              text-align: center;
+            }
 
-      .chatbot-logo-mini img{
-        height: 85px;
-      }
             .tooltip{
               position: absolute;
               background: #555856;
