@@ -33,6 +33,9 @@ function main() {
 
       var htmlMarkup = `
         <div class="chatbot-container">
+        <div class="chatbot-logo-mini chatbot-hide-elem">
+            <img src="http://chatbot.neurosoph.com/chatbot/State-2-Icon_Mobile_01.png"/>
+        </div>
           <div id="chatbot-logos-container">
                 <div class="chatbot-welcome-text">
                   <div class="chatbot-inner-bubble">
@@ -47,7 +50,7 @@ function main() {
                       </div>
                 </div>
               </div>
-
+        
               <div class="chatbot-widget" id="chatbot-widget">
                 <div class="chatbot-header">
                   <!--Add the name of the bot here -->
@@ -222,6 +225,18 @@ function main() {
         `;
 
       var cssMarkup = `
+
+      .chatbot-logo-mini{
+        bottom: 0;
+        position: fixed;
+        right: 0;
+        z-index: 90;
+        cursor: pointer;
+      }
+
+      .chatbot-logo-mini img{
+        height: 85px;
+      }
             .tooltip{
               position: absolute;
               background: #555856;
@@ -593,7 +608,6 @@ function main() {
           height: 12%;
           transition: 0.35s;
           transform: translate(400%);
-          z-index: 999;
         }
 
         .chatbot-button-suggestions {
@@ -924,9 +938,18 @@ function main() {
       var isTouch = "ontouchstart" in window;
       const API_END_POINT =
         "https://aibot.neurosoph.com:5000/webhooks/rest/webhook";
+      var isChatbotIconMini = false;
+      var CHATBOT_MINI_ICON_STATE = "chatbot-mini-icon-state";
+      var isChatbotOpen = false;
+      var CHATBOT_WINDOW_OPEN_STATE = "chatbot-window-open-state";
 
       $(document).ready(function () {
         $(".chatbot-welcome-image-container.chatbot-logo").focus();
+        if (getChatbotIconState()) {
+          isChatbotIconMini = true;
+          switchChatbotIcons();
+        }
+
         if (localStorage.getItem(CHATBOT_TAB_COUNT)) {
           localStorage.setItem(
             CHATBOT_TAB_COUNT,
@@ -944,6 +967,9 @@ function main() {
         } else {
           idPayload = getUid();
           setBotSessionId(idPayload);
+        }
+        if (getChatbotWindowState()) {
+          launchChatbot();
         }
       });
 
@@ -1486,8 +1512,8 @@ function main() {
         chatBotOpened = false;
         setTimeout(() => {
           $("#chatbot-widget").css({ display: "none" });
-        }, 150);
-        handleChatBotHiding();
+          handleChatBotHiding();
+        }, 100);
         $(".chatbot-settings").addClass("chatbot-hide-elem");
       }
 
@@ -1500,9 +1526,22 @@ function main() {
         handleChatBotHiding();
       }
 
+      function updateChatbotIconState(state) {
+        localStorage.setItem(CHATBOT_MINI_ICON_STATE, state);
+      }
+
+      function getChatbotIconState() {
+        return localStorage.getItem(CHATBOT_MINI_ICON_STATE) === "true";
+      }
+
       /* Pre-checkss for Hiding Chatbot */
       function handleChatBotHiding() {
-        $("#chatbot-logos-container").toggle();
+        console.log("mini", isChatbotIconMini);
+        if (isChatbotIconMini) {
+          $(".chatbot-logo-mini").toggleClass("chatbot-hide-elem");
+        } else {
+          $("#chatbot-logos-container").toggleClass("chatbot-hide-elem");
+        }
 
         if ($(".chatbot-show-elem").length > 0) {
           stopListening();
@@ -1592,7 +1631,17 @@ function main() {
         }
       }
 
+      function updateChatbotWindowState(state) {
+        localStorage.setItem(CHATBOT_WINDOW_OPEN_STATE, state);
+      }
+
+      function getChatbotWindowState() {
+        return localStorage.getItem(CHATBOT_WINDOW_OPEN_STATE) === "true";
+      }
+
       function launchChatbot() {
+        isChatbotOpen = true;
+        updateChatbotWindowState(isChatbotOpen);
         if ($("#chatbot-msgs").text().length == 0 || !sessionStarted) {
           sessionStarted = true;
           isNewSession = true;
@@ -1634,6 +1683,11 @@ function main() {
             $(`#${id}`).addClass("chatbot-hide-elem");
           }, 100);
         }
+      }
+
+      function switchChatbotIcons() {
+        $("#chatbot-logos-container").toggleClass("chatbot-hide-elem");
+        $(".chatbot-logo-mini").toggleClass("chatbot-hide-elem");
       }
 
       /* *** EVENT Listeners *** */
@@ -1701,18 +1755,26 @@ function main() {
 
       /* Close Welcome Message */
       $(".close-welcome-message").click(function () {
-        $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
-        $(".close-welcome-message").addClass("chatbot-hide-elem");
-        $(".chatbot-welcome-text").addClass("shift");
-        $(".chatbot-logo img").addClass("center-chatbot-logo");
+        // $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
+        // $(".close-welcome-message").addClass("chatbot-hide-elem");
+        // $(".chatbot-welcome-text").addClass("shift");
+        // $(".chatbot-logo img").addClass("center-chatbot-logo");
+        $("#chatbot-logos-container").addClass("chatbot-hide-elem");
+        $(".chatbot-logo-mini").removeClass("chatbot-hide-elem");
+        isChatbotIconMini = true;
+        updateChatbotIconState(isChatbotIconMini);
       });
 
       $(".close-welcome-message").keypress(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
-          $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
-          $(".close-welcome-message").addClass("chatbot-hide-elem");
-          $(".chatbot-welcome-text").addClass("shift");
+          //   $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
+          //   $(".close-welcome-message").addClass("chatbot-hide-elem");
+          //   $(".chatbot-welcome-text").addClass("shift");
+          $("#chatbot-logos-container").addClass("chatbot-hide-elem");
+          $(".chatbot-logo-mini").removeClass("chatbot-hide-elem");
+          isChatbotIconMini = true;
+          updateChatbotIconState(isChatbotIconMini);
         }
       });
 
@@ -1732,7 +1794,7 @@ function main() {
       $("#chatbot-send-btn").hover(showTooltip, hideTooltip);
 
       /* Toggle chatbot */
-      $(".chatbot-logo").click(function () {
+      $(".chatbot-logo,.chatbot-logo-mini").click(function () {
         launchChatbot();
       });
 
@@ -1757,12 +1819,16 @@ function main() {
 
       /* Minnimze Chatbot */
       $("#minimize").click(function () {
+        isChatbotOpen = false;
+        updateChatbotWindowState(isChatbotOpen);
         hideChatBot();
       });
 
       $("#minimize").keypress(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
+          isChatbotOpen = false;
+          updateChatbotWindowState(isChatbotOpen);
           hideChatBot();
         }
       });
@@ -1772,6 +1838,8 @@ function main() {
 
       /* Close Chatbot */
       $("#chatbot-close").click(function () {
+        isChatbotOpen = false;
+        updateChatbotWindowState(isChatbotOpen);
         closeChatbot();
         clearHistory();
       });
@@ -1779,6 +1847,8 @@ function main() {
       $("#chatbot-close").keypress(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
+          isChatbotOpen = false;
+          updateChatbotWindowState(isChatbotOpen);
           hideChatBot();
         }
       });
@@ -1894,6 +1964,15 @@ function main() {
         } else {
           if (chatbotCanvas.length > 0) {
             sessionStarted = false;
+          }
+        }
+        if (getChatbotWindowState()) {
+          if (!isChatbotOpen) {
+            launchChatbot();
+          }
+        } else {
+          if (isChatbotOpen) {
+            hideChatBot();
           }
         }
       });
