@@ -978,7 +978,10 @@ function main() {
           setBotSessionId(idPayload);
         }
         if (getChatbotWindowState()) {
-          launchChatbot();
+          showChatBot();
+          setTimeout(() => {
+            scrollToBottomOfResults();
+          }, 50);
         }
       });
 
@@ -1660,6 +1663,7 @@ function main() {
       }
 
       function getChatbotWindowState() {
+        let tabCount = parseInt(localStorage.getItem(CHATBOT_TAB_COUNT));
         let lSChatbotWindowOpenState =
           localStorage.getItem(CHATBOT_WINDOW_OPEN_STATE) === "true";
         let sSChatbotWindowOpenState =
@@ -1668,7 +1672,7 @@ function main() {
           return lSChatbotWindowOpenState;
         } else if (
           sSChatbotWindowOpenState &&
-          localStorage.getItem(CHATBOT_TAB_COUNT) === "1"
+          (tabCount <= 1 || isNaN(tabCount))
         ) {
           localStorage.setItem(
             CHATBOT_WINDOW_OPEN_STATE,
@@ -1989,9 +1993,12 @@ function main() {
           isChatbotIconMini = true;
           switchChatbotIcons();
         }
-        if (getChatbotWindowState()) {
+        if (localStorage.getItem(CHATBOT_WINDOW_OPEN_STATE) === "true") {
           if (!isChatbotOpen) {
             showChatBot();
+            setTimeout(() => {
+              scrollToBottomOfResults();
+            }, 50);
           }
         } else {
           if (isChatbotOpen) {

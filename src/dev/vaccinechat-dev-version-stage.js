@@ -944,6 +944,8 @@ function main() {
       var CHATBOT_WINDOW_OPEN_STATE = "chatbot-window-open-state";
 
       $(document).ready(function () {
+        console.log("Webpage/Chatbot is loaded onto the DOM");
+        console.log("New Chatbot Tab");
         $(".chatbot-welcome-image-container.chatbot-logo").focus();
         if (getChatbotIconState()) {
           isChatbotIconMini = true;
@@ -955,17 +957,31 @@ function main() {
             CHATBOT_TAB_COUNT,
             parseInt(localStorage.getItem(CHATBOT_TAB_COUNT)) + 1
           );
+          console.log(
+            "Increasing the chatbot tab count, Post Increase, Chatbot tab count is :",
+            localStorage.getItem(CHATBOT_TAB_COUNT)
+          );
         } else {
           localStorage.setItem(CHATBOT_TAB_COUNT, 1);
+          console.log(
+            "First chatbot tab, Chatbot tab count is :",
+            localStorage.getItem(CHATBOT_TAB_COUNT)
+          );
         }
 
         if (getBotUserHistory()) {
+          console.log("Browser History Detected");
+          console.log("Loading Browser History");
           loadHistoryToChatbot(getBotUserHistory());
+          console.log("Updated Chatbot Browser History");
         }
+        console.log("Checking for Existing Chatbot Session ID");
         if (getBotSessionId()) {
           idPayload = getBotSessionId();
+          console.log("Session ID found in Storage :", idPayload);
         } else {
           idPayload = getUid();
+          console.log("New Chatbot Session id is:", idPayload);
           setBotSessionId(idPayload);
         }
         if (getChatbotWindowState()) {
@@ -1044,6 +1060,7 @@ function main() {
       }
 
       function setBotSessionId(id) {
+        console.log("Updating Chatbot Session Id in Storage as :", id);
         localStorage.setItem(CHATBOT_SESSION_ID, id);
         sessionStorage.setItem(CHATBOT_SESSION_ID, id);
       }
@@ -1155,6 +1172,7 @@ function main() {
 
       /* Generate a random Unique Id */
       function getUid() {
+        console.log("No Session ID found in Storage, Generating a new One");
         return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
           (
             c ^
@@ -1539,16 +1557,20 @@ function main() {
       }
 
       function getChatbotIconState() {
+        console.log("Getting Chatbot Icon State from Local/Session Storage");
         let lSChatbotMiniIconState =
           localStorage.getItem(CHATBOT_MINI_ICON_STATE) === "true";
         let sSChatbotMiniIconState =
           sessionStorage.getItem(CHATBOT_MINI_ICON_STATE) === "true";
         if (lSChatbotMiniIconState) {
+          console.log("CHATBOT_MINI_ICON_STATE ", true);
           return lSChatbotMiniIconState;
         } else if (sSChatbotMiniIconState) {
+          console.log("CHATBOT_MINI_ICON_STATE ", true);
           localStorage.setItem(CHATBOT_MINI_ICON_STATE, sSChatbotMiniIconState);
           return sSChatbotMiniIconState;
         }
+        console.log("CHATBOT_MINI_ICON_STATE ", null);
         return null;
       }
 
@@ -1719,6 +1741,7 @@ function main() {
       }
 
       function switchChatbotIcons() {
+        console.log("Switching Icons based on state");
         $("#chatbot-logos-container").toggleClass("chatbot-hide-elem");
         $(".chatbot-logo-mini").toggleClass("chatbot-hide-elem");
       }
@@ -1978,8 +2001,10 @@ function main() {
       document.addEventListener("keyup", doc_keyUp, false);
       $(window).blur(function (e) {
         // if ($("#chatbot-widget").is(":visible")) hideChatBot();
+        console.log("Lost tab focus");
       });
       $(window).focus(function (e) {
+        console.log("tab is now focused");
         if (getChatbotIconState() && !isChatbotIconMini) {
           isChatbotIconMini = true;
           switchChatbotIcons();
