@@ -33,20 +33,20 @@ function main() {
 
       var htmlMarkup = `
         <div class="chatbot-container">
-        <div class="chatbot-logo-mini chatbot-hide-elem">
-            <img src="http://chatbot.neurosoph.com/chatbot/State-2-Icon_Mobile_01.png"/>
+        <div tabindex="0" id="chatbot-logo-mini" class="chatbot-logo-mini chatbot-hide-elem">
+            <img alt="" aria-hidden=true src="http://chatbot.neurosoph.com/chatbot/State-2-Icon_Mobile_01.png"/>
         </div>
           <div id="chatbot-logos-container">
                 <div class="chatbot-welcome-text">
                   <div class="chatbot-inner-bubble">
                     <div style="display:flex;">
-                    <div tabindex=0 role="button" aria-label="Covid-19 Chatbot Icon" class="chatbot-welcome-image-container chatbot-logo">
+                    <div tabindex=0 role="button" aria-label="Open vaccine chat window to ask a COVID-19 vaccine question" class="chatbot-welcome-image-container chatbot-logo">
                     <img aria-hidden="true" src="${CHATBOT_ICON_PATH}"/>
                     </div>
-                    <div class="close-welcome-message"><i
+                    <div tabindex=0 role="button" aria-label="close chatbot popup message" class="close-welcome-message"><i
                       class="material-icons">close</i></div>
                     </div>
-                      <h5 aria-hidden="true" tabindex=-1 class="chatbot-logo" id="chatbot-welcome-popup">Have a COVID-19 vaccine question?</h5>
+                      <h5 tabindex=0 tabindex=-1 class="chatbot-logo" id="chatbot-welcome-popup">Have a COVID-19 vaccine question?</h5>
                       </div>
                 </div>
               </div>
@@ -105,25 +105,25 @@ function main() {
                               <span class="chatbot-settings-value">Alt + m </span>
                             </span>
                           </li>
-                          <li class="chatbot-shortcut-list">
-                            <span tabindex=0 class="chatbot-shortcuts-info">
-                              <span class="chatbot-settings-label">Close window:</span>
-                              <span class="chatbot-settings-value">Alt + c </span>
-                            </span>
-                          </li>
                           ${
                             isWebSpeechSupported()
                               ? '<li class="chatbot-shortcut-list"><span tabindex=0 class="chatbot-shortcuts-info"><span class="chatbot-settings-label">Turn off/Turn on Mic:</span><span class="chatbot-settings-value">Alt + r </span></span></li>'
                               : ""
                           }
                           <li class="chatbot-shortcut-list">
+                            <span tabindex=0 id="second-last-shortcut" class="chatbot-shortcuts-info">
+                              <span class="chatbot-settings-label">Close window:</span>
+                              <span class="chatbot-settings-value">Alt + c </span>
+                            </span>
+                          </li>
+                          <li class="chatbot-shortcut-list">
                             <span tabindex=0 id="last-shortcut" class="chatbot-shortcuts-info">
                               <span class="chatbot-settings-label">Close/Reopen help:</span>
                               <span class="chatbot-settings-value">Alt + i </span>
                             </span>
                           </li>
-                          <li class="chatbot-hide-elem">
-                            <span tabindex=0 class="chatbot-shortcuts-info">
+                          <li class="visuallyHidden">
+                            <span id="dummy-shortcut" tabindex=-1 class="chatbot-shortcuts-info">
                               <span class="chatbot-settings-label">Reset Bot:</span>
                               <span class="chatbot-settings-value">Alt + q </span>
                             </span>
@@ -161,7 +161,6 @@ function main() {
                   </div>
                   <div>
                     <span
-                      title="COVID-19 Chatbot"
                       class="chatbot-sub-tagline"
                       >Ask a COVID-19 vaccine question
                     </span>
@@ -225,7 +224,12 @@ function main() {
         `;
 
       var cssMarkup = `
-
+      .chatbot-links{
+        text-decoration: underline;
+        -webkit-text-decoration-color: #388557;
+        text-decoration-color: #388557; 
+        text-decoration-thickness: 20%; 
+      }
       .chatbot-logo-mini{
         bottom: 0;
         position: fixed;
@@ -279,8 +283,11 @@ function main() {
               align-items: center;
               justify-content: center;
             }
-            .chatbot-container *{
-              outline:none;
+            .chatbot-container *:focus{
+              outline: 10px auto Highlight;
+              outline: 10px auto -webkit-focus-ring-color;
+              outline-color: #0078d7;
+              border-color: Highlight !important;
             }
 
             #increase-font-icon{
@@ -543,9 +550,9 @@ function main() {
           height: 35px;
         }
 
-        .chatbot-keypad input:focus {
+        /*.chatbot-keypad input:focus {
           outline: none;
-        }
+        }*/
 
         .chatbot-buttons-menu {
           padding: 5px;
@@ -942,13 +949,16 @@ function main() {
       var CHATBOT_MINI_ICON_STATE = "chatbot-mini-icon-state";
       var isChatbotOpen = false;
       var CHATBOT_WINDOW_OPEN_STATE = "chatbot-window-open-state";
+      var CHATBOT_WINDOW_FONT_SIZE = "chatbot-window-font-size";
 
       $(document).ready(function () {
-        $(".chatbot-welcome-image-container.chatbot-logo").focus();
         if (getChatbotIconState()) {
           isChatbotIconMini = true;
           switchChatbotIcons();
         }
+        focusOnChatbotIcon();
+
+        updateFontSizeFromState();
 
         if (localStorage.getItem(CHATBOT_TAB_COUNT)) {
           localStorage.setItem(
@@ -972,6 +982,7 @@ function main() {
           showChatBot();
           setTimeout(() => {
             scrollToBottomOfResults();
+            $("#chatbot-logo-tagline").focus();
           }, 50);
         }
       });
@@ -1051,6 +1062,13 @@ function main() {
       function setBotUserHistory() {
         localStorage.setItem(BOT_USER_HISTORY, $(".chatbot-msgs").html());
         sessionStorage.setItem(BOT_USER_HISTORY, $(".chatbot-msgs").html());
+      }
+
+      function updateFontSizeFromState() {
+        var fontSizeState = getChatbotFontSizeState();
+        if (fontSizeState) {
+          fontSize = fontSizeState;
+        }
       }
 
       function loadHistoryToChatbot(history) {
@@ -1177,6 +1195,8 @@ function main() {
         $(".chatbot-menu-chips").each((i, el) =>
           el.setAttribute("style", `font-size:${fontSize}px`)
         );
+        setBotUserHistory();
+        updateFontSizeState(fontSize);
       }
 
       /* Update Font Settings */
@@ -1520,6 +1540,15 @@ function main() {
           handleChatBotHiding();
         }, 100);
         $(".chatbot-settings").addClass("chatbot-hide-elem");
+        setTimeout(() => {
+          if (isChatbotIconMini) {
+            console.log("dd");
+            $(".chatbot-logo-mini").focus();
+          } else {
+            $(".chatbot-welcome-image-container.chatbot-logo").focus();
+          }
+        }, 150);
+        console.log("reac");
       }
 
       /* Show Chatbot */
@@ -1648,6 +1677,30 @@ function main() {
         }
       }
 
+      function updateFontSizeState(size) {
+        localStorage.setItem(CHATBOT_WINDOW_FONT_SIZE, size);
+        sessionStorage.setItem(CHATBOT_WINDOW_FONT_SIZE, size);
+      }
+
+      function getChatbotFontSizeState() {
+        let lSChatbotWindowFontSize = parseInt(
+          localStorage.getItem(CHATBOT_WINDOW_FONT_SIZE)
+        );
+        let sSChatbotWindowFontSize = parseInt(
+          sessionStorage.getItem(CHATBOT_WINDOW_FONT_SIZE)
+        );
+        if (lSChatbotWindowFontSize) {
+          return lSChatbotWindowFontSize;
+        } else if (sSChatbotWindowFontSize) {
+          localStorage.setItem(
+            CHATBOT_WINDOW_FONT_SIZE,
+            sSChatbotWindowFontSize
+          );
+          return sSChatbotWindowFontSize;
+        }
+        return null;
+      }
+
       function updateChatbotWindowState(state) {
         localStorage.setItem(CHATBOT_WINDOW_OPEN_STATE, state);
         sessionStorage.setItem(CHATBOT_WINDOW_OPEN_STATE, state);
@@ -1723,6 +1776,17 @@ function main() {
         $(".chatbot-logo-mini").toggleClass("chatbot-hide-elem");
       }
 
+      function focusOnChatbotIcon() {
+        setTimeout(() => {
+          if (isChatbotIconMini) {
+            console.log("ddcc");
+            $(".chatbot-logo-mini").focus();
+          } else {
+            $(".chatbot-welcome-image-container.chatbot-logo").focus();
+          }
+        }, 300);
+      }
+
       /* *** EVENT Listeners *** */
       $(window).on("beforeunload", function (e) {
         if (localStorage.getItem(CHATBOT_TAB_COUNT)) {
@@ -1732,6 +1796,7 @@ function main() {
             localStorage.removeItem(CHATBOT_TAB_COUNT);
             localStorage.removeItem(CHATBOT_MINI_ICON_STATE);
             localStorage.removeItem(CHATBOT_WINDOW_OPEN_STATE);
+            localStorage.removeItem(CHATBOT_WINDOW_FONT_SIZE);
           } else localStorage.setItem(CHATBOT_TAB_COUNT, chatbotTabId - 1);
         }
       });
@@ -1749,13 +1814,38 @@ function main() {
 
       $("#first-shortcut").keydown(function (e) {
         if (e.shiftKey && e.keyCode == 9) {
+          // $("#dummy-shortcut").focus();
+          e.preventDefault();
+          console.log("ttt");
+          $("#last-shortcut").focus();
+        }
+      });
+
+      $(".chatbot-shortcut-list span").keydown(function (e) {
+        if (e.keyCode == 27) {
+          console.log("shorctu esc");
           handleSettings();
+          // e.stopPropagation();
+          setTimeout(() => {
+            $("#chatbot-setting-container").focus();
+          }, 150);
         }
       });
 
       $("#last-shortcut").keydown(function (e) {
         if (e.keyCode == 9) {
-          handleSettings();
+          e.preventDefault();
+          console.log("abbas");
+          $("#first-shortcut").focus();
+          // handleSettings();
+        }
+      });
+
+      $("#chatbot-widget").keydown(function (e) {
+        if (e.keyCode == 27) {
+          console.log("wind esc");
+
+          hideChatBot();
         }
       });
 
@@ -1791,26 +1881,19 @@ function main() {
 
       /* Close Welcome Message */
       $(".close-welcome-message").click(function () {
-        // $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
-        // $(".close-welcome-message").addClass("chatbot-hide-elem");
-        // $(".chatbot-welcome-text").addClass("shift");
-        // $(".chatbot-logo img").addClass("center-chatbot-logo");
-        $("#chatbot-logos-container").addClass("chatbot-hide-elem");
-        $(".chatbot-logo-mini").removeClass("chatbot-hide-elem");
         isChatbotIconMini = true;
         updateChatbotIconState(isChatbotIconMini);
+        switchChatbotIcons();
+        focusOnChatbotIcon();
       });
 
       $(".close-welcome-message").keypress(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
-          //   $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
-          //   $(".close-welcome-message").addClass("chatbot-hide-elem");
-          //   $(".chatbot-welcome-text").addClass("shift");
-          $("#chatbot-logos-container").addClass("chatbot-hide-elem");
-          $(".chatbot-logo-mini").removeClass("chatbot-hide-elem");
           isChatbotIconMini = true;
           updateChatbotIconState(isChatbotIconMini);
+          switchChatbotIcons();
+          focusOnChatbotIcon();
         }
       });
 
@@ -1818,13 +1901,18 @@ function main() {
       $(".chatbot-reset-bot").click(resetBot);
 
       /* Send Button */
-      $("#chatbot-send-btn").click(sendData);
-      $("#chatbot-send-btn").keypress(function (e) {
+      $("#chatbot-send-btn").keydown(function (e) {
+        console.log("sssss");
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
-          sendData();
+          // sendData();
+        }
+        if (e.keyCode == 9) {
+          e.preventDefault();
+          hideChatBot();
         }
       });
+      $("#chatbot-send-btn").click(sendData);
 
       /* Show send message tooltip on hover */
       $("#chatbot-send-btn").hover(showTooltip, hideTooltip);
@@ -1834,7 +1922,7 @@ function main() {
         launchChatbot();
       });
 
-      $(".chatbot-logo").keypress(function (e) {
+      $(".chatbot-logo,.chatbot-logo-mini").keypress(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
           launchChatbot();
@@ -1882,7 +1970,9 @@ function main() {
           e.preventDefault();
           isChatbotOpen = false;
           updateChatbotWindowState(isChatbotOpen);
-          hideChatBot();
+          closeChatbot();
+          clearLocalStorage();
+          sessionStorage.removeItem(BOT_USER_HISTORY);
         }
       });
 
@@ -1980,6 +2070,7 @@ function main() {
         // if ($("#chatbot-widget").is(":visible")) hideChatBot();
       });
       $(window).focus(function (e) {
+        updateFontSizeFromState();
         if (getChatbotIconState() && !isChatbotIconMini) {
           isChatbotIconMini = true;
           switchChatbotIcons();
@@ -1997,12 +2088,20 @@ function main() {
           }
         }
         let chatbotCanvas = $(".chatbot-msgs").html();
+        if (getBotSessionId()) {
+          idPayload = getBotSessionId();
+          console.log("Session ID found in Storage :", idPayload);
+        } else {
+          idPayload = getUid();
+          console.log("New Chatbot Session id is:", idPayload);
+          setBotSessionId(idPayload);
+        }
         if (
           chatbotCanvas.length > 0 &&
           localStorage.getItem(BOT_USER_HISTORY) == null
         ) {
           sessionStarted = false;
-          clearLocalStorage();
+          //clearLocalStorage();
           return;
         }
         let chatbotHistory = getBotUserHistory();
