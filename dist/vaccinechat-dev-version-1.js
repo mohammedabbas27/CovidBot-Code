@@ -25,8 +25,15 @@ function main() {
 
     $("head").append('<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu&display=swap"rel="stylesheet"/>');
     var CHATBOT_ICON_PATH = "https://aibot.neurosoph.com:5000/Chatbot_Icon_01-Green.png";
-    var htmlMarkup = "\n        <div class=\"chatbot-container\">\n        <div class=\"chatbot-logo-mini chatbot-hide-elem\">\n            <img src=\"http://chatbot.neurosoph.com/chatbot/State-2-Icon_Mobile_01.png\"/>\n        </div>\n          <div id=\"chatbot-logos-container\">\n                <div class=\"chatbot-welcome-text\">\n                  <div class=\"chatbot-inner-bubble\">\n                    <div style=\"display:flex;\">\n                    <div tabindex=0 role=\"button\" aria-label=\"Covid-19 Chatbot Icon\" class=\"chatbot-welcome-image-container chatbot-logo\">\n                    <img aria-hidden=\"true\" src=\"".concat(CHATBOT_ICON_PATH, "\"/>\n                    </div>\n                    <div class=\"close-welcome-message\"><i\n                      class=\"material-icons\">close</i></div>\n                    </div>\n                      <h5 aria-hidden=\"true\" tabindex=-1 class=\"chatbot-logo\" id=\"chatbot-welcome-popup\">Have a COVID-19 vaccine question?</h5>\n                      </div>\n                </div>\n              </div>\n        \n              <div class=\"chatbot-widget\" id=\"chatbot-widget\">\n                <div class=\"chatbot-header\">\n                  <!--Add the name of the bot here -->\n                  <span aria-label=\"Vaccine chat Window\" id=\"chatbot-logo-tagline\" tabindex=0 style=\"color: white; margin-left: 5px\"\n                    >Vaccine Chat</span>\n                  <div style=\"float:right;display:flex;\">\n                    <span data-tooltipid=\"tooltip-dec-font\" role=\"button\" tabindex=0 aria-label=\"Decrease Chatbot Font Size\" class=\"chatbot-action-btns\" id=\"chatbot-decrease-font\">\n                    A<span>-</span>\n                    </span>\n                    <div id=\"tooltip-dec-font\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"inset: 40px auto auto 255px;\">Decrease font</div>\n                    <span data-tooltipid=\"tooltip-inc-font\" role=\"button\" tabindex=0 aria-label=\"Increase Chatbot Font Size\" class=\"chatbot-action-btns\" id=\"chatbot-increase-font\">\n                    A<span>+</span>\n                  </span>\n                  <div id=\"tooltip-inc-font\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"inset: 40px auto auto 290px;\">Increase font</div>\n\n                  <span tabindex=0 aria-label=\"Reset Chatbot\" title=\"Reset Chabot\" class=\"chatbot-action-btns chatbot-hide-elem\" id=\"chatbot-reset-bot\">\n                    <i\n                      title=\"Reset bot\"\n                      class=\"fas fa-history chatbot-reset-bot\"\n                      style=\"margin-top: 3px\"\n                    ></i>\n                  </span>\n\n                  <span aria-label=\"Chatbot Help Shortcuts\" data-tooltipid=\"tooltip-help\" style=\"margin-top: 5px;\" tabindex=0 aria-expanded=\"false\" role=\"button\" class=\"chatbot-action-btns\" id=\"chatbot-setting-container\">\n                    <i class=\"material-icons\">help</i>\n                  </span>\n                  <div id=\"tooltip-help\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"inset: 40px auto auto 318px;\">Chatbot shortcuts</div>\n                    <div tabindex=-1 class=\"chatbot-settings chatbot-hide-elem\" id=\"chatbot-settings\">\n                      <div>\n                        <ul style=\"list-style: none;padding-left: 10px;\">\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 id=\"first-shortcut\" class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Close/reopen window:</span>\n                              <span class=\"chatbot-settings-value\">Alt + o</span>\n                            </span>\n                          </li>\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Increase font:</span>\n                              <span class=\"chatbot-settings-value\">Alt + <span id=\"increase-font-icon\" aria-label=\"up arrow\" class=\"material-icons\">trending_flat</span></span>\n                            </span>\n                          </li>\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Decrease font:</span>\n                              <span class=\"chatbot-settings-value\">Alt + <span id=\"decrease-font-icon\" aria-label=\"down arrow\" class=\"material-icons\">trending_flat</span></span>\n                            </span>\n                          </li>\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Minimize window:</span>\n                              <span class=\"chatbot-settings-value\">Alt + m </span>\n                            </span>\n                          </li>\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Close window:</span>\n                              <span class=\"chatbot-settings-value\">Alt + c </span>\n                            </span>\n                          </li>\n                          ").concat(isWebSpeechSupported() ? '<li class="chatbot-shortcut-list"><span tabindex=0 class="chatbot-shortcuts-info"><span class="chatbot-settings-label">Turn off/Turn on Mic:</span><span class="chatbot-settings-value">Alt + r </span></span></li>' : "", "\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 id=\"last-shortcut\" class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Close/Reopen help:</span>\n                              <span class=\"chatbot-settings-value\">Alt + i </span>\n                            </span>\n                          </li>\n                          <li class=\"chatbot-hide-elem\">\n                            <span tabindex=0 class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Reset Bot:</span>\n                              <span class=\"chatbot-settings-value\">Alt + q </span>\n                            </span>\n                          </li>\n                        </ul>\n                      </div>\n                    </div>\n                    <span\n                    role=\"button\"\n                    tabindex=0\n                    data-tooltipid=\"tooltip-minimize\"\n                    aria-label=\"Minnimize Chatbot\"\n                    class=\"chatbot-action-btns\"\n                    style=\"margin-top: 0px;padding-top:0px\"\n                    id=\"minimize\"\n                  >\n                    <i class=\"material-icons\">minimize</i>\n                  </span>\n                  <div id=\"tooltip-minimize\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"inset: 41px auto auto 350px;\">Minimize chatbot</div>\n                  <span\n                  role=\"button\"\n                  aria-label=\"Close Chatbot\"\n                  data-tooltipid=\"tooltip-close\"\n                  tabindex=0\n                    style=\"\n                      color: white;\n                      margin-right: 5px;\n                      margin-top: 5px;\n                    \"\n                    id=\"chatbot-close\"\n                  >\n                    <i class=\"material-icons\">close</i>\n                  </span>\n                  <div id=\"tooltip-close\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"inset: 40px auto auto 374.72px;\">Close chatbot</div>\n                  </div>\n                  <div>\n                    <span\n                      title=\"COVID-19 Chatbot\"\n                      class=\"chatbot-sub-tagline\"\n                      >Ask a COVID-19 vaccine question\n                    </span>\n                  </div>\n                </div>\n                <!--Chatbot contents goes here -->\n\n                <div class=\"chatbot-canvas\" id=\"chatbot-canvas\">\n                  <div class=\"chatbot-clearfix\"></div>\n                  <div class=\"chatbot-msgs\" id=\"chatbot-msgs\" style=\"margin-top: 10px\"></div>\n                </div>\n\n                <!--user typing indicator -->\n                <div class=\"chatbot-keypad\">\n                  <input\n                    maxlength=\"120\"\n                    type=\"text\"\n                    id=\"chatbot-keypad\"\n                    disabled\n                    tabindex=0\n                    class=\"chatbot-user-input browser-default\"\n                    placeholder=\"Ask a COVID-19 vaccine question\"\n                    autocomplete=\"off\"\n                  />\n\n                  <div class=\"chatbot-popup\">\n                    <span role=\"button\"\n                      data-tooltipid=\"tooltip-voice\"\n                      tabindex=0\n                      aria-label=\"Turn on Microphone\"\n                      id=\"chatbot-mic-btn-off\"><span class=\"material-icons\" style=\"font-size: 38px;margin-top: 16px;color: #388557;font-weight: bold;\">mic</span></span>\n                    <span class=\"chatbot-popuptext\" id=\"chatbot-myPopup\">Go on i'm Listening!</span>\n                    <div\n                      id=\"chatbot-mic-btn-on\"\n                      class=\"chatbot-hide-elem\"\n                      tabindex=0\n                      aria-label=\"Turn off Microphone\"\n                      role=\"button\" >\n                      <span class=\"material-icons\" style=\"font-size: 38px;margin-top: 16px;color: #e82719;font-weight: bold;\">mic</span>\n                    </div>\n                    </div>\n                  <div id=\"tooltip-voice\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"inset: -29px auto auto 327.72px;\">Chat with your voice</div>\n                    <span aria-label=\"Send\"\n                    role=\"button\"\n                    data-tooltipid=\"tooltip-send-msg\"\n                    tabindex=0\n                    id=\"chatbot-send-btn\">\n                    <span class=\"material-icons\" style=\"margin-top: 14px;font-size: 34px;color: #388557;\">send</span></span>\n                  <div id=\"tooltip-send-msg\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"inset: -29px auto auto 357.72px;\">Send message</div>\n                    <i\n                    title=\"Reset bot\"\n                    role=\"button\"\n                    tabindex=0\n                    class=\"fas fa-history fa-2x chatbot-reset-bot chatbot-hide-elem\"\n                    style=\"cursor: pointer; margin-left: 3px; margin-top: 5px\"\n                  ></i>\n                </div>\n              </div>\n              <!--bot widget -->\n            </div>\n        ");
-    var cssMarkup = "\n\n      .chatbot-logo-mini{\n        bottom: 0;\n        position: fixed;\n        right: 0;\n        z-index: 90;\n        cursor: pointer;\n      }\n\n      .chatbot-logo-mini img{\n        height: 85px;\n      }\n            .tooltip{\n              position: absolute;\n              background: #555856;\n              padding: 5px;\n              border-radius: 5px;\n              color: white;\n              font-size: 14px;\n            }\n            .chatbot-logo img{\n              width:70px;\n              margin-left: 35px;\n            }\n            .center-chatbot-logo{\n              margin-left: 20px !important;\n              margin-right: 10px;\n            }\n            .chatbot-sub-tagline{\n              color: white;\n              margin-left: 5px;\n              font-size: small;\n              font-style: italic;\n              display: block;\n              white-space: pre;\n            }\n            .chatbot-inner-bubble:after {\n                content: ' ';\n                position: absolute;\n                width: 0;\n                height: 0;\n                left: auto;\n                right: 38px;\n                bottom: -20px;\n                border: 12px solid;\n                border-color: #ebf3ee #ebf3ee transparent transparent;\n                z-index: 2;\n            }\n            .chatbot-welcome-image-container{\n              display: flex;\n              flex-grow: 2;\n              align-items: center;\n              justify-content: center;\n            }\n            .chatbot-container *{\n              outline:none;\n            }\n\n            #increase-font-icon{\n              transform: rotate(270deg);\n            }\n            #decrease-font-icon{\n              transform: rotate(90deg);\n            }\n            .visuallyHidden {\n              border: 0;\n              clip: rect(0, 0, 0, 0);\n              height: 1px;\n              margin: -1px;\n              overflow: hidden;\n              padding: 0;\n              position: absolute;\n              width: 1px;\n          }\n          .chatbot-welcome-tagline{\n              margin: 8px;\n              margin-top: 35px;\n          }\n          .chatbot-container{\n              line-height: 1.6;\n          }\n          .close-welcome-message{\n            cursor:pointer;\n            display:flex;\n            margin-top:10px;\n          }\n\n          .close-welcome-message i{\n            font-size: 38px;\n            font-weight: 1000;\n          }\n          .chatbot-welcome-text {\n              max-width: 210px;\n              background: #ebf3ee;\n              color: #388557;\n              border-radius: 12px;\n              padding: 8px 0;\n              position: absolute;\n              z-index: 999;\n              bottom: 20%;\n              left: -76%;\n              margin-left: -80px;\n              font-size: 16px;\n              padding: 6px;\n              display: flex;\n              flex-direction: column;\n              box-shadow: 0 0.25rem 0.5rem rgb(1 1 1 / 50%);\n              animation:fadeWelcomeText1 0.5s 1;\n              -webkit-animation:fadeWelcomeText1 0.5s 1;\n              animation-fill-mode: forwards;\n              animation-delay:5s;\n              -webkit-animation-delay:5s; /* Safari and Chrome */\n              -webkit-animation-fill-mode: forwards;\n              border-radius: 40px;\n              border: 6px solid #97c2a9;\n          }\n\n          @keyframes fadeWelcomeText{\n            from {opacity :1;}\n            to {opacity :0;}\n        }\n\n        @-webkit-keyframes fadeWelcomeText{\n            from {opacity :1;}\n            to {opacity :0;}\n        }\n        .chatbot-welcome-text::after {\n            content: ' ';\n            position: absolute;\n            width: 0;\n            height: 0;\n            left: auto;\n            right: 30px;\n            bottom: -42px;\n            border: 20px solid;\n            border-color: #97c2a9 #97c2a9 transparent transparent;\n            border-bottom-right-radius: 10px;\n          }\n          .chatbot-welcome-text.shift{\n            left:0%;\n          }\n          #chatbot-welcome-popup{\n            margin: 8px;\n            margin-right: 10px;\n            color: #388557;\n            font-size: 18px;\n            font-weight: bold;\n            text-align: center;\n          }\n        .chatbot-bot-msg overflow-scroll {\n          height: 250px;\n          overflow-y: scroll;\n        }\n        .fa-paper-plane:before {\n          content: \"\\f1d8\";\n          color: #388557;\n        }\n\n        .chatbot-widget {\n          display: flex;\n          flex-direction: column;\n          max-height: 590px;\n          width: 480px;\n          right: 15px;\n          height: 72%;\n          bottom: 5%;\n          position: fixed;\n          border-radius: 10px 10px 10px 10px;\n          box-shadow: 0px 2px 10px 1px #b5b5b5;\n          -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;\n          z-index: 999;\n          font-weight: 400;\n          background: #f7f8f9;\n          display:none;\n        }\n\n        .chatbot-header {\n          height: 60px;\n          background-color: #388557;\n          border-radius: 10px 10px 0px 0px;\n          padding: 5px;\n          font-size: 20px;\n        }\n\n        .chatbot-canvas {\n          width:100%;\n          padding: 5px;\n          padding-top: 0px;\n          margin-top: 5px;\n          border-radius: 1px;\n          overflow-y: scroll;\n          transition: 0.2s;\n          height: calc(100% - 140px);\n        }\n\n        .chatbot-msgs{\n          margin-top: 10px;\n        }\n\n        div.chatbot-canvas::-webkit-scrollbar,\n        div.chatbot-settings::-webkit-scrollbar,\n        div.chatbot-bot-msg::-webkit-scrollbar {\n          width: 4px;\n          /* remove scrollbar space /\n            background: transparent;\n            / optional: just make scrollbar invisible */\n        }\n\n        /* Track */\n\n        div.chatbot-canvas::-webkit-scrollbar-track,\n        div.chatbot-settings::-webkit-scrollbar-track,\n        div.chatbot-bot-msg::-webkit-scrollbar-track {\n          box-shadow: inset 0 0 5px grey;\n          border-radius: 20px;\n        }\n\n        /* Handle */\n\n        div.chatbot-canvas::-webkit-scrollbar-thumb,\n        div.chatbot-settings::-webkit-scrollbar-thumb,\n        div.chatbot-bot-msg::-webkit-scrollbar-thumb {\n          background: #388557;\n          border-radius: 5px;\n        }\n\n        /* Handle on hover */\n\n        div.chatbot-canvas::-webkit-scrollbar-thumb:hover,\n        div.chatbot-settings::-webkit-scrollbar-thumb:hover,\n        div.chatbot-bot-msg::-webkit-scrollbar-thumb:hover {\n          background: #b30000;\n        }\n\n        #chatbot-close,\n        #minimize {\n          cursor: pointer;\n        }\n\n        .chatbot-clearfix {\n          margin-top: 2px;\n          margin-bottom: 2px;\n        }\n\n        .chatbot-bot-msg {\n          float: left;\n          margin-top: 5px;\n          background: #ffffff;\n          box-shadow: 2px 5px 5px 1px #efeef5;\n          border: 1px solid #ffffff;\n          margin-left: 0.5em;\n          padding: 0.6em 1em;\n          border-radius: 1.5em;\n          max-width: 90%;\n          min-width: 25%;\n          font-size: 16px;\n          word-wrap: break-word;\n          box-sizing: border-box;\n          /* max-height: 250px;\n          overflow-y: auto;*/\n        }\n\n        .chatbot-user-msg {\n          animation: animateElement linear 0.2s;\n          animation-iteration-count: 1;\n          margin-top: 5px;\n          word-wrap: break-word;\n          padding: 0.6em 1em;\n          float: right;\n          margin-right: 0.5em;\n          background: #388557;\n          border: 1px solid #388557;\n          color: #fff;\n          border-radius: 1.5em;\n          margin-bottom: 0.15em;\n          font-size: 16px;\n          max-width: 55%;\n          min-width: 25%;\n          line-height: 1.5em;\n          box-sizing: border-box;\n        }\n\n        .chatbot-msg-card {\n          padding-right: 15px;\n        }\n\n        .chatbot-suggestions {\n          padding: 5px;\n          width: 100%;\n          border-radius: 10px;\n          background: #ffffff;\n          box-shadow: 2px 5px 5px 1px #dbdade;\n        }\n\n        .chatbot-keypad {\n          display: flex;\n          align-items:center;\n          height: 45px;\n          position: absolute;\n          bottom: 10px;\n          width: 100%;\n        }\n\n        .chatbot-keypad > * {\n            padding-right: 5px;\n        }\n\n        .chatbot-user-input {\n          background: #f1f0f0;\n          width: 100%;\n          margin-left: 4%;\n          border-radius: 20px;\n          box-shadow: 0px 2px 10px 1px #b5b5b5;\n          border: 0;\n          padding-left: 15px;\n          height: 35px;\n        }\n\n        .chatbot-keypad input:focus {\n          outline: none;\n        }\n\n        .chatbot-buttons-menu {\n          padding: 5px;\n          max-width: 100%;\n          display: flex;\n          flex-wrap: wrap;\n        }\n\n        .chatbot-list {\n          padding: 5px;\n          max-width: 100%;\n        }\n\n        .chatbot-menu-chips {\n          border: 3px solid;\n          display: inline-block;\n          padding: .4em 1em;\n          text-decoration: none;\n          transition: all .4s ease;\n          line-height: 1.4;\n          margin-right: 3px;\n          text-align: center;\n          margin-bottom: 5px;\n          cursor: pointer;\n          font-size: 14px;\n          box-shadow: 0 0.25rem 0.5rem rgb(1 1 1 / 25%);\n          font-weight: 550;\n          background-color: #388557;\n          border-color: transparent;\n          color: #fff;\n          border-radius: 7px;\n        }\n\n        .chatbot-menu-chips:hover {\n          box-shadow: 4px 6px 15px 1px rgba(33, 63, 88, 0.25);\n        }\n\n        @keyframes animateElement {\n          0% {\n            opacity: 0;\n            transform: translate(0px, 10px);\n          }\n\n          100% {\n            opacity: 1;\n            transform: translate(0px, 0px);\n          }\n        }\n\n        .chatbot-img {\n          width: 100%;\n          padding: 2%;\n        }\n\n        #chatbot-logos-container {\n          position: fixed;\n          bottom: 55px;\n          right: 16px;\n          width: 100px;\n          height: 12%;\n          transition: 0.35s;\n          transform: translate(400%);\n        }\n\n        .chatbot-button-suggestions {\n          background-color: transparent;\n          box-shadow: none;\n        }\n\n        .jc-bs3-container {\n          width: 30%;\n        }\n\n        #chatbot-send-btn:hover,\n        #chatbot-mic-btn-on:hover,\n        #chatbot-mic-btn-off:hover {\n          cursor: pointer;\n        }\n\n        .chatbot-popup {\n          position: relative;\n          display: inline-block;\n          cursor: pointer;\n          -webkit-user-select: none;\n          -moz-user-select: none;\n          -ms-user-select: none;\n          user-select: none;\n        }\n\n        /* The actual popup */\n\n        .chatbot-popup .chatbot-popuptext {\n          visibility: hidden;\n          width: 117px;\n          background: #388557;\n          color: #fff;\n          text-align: center;\n          border-radius: 12px;\n          padding: 8px 0;\n          position: absolute;\n          z-index: 1;\n          bottom: 125%;\n          left: 50%;\n          margin-left: -80px;\n        }\n\n        /* Popup arrow */\n\n        .chatbot-popup .chatbot-popuptext::after {\n          content: \"\";\n          position: absolute;\n          top: 100%;\n          left: 69%;\n          margin-left: -5px;\n          border-width: 5px;\n          border-style: solid;\n          border-color: #388557 transparent transparent transparent;\n        }\n\n        /* Toggle this class - hide and show the popup */\n\n        .chatbot-popup .chatbot-show-elem {\n          visibility: visible;\n          -webkit-animation: fadeIn 1s;\n          animation: fadeIn 1s;\n        }\n\n        /* Add animation (fade in the popup) */\n\n        @-webkit-keyframes fadeIn {\n          from {\n            opacity: 0;\n          }\n\n          to {\n            opacity: 1;\n          }\n        }\n\n        @keyframes fadeIn {\n          from {\n            opacity: 0;\n          }\n\n          to {\n            opacity: 1;\n          }\n        }\n\n        .chatbot-popup .chatbot-show-elem {\n        }\n\n        .chatbot-hide-elem {\n          display: none;\n        }\n\n        .chatbot-activate-mini {\n          color: #2ab6e9;\n        }\n\n        .scroll {\n          overflow-y: scroll;\n          height: 300px;\n        }\n\n        .chatbot-clearfix {\n          clear: both;\n        }\n\n        div#chatbot-loading-msg {\n          position: relative;\n          margin-left: auto;\n          margin-right: auto;\n        }\n\n        div#chatbot-loading-msg .chatbot-loading-dot {\n          display: inline-block;\n          width: 9px;\n          height: 9px;\n          border-radius: 50%;\n          margin-right: 3px;\n          background: #388557;\n          animation: chatbot-loading-msg 1.3s linear infinite;\n        }\n\n        div#chatbot-loading-msg .chatbot-loading-dot:nth-child(2) {\n          animation-delay: -1.1s;\n        }\n\n        div#chatbot-loading-msg .chatbot-loading-dot:nth-child(3) {\n          animation-delay: -0.9s;\n        }\n\n        @keyframes chatbot-loading-msg {\n          0%,\n          60%,\n          100% {\n            transform: initial;\n          }\n\n          30% {\n            transform: translateY(-15px);\n          }\n        }\n\n        .chatbot-shortcuts-info {\n          display:flex;\n          flex-direction: column;\n          margin-bottom: 10px;\n        }\n\n        .chatbot-shortcuts-info > * {\n          float: left;\n        }\n\n        .chatbot-settings {\n          right: 10%;\n          background-color: #ffffff;\n          border: 2px solid #c1ced4;\n          text-align: center;\n          border-radius: 12px;\n          padding: 8px 0;\n          position: absolute;\n          z-index: 1;\n          padding: 10px;\n          color: #000000;\n          text-align: left;\n          font-size: 16px;\n          max-height: 180px;\n          overflow-y: scroll;\n          top: 65px;\n        }\n\n        .chatbot-settings::before {\n          content: \"\";\n          position: absolute;\n          top: -16px;\n          left: 69%;\n          margin-left: 44px;\n          border-width: 7px;\n          border-style: solid;\n          border-color: transparent transparent #c1ced4 transparent;\n        }\n\n        .chatbot-action-btns {\n          color: white;\n          margin-right: 7px;\n          padding-top: 2px;\n          cursor: pointer;\n          visibility: visible;\n          padding-left: 5px;\n          -webkit-user-select: none;\n          -khtml-user-select: none;\n          -moz-user-select: none;\n          -o-user-select: none;\n          user-select: none;\n        }\n\n\n        .chatbot-settings-value {\n          display:flex;\n          padding-left: 5px;\n          font-style: italic;\n        }\n\n        #chatbot-reset-bot i::before {\n          color: white;\n        }\n\n        #chatbot-mic-btn-on,\n        #chatbot-mic-btn-off,\n        #chatbot-send-btn {\n          font-size: 30px;\n          padding-left: 3px;\n        }\n\n        .chatbot-reset-bot {\n          padding-left: 3px;\n        }\n\n        #chatbot-keypad {\n          font-size: 14px;\n          height: 35px;\n        }\n        .yes-no-btn{\n          padding: 8px;\n          padding-left: 22px;\n          padding-right: 22px;\n        }\n        .chatbot-bot-msg a {\n          color: #388557;\n        }\n\n        @media (max-width: 720px) {\n          .chatbot-widget {\n            max-width: calc(100% - 40px);\n          }\n        }\n\n        .fa-2x {\n            font-size: 32px;\n        }\n\n        .chatbot-bot-msg a {\n            font-weight: bold;\n        }\n        .chatbot-settings-label{\n          font-weight:bold;\n        }\n\n        .chatbot-logo{\n          cursor:pointer;\n        }\n\n        .limit-reached{\n              box-shadow: 0px 0px 10px 2px #d89595;\n         }\n\n         @media (max-width: 540px){\n          .close-welcome-message i{\n            font-size:25px;\n          }\n          #chatbot-welcome-popup{\n            font-size: 1.1rem;\n          }\n          .chatbot-welcome-text{\n            max-width: 161px;\n            bottom: -27%;\n            left: -20%;\n          }\n\n          .chatbot-logo img{\n            width:50px;\n          }\n\n          .chatbot-welcome-text.shift{\n            left: 51%;\n          }\n          #chatbot-logo-tagline{\n            font-size:16px;\n          }\n          .chatbot-action-btns{\n            margin-right: 3px;\n          }\n          .chatbot-inner-bubble:after{\n            right: 32px;\n            bottom: -18px;\n            border: 10px solid;\n            border-color: #ebf3ee #ebf3ee transparent transparent;\n          }\n          .chatbot-welcome-text::after{\n            right: 29px;\n            bottom: -26px;\n            border: 13px solid;\n            border-color: #97c2a9 #97c2a9 transparent transparent;\n          }\n         }\n        ";
+    var isChatbotIconMini = false;
+    var CHATBOT_MINI_ICON_STATE = "chatbot-mini-icon-state";
+
+    if (getChatbotIconState()) {
+      isChatbotIconMini = true; // switchChatbotIcons();
+    }
+
+    var htmlMarkup = "\n        <div class=\"chatbot-container\">\n        ".concat(isWebSpeechSupported() ? '<li class="chatbot-shortcut-list"><span tabindex=0 class="chatbot-shortcuts-info"><span class="chatbot-settings-label">Turn off/Turn on Mic:</span><span class="chatbot-settings-value">Alt + r </span></span></li>' : "", "\n        <div tabindex=\"0\" role=\"button\" id=\"chatbot-logo-mini\" aria-label=\"Open vaccine chat window to ask a COVID-19 vaccine question\" class=\"chatbot-logo-mini ").concat(isChatbotIconMini ? "" : "chatbot-hide-elem", "\">\n            <img alt=\"\" src=\"http://chatbot.neurosoph.com/chatbot/State-2-Icon_Mobile_01.png\"/>\n          </div>\n          <div id=\"chatbot-logos-container ").concat(!isChatbotIconMini ? "" : "chatbot-hide-elem", "\">\n                <div class=\"chatbot-welcome-text\">\n                  <div class=\"chatbot-inner-bubble\">\n                    <div style=\"display:flex;\">\n                    <div tabindex=0 role=\"button\" aria-label=\"Open vaccine chat window to ask a COVID-19 vaccine question\" class=\"chatbot-welcome-image-container chatbot-logo\">\n                    <img aria-hidden=\"true\" alt=\"\" src=\"").concat(CHATBOT_ICON_PATH, "\"/>\n                    </div>\n                    <div tabindex=0 role=\"button\" aria-label=\"close chatbot popup message\" class=\"close-welcome-message\"><i\n                      class=\"material-icons\">close</i></div>\n                    </div>\n                      <h5 tabindex=0 tabindex=-1 class=\"chatbot-logo\" id=\"chatbot-welcome-popup\">Have a COVID-19 vaccine question?</h5>\n                      </div>\n                </div>\n              </div>\n              <div class=\"chatbot-widget\" id=\"chatbot-widget\">\n                <div class=\"chatbot-header\">\n                  <!--Add the name of the bot here -->\n                  <span aria-label=\"Vaccine chat Window\" id=\"chatbot-logo-tagline\" tabindex=0 style=\"color: white; margin-left: 5px\"\n                    >Vaccine Chat</span>\n                  <div style=\"float:right;display:flex;\">\n                    <span data-tooltipid=\"tooltip-dec-font\" role=\"button\" tabindex=0 aria-label=\"Decrease Chatbot Font Size\" class=\"chatbot-action-btns\" id=\"chatbot-decrease-font\">\n                    A<span>-</span>\n                    </span>\n                    <div id=\"tooltip-dec-font\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"top: 40px;left: 255px;\">Decrease font</div>\n                    <span data-tooltipid=\"tooltip-inc-font\" role=\"button\" tabindex=0 aria-label=\"Increase Chatbot Font Size\" class=\"chatbot-action-btns\" id=\"chatbot-increase-font\">\n                    A<span>+</span>\n                  </span>\n                  <div id=\"tooltip-inc-font\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"top: 40px;left: 290px;\">Increase font</div>\n\n                  <span tabindex=0 aria-label=\"Reset Chatbot\" title=\"Reset Chabot\" class=\"chatbot-action-btns chatbot-hide-elem\" id=\"chatbot-reset-bot\">\n                    <i\n                      title=\"Reset bot\"\n                      class=\"fas fa-history chatbot-reset-bot\"\n                      style=\"margin-top: 3px\"\n                    ></i>\n                  </span>\n\n                  <span aria-label=\"Chatbot Help Shortcuts\" data-tooltipid=\"tooltip-help\" style=\"margin-top: 5px;\" tabindex=0 aria-expanded=\"false\" role=\"button\" class=\"chatbot-action-btns\" id=\"chatbot-setting-container\">\n                    <i class=\"material-icons\">help</i>\n                  </span>\n                  <div id=\"tooltip-help\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"top: 40px;left: 318px;\">Chatbot shortcuts</div>\n                    <div tabindex=-1 class=\"chatbot-settings chatbot-hide-elem\" id=\"chatbot-settings\">\n                      <div>\n                        <ul style=\"list-style: none;padding-left: 10px;\">\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 id=\"first-shortcut\" class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Open window:</span>\n                              <span class=\"chatbot-settings-value\">Alt + o</span>\n                            </span>\n                          </li>\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Increase font:</span>\n                              <span class=\"chatbot-settings-value\">Alt + <span id=\"increase-font-icon\" aria-label=\"up arrow\" class=\"material-icons\">trending_flat</span></span>\n                            </span>\n                          </li>\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Decrease font:</span>\n                              <span class=\"chatbot-settings-value\">Alt + <span id=\"decrease-font-icon\" aria-label=\"down arrow\" class=\"material-icons\">trending_flat</span></span>\n                            </span>\n                          </li>\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Minimize window:</span>\n                              <span class=\"chatbot-settings-value\">Alt + m </span>\n                            </span>\n                          </li>\n                          ").concat(isWebSpeechSupported() ? '<li class="chatbot-shortcut-list"><span tabindex=0 class="chatbot-shortcuts-info"><span class="chatbot-settings-label">Turn off/Turn on Mic:</span><span class="chatbot-settings-value">Alt + r </span></span></li>' : "", "\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 id=\"second-last-shortcut\" class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Close window:</span>\n                              <span class=\"chatbot-settings-value\">Alt + c </span>\n                            </span>\n                          </li>\n                          <li class=\"chatbot-shortcut-list\">\n                            <span tabindex=0 id=\"last-shortcut\" class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Close/Reopen help:</span>\n                              <span class=\"chatbot-settings-value\">Alt + i </span>\n                            </span>\n                          </li>\n                          <li class=\"visuallyHidden\">\n                            <span id=\"dummy-shortcut\" tabindex=-1 class=\"chatbot-shortcuts-info\">\n                              <span class=\"chatbot-settings-label\">Reset Bot:</span>\n                              <span class=\"chatbot-settings-value\">Alt + q </span>\n                            </span>\n                          </li>\n                        </ul>\n                      </div>\n                    </div>\n                    <span\n                    role=\"button\"\n                    tabindex=0\n                    data-tooltipid=\"tooltip-minimize\"\n                    aria-label=\"Minnimize Chatbot\"\n                    class=\"chatbot-action-btns\"\n                    style=\"margin-top: 0px;padding-top:0px\"\n                    id=\"minimize\"\n                  >\n                    <i class=\"material-icons\">minimize</i>\n                  </span>\n                  <div id=\"tooltip-minimize\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"top: 41px;left: 350px;\">Minimize chatbot</div>\n                  <span\n                  role=\"button\"\n                  aria-label=\"Close Chatbot\"\n                  data-tooltipid=\"tooltip-close\"\n                  tabindex=0\n                    style=\"\n                      color: white;\n                      margin-right: 5px;\n                      margin-top: 5px;\n                    \"\n                    id=\"chatbot-close\"\n                  >\n                    <i class=\"material-icons\">close</i>\n                  </span>\n                  <div id=\"tooltip-close\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"top: 40px;left: 374.72px;\">Close chatbot</div>\n                  </div>\n                  <div>\n                    <span\n                      class=\"chatbot-sub-tagline\"\n                      >Ask a COVID-19 vaccine question\n                    </span>\n                  </div>\n                </div>\n                <!--Chatbot contents goes here -->\n\n                <div class=\"chatbot-canvas\" id=\"chatbot-canvas\">\n                  <div class=\"chatbot-clearfix\"></div>\n                  <div class=\"chatbot-msgs\" id=\"chatbot-msgs\" style=\"margin-top: 10px\"></div>\n                </div>\n\n                <!--user typing indicator -->\n                <div class=\"chatbot-keypad\">\n                  <input\n                    maxlength=\"120\"\n                    type=\"text\"\n                    id=\"chatbot-keypad\"\n                    disabled\n                    tabindex=0\n                    class=\"chatbot-user-input browser-default\"\n                    placeholder=\"Ask a COVID-19 vaccine question\"\n                    autocomplete=\"off\"\n                  />\n\n                  <div class=\"chatbot-popup\">\n                    <span role=\"button\"\n                      data-tooltipid=\"tooltip-voice\"\n                      tabindex=0\n                      aria-label=\"Turn on Microphone\"\n                      id=\"chatbot-mic-btn-off\"><span class=\"material-icons\" style=\"font-size: 38px;margin-top: 16px;color: #388557;font-weight: bold;\">mic</span></span>\n                    <div\n                      id=\"chatbot-mic-btn-on\"\n                      class=\"chatbot-hide-elem\"\n                      tabindex=0\n                      aria-label=\"Turn off Microphone\"\n                      role=\"button\" >\n                      <span class=\"material-icons\" style=\"font-size: 38px;margin-top: 16px;color: #e82719;font-weight: bold;\">mic</span>\n                    </div>\n                    </div>\n                  <div id=\"tooltip-voice\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"top: -29px;left: 327.72px;\">Chat with your voice</div>\n                    <span aria-label=\"Send\"\n                    role=\"button\"\n                    data-tooltipid=\"tooltip-send-msg\"\n                    tabindex=0\n                    id=\"chatbot-send-btn\">\n                    <span class=\"material-icons\" style=\"margin-top: 14px;font-size: 34px;color: #388557;\">send</span></span>\n                  <div id=\"tooltip-send-msg\" role=\"tooltip\" tabindex=\"-1\" class=\"tooltip chatbot-hide-elem\" style=\"top: -29px;left: 357.72px;\">Send message</div>\n                    <i\n                    title=\"Reset bot\"\n                    role=\"button\"\n                    tabindex=0\n                    class=\"fas fa-history fa-2x chatbot-reset-bot chatbot-hide-elem\"\n                    style=\"cursor: pointer; margin-left: 3px; margin-top: 5px\"\n                  ></i>\n                </div>\n              </div>\n              <!--bot widget -->\n            </div>\n        ");
+    var cssMarkup = "\n      .chatbot-links{\n        text-decoration: underline;\n        -webkit-text-decoration-color: #388557;\n        text-decoration-color: #388557; \n        text-decoration-thickness: 20%; \n        transition:none;\n      }\n      .chatbot-logo-mini{\n        bottom: 0;\n        position: fixed;\n        right: 0;\n        z-index: 90;\n        cursor: pointer;\n      }\n\n      .chatbot-logo-mini img{\n        height: 85px;\n      }\n            .tooltip{\n              position: absolute;\n              background: #555856;\n              padding: 5px;\n              border-radius: 5px;\n              color: white;\n              font-size: 14px;\n            }\n            .chatbot-logo img{\n              width:70px;\n              margin-left: 35px;\n            }\n            .center-chatbot-logo{\n              margin-left: 20px !important;\n              margin-right: 10px;\n            }\n            .chatbot-sub-tagline{\n              color: white;\n              margin-left: 5px;\n              font-size: small;\n              font-style: italic;\n              display: block;\n              white-space: pre;\n            }\n            .chatbot-inner-bubble:after {\n                content: ' ';\n                position: absolute;\n                width: 0;\n                height: 0;\n                left: auto;\n                right: 38px;\n                bottom: -20px;\n                border: 12px solid;\n                border-color: #ebf3ee #ebf3ee transparent transparent;\n                z-index: 2;\n            }\n            .chatbot-welcome-image-container{\n              display: flex;\n              flex-grow: 2;\n              align-items: center;\n              justify-content: center;\n            }\n\n            .chatbot-container *{\n              outline:none;\n            } \n            .chatbot-container *:focus{\n              outline: 2px solid #0078d7;\n            } \n\n            #increase-font-icon{\n              transform: rotate(270deg);\n            }\n            #decrease-font-icon{\n              transform: rotate(90deg);\n            }\n            .visuallyHidden {\n              border: 0;\n              clip: rect(0, 0, 0, 0);\n              height: 1px;\n              margin: -1px;\n              overflow: hidden;\n              padding: 0;\n              position: absolute;\n              width: 1px;\n          }\n          .chatbot-welcome-tagline{\n              margin: 8px;\n              margin-top: 35px;\n          }\n          .chatbot-container{\n              line-height: 1.6;\n          }\n          .close-welcome-message{\n            cursor:pointer;\n            display:flex;\n            margin-top:10px;\n          }\n\n          .close-welcome-message i{\n            font-size: 38px;\n            font-weight: 1000;\n          }\n          .chatbot-welcome-text {\n              max-width: 210px;\n              background: #ebf3ee;\n              color: #388557;\n              border-radius: 12px;\n              padding: 8px 0;\n              position: absolute;\n              z-index: 999;\n              bottom: 20%;\n              left: -76%;\n              margin-left: -80px;\n              font-size: 16px;\n              padding: 6px;\n              display: flex;\n              flex-direction: column;\n              box-shadow: 0 0.25rem 0.5rem rgb(1 1 1 / 50%);\n              animation:fadeWelcomeText1 0.5s 1;\n              -webkit-animation:fadeWelcomeText1 0.5s 1;\n              animation-fill-mode: forwards;\n              animation-delay:5s;\n              -webkit-animation-delay:5s; /* Safari and Chrome */\n              -webkit-animation-fill-mode: forwards;\n              border-radius: 40px;\n              border: 6px solid #97c2a9;\n          }\n\n          @keyframes fadeWelcomeText{\n            from {opacity :1;}\n            to {opacity :0;}\n        }\n\n        @-webkit-keyframes fadeWelcomeText{\n            from {opacity :1;}\n            to {opacity :0;}\n        }\n        .chatbot-welcome-text::after {\n            content: ' ';\n            position: absolute;\n            width: 0;\n            height: 0;\n            left: auto;\n            right: 30px;\n            bottom: -42px;\n            border: 20px solid;\n            border-color: #97c2a9 #97c2a9 transparent transparent;\n            border-bottom-right-radius: 10px;\n          }\n          .chatbot-welcome-text.shift{\n            left:0%;\n          }\n          #chatbot-welcome-popup{\n            margin: 8px;\n            margin-right: 10px;\n            color: #388557;\n            font-size: 18px;\n            font-weight: bold;\n            text-align: center;\n          }\n        .chatbot-bot-msg overflow-scroll {\n          height: 250px;\n          overflow-y: scroll;\n        }\n        .fa-paper-plane:before {\n          content: \"\\f1d8\";\n          color: #388557;\n        }\n\n        .chatbot-widget {\n          display: flex;\n          flex-direction: column;\n          max-height: 590px;\n          width: 480px;\n          right: 15px;\n          height: 72%;\n          bottom: 5%;\n          position: fixed;\n          border-radius: 10px 10px 10px 10px;\n          box-shadow: 0px 2px 10px 1px #b5b5b5;\n          -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;\n          z-index: 999;\n          font-weight: 400;\n          background: #f7f8f9;\n          display:none;\n        }\n\n        .chatbot-header {\n          height: 60px;\n          background-color: #388557;\n          border-radius: 10px 10px 0px 0px;\n          padding: 5px;\n          font-size: 20px;\n        }\n\n        .chatbot-canvas {\n          width:100%;\n          padding: 5px;\n          padding-top: 0px;\n          margin-top: 5px;\n          border-radius: 1px;\n          overflow-y: scroll;\n          transition: 0.2s;\n          height: calc(100% - 140px);\n        }\n\n        .chatbot-msgs{\n          margin-top: 10px;\n        }\n\n        div.chatbot-canvas::-webkit-scrollbar,\n        div.chatbot-settings::-webkit-scrollbar,\n        div.chatbot-bot-msg::-webkit-scrollbar {\n          width: 4px;\n          /* remove scrollbar space /\n            background: transparent;\n            / optional: just make scrollbar invisible */\n        }\n\n        /* Track */\n\n        div.chatbot-canvas::-webkit-scrollbar-track,\n        div.chatbot-settings::-webkit-scrollbar-track,\n        div.chatbot-bot-msg::-webkit-scrollbar-track {\n          box-shadow: inset 0 0 5px grey;\n          border-radius: 20px;\n        }\n\n        /* Handle */\n\n        div.chatbot-canvas::-webkit-scrollbar-thumb,\n        div.chatbot-settings::-webkit-scrollbar-thumb,\n        div.chatbot-bot-msg::-webkit-scrollbar-thumb {\n          background: #388557;\n          border-radius: 5px;\n        }\n\n        /* Handle on hover */\n\n        div.chatbot-canvas::-webkit-scrollbar-thumb:hover,\n        div.chatbot-settings::-webkit-scrollbar-thumb:hover,\n        div.chatbot-bot-msg::-webkit-scrollbar-thumb:hover {\n          background: #b30000;\n        }\n\n        #chatbot-close,\n        #minimize {\n          cursor: pointer;\n        }\n\n        .chatbot-clearfix {\n          margin-top: 2px;\n          margin-bottom: 2px;\n        }\n\n        .chatbot-bot-msg {\n          float: left;\n          margin-top: 5px;\n          background: #ffffff;\n          box-shadow: 2px 5px 5px 1px #efeef5;\n          border: 1px solid #ffffff;\n          margin-left: 0.5em;\n          padding: 0.6em 1em;\n          border-radius: 1.5em;\n          max-width: 90%;\n          min-width: 25%;\n          font-size: 16px;\n          word-wrap: break-word;\n          box-sizing: border-box;\n          /* max-height: 250px;\n          overflow-y: auto;*/\n        }\n\n        .chatbot-user-msg {\n          animation: animateElement linear 0.2s;\n          animation-iteration-count: 1;\n          margin-top: 5px;\n          word-wrap: break-word;\n          padding: 0.6em 1em;\n          float: right;\n          margin-right: 0.5em;\n          background: #388557;\n          border: 1px solid #388557;\n          color: #fff;\n          border-radius: 1.5em;\n          margin-bottom: 0.15em;\n          font-size: 16px;\n          max-width: 55%;\n          min-width: 25%;\n          line-height: 1.5em;\n          box-sizing: border-box;\n        }\n\n        .chatbot-msg-card {\n          padding-right: 15px;\n        }\n\n        .chatbot-suggestions {\n          padding: 5px;\n          width: 100%;\n          border-radius: 10px;\n          background: #ffffff;\n          box-shadow: 2px 5px 5px 1px #dbdade;\n        }\n\n        .chatbot-keypad {\n          display: flex;\n          align-items:center;\n          height: 45px;\n          position: absolute;\n          bottom: 10px;\n          width: 100%;\n        }\n\n        .chatbot-keypad > * {\n            padding-right: 5px;\n        }\n\n        .chatbot-user-input {\n          background: #f1f0f0;\n          width: 100%;\n          margin-left: 4%;\n          border-radius: 20px;\n          box-shadow: 0px 2px 10px 1px #b5b5b5;\n          border: 0;\n          padding-left: 15px;\n          height: 35px;\n        }\n\n        /*.chatbot-keypad input:focus {\n          outline: none;\n        }*/\n\n        .chatbot-buttons-menu {\n          padding: 5px;\n          max-width: 100%;\n          display: flex;\n          flex-wrap: wrap;\n        }\n\n        .chatbot-list {\n          padding: 5px;\n          max-width: 100%;\n        }\n\n        .chatbot-menu-chips {\n          border: 3px solid;\n          display: inline-block;\n          padding: .4em 1em;\n          text-decoration: none;\n          line-height: 1.4;\n          margin-right: 3px;\n          text-align: center;\n          margin-bottom: 5px;\n          cursor: pointer;\n          font-size: 14px;\n          box-shadow: 0 0.25rem 0.5rem rgb(1 1 1 / 25%);\n          font-weight: 550;\n          background-color: #388557;\n          border-color: transparent;\n          color: #fff;\n          border-radius: 7px;\n          text-align: left;\n        }\n\n        .chatbot-menu-chips:hover {\n          box-shadow: 4px 6px 15px 1px rgba(33, 63, 88, 0.25);\n        }\n\n        @keyframes animateElement {\n          0% {\n            opacity: 0;\n            transform: translate(0px, 10px);\n          }\n\n          100% {\n            opacity: 1;\n            transform: translate(0px, 0px);\n          }\n        }\n\n        .chatbot-img {\n          width: 100%;\n          padding: 2%;\n        }\n\n        #chatbot-logos-container {\n          position: fixed;\n          bottom: 55px;\n          right: 16px;\n          width: 100px;\n          height: 12%;\n          transition: 0.35s;\n          transform: translate(400%);\n        }\n\n        .chatbot-button-suggestions {\n          background-color: transparent;\n          box-shadow: none;\n        }\n\n        .jc-bs3-container {\n          width: 30%;\n        }\n\n        #chatbot-send-btn:hover,\n        #chatbot-mic-btn-on:hover,\n        #chatbot-mic-btn-off:hover {\n          cursor: pointer;\n        }\n\n        .chatbot-popup {\n          position: relative;\n          display: inline-block;\n          cursor: pointer;\n          -webkit-user-select: none;\n          -moz-user-select: none;\n          -ms-user-select: none;\n          user-select: none;\n        }\n\n        /* Toggle this class - hide and show the popup */\n\n        .chatbot-popup .chatbot-show-elem {\n          visibility: visible;\n          -webkit-animation: fadeIn 1s;\n          animation: fadeIn 1s;\n        }\n\n        /* Add animation (fade in the popup) */\n\n        @-webkit-keyframes fadeIn {\n          from {\n            opacity: 0;\n          }\n\n          to {\n            opacity: 1;\n          }\n        }\n\n        @keyframes fadeIn {\n          from {\n            opacity: 0;\n          }\n\n          to {\n            opacity: 1;\n          }\n        }\n\n        .chatbot-popup .chatbot-show-elem {\n        }\n\n        .chatbot-hide-elem {\n          display: none;\n        }\n\n        .chatbot-activate-mini {\n          color: #2ab6e9;\n        }\n\n        .scroll {\n          overflow-y: scroll;\n          height: 300px;\n        }\n\n        .chatbot-clearfix {\n          clear: both;\n        }\n\n        div#chatbot-loading-msg {\n          position: relative;\n          margin-left: auto;\n          margin-right: auto;\n        }\n\n        div#chatbot-loading-msg .chatbot-loading-dot {\n          display: inline-block;\n          width: 9px;\n          height: 9px;\n          border-radius: 50%;\n          margin-right: 3px;\n          background: #388557;\n          animation: chatbot-loading-msg 1.3s linear infinite;\n        }\n\n        div#chatbot-loading-msg .chatbot-loading-dot:nth-child(2) {\n          animation-delay: -1.1s;\n        }\n\n        div#chatbot-loading-msg .chatbot-loading-dot:nth-child(3) {\n          animation-delay: -0.9s;\n        }\n\n        @keyframes chatbot-loading-msg {\n          0%,\n          60%,\n          100% {\n            transform: initial;\n          }\n\n          30% {\n            transform: translateY(-15px);\n          }\n        }\n\n        .chatbot-shortcuts-info {\n          display:flex;\n          flex-direction: column;\n          margin-bottom: 10px;\n        }\n\n        .chatbot-shortcuts-info > * {\n          float: left;\n        }\n\n        .chatbot-settings {\n          right: 10%;\n          background-color: #ffffff;\n          border: 2px solid #c1ced4;\n          text-align: center;\n          border-radius: 12px;\n          padding: 8px 0;\n          position: absolute;\n          z-index: 1;\n          padding: 10px;\n          color: #000000;\n          text-align: left;\n          font-size: 16px;\n          max-height: 180px;\n          overflow-y: scroll;\n          overflow-x: hidden;\n          top: 65px;\n        }\n\n        .chatbot-settings::before {\n          content: \"\";\n          position: absolute;\n          top: -16px;\n          left: 69%;\n          margin-left: 44px;\n          border-width: 7px;\n          border-style: solid;\n          border-color: transparent transparent #c1ced4 transparent;\n        }\n\n        .chatbot-action-btns {\n          color: white;\n          margin-right: 7px;\n          padding-top: 2px;\n          cursor: pointer;\n          visibility: visible;\n          padding-left: 5px;\n          -webkit-user-select: none;\n          -khtml-user-select: none;\n          -moz-user-select: none;\n          -o-user-select: none;\n          user-select: none;\n        }\n\n\n        .chatbot-settings-value {\n          display:flex;\n          padding-left: 5px;\n          font-style: italic;\n        }\n\n        #chatbot-reset-bot i::before {\n          color: white;\n        }\n\n        #chatbot-mic-btn-on,\n        #chatbot-mic-btn-off,\n        #chatbot-send-btn {\n          font-size: 30px;\n          padding-left: 3px;\n        }\n\n        .chatbot-reset-bot {\n          padding-left: 3px;\n        }\n\n        #chatbot-keypad {\n          font-size: 14px;\n          height: 35px;\n        }\n        .yes-no-btn{\n          padding: 8px;\n          padding-left: 22px;\n          padding-right: 22px;\n        }\n        .chatbot-bot-msg a {\n          color: #388557;\n        }\n\n        @media (max-width: 720px) {\n          .chatbot-widget {\n            max-width: calc(100% - 40px);\n          }\n        }\n\n        .fa-2x {\n            font-size: 32px;\n        }\n\n        .chatbot-bot-msg a {\n            font-weight: bold;\n        }\n        .chatbot-settings-label{\n          font-weight:bold;\n        }\n\n        .chatbot-logo{\n          cursor:pointer;\n        }\n\n        .limit-reached{\n              box-shadow: 0px 0px 10px 2px #d89595;\n         }\n\n         @media (max-width: 540px){\n          .close-welcome-message i{\n            font-size:25px;\n          }\n          #chatbot-welcome-popup{\n            font-size: 1.1rem;\n          }\n          .chatbot-welcome-text{\n            max-width: 161px;\n            bottom: -27%;\n            left: -20%;\n          }\n\n          .chatbot-logo img{\n            width:50px;\n          }\n\n          .chatbot-welcome-text.shift{\n            left: 51%;\n          }\n          #chatbot-logo-tagline{\n            font-size:16px;\n          }\n          .chatbot-action-btns{\n            margin-right: 3px;\n          }\n          .chatbot-inner-bubble:after{\n            right: 32px;\n            bottom: -18px;\n            border: 10px solid;\n            border-color: #ebf3ee #ebf3ee transparent transparent;\n          }\n          .chatbot-welcome-text::after{\n            right: 29px;\n            bottom: -26px;\n            border: 13px solid;\n            border-color: #97c2a9 #97c2a9 transparent transparent;\n          }\n         }\n        ";
     /* Attach the chatbot-StyleSheet to the body of the page */
 
     var style = document.createElement("style");
@@ -60,17 +67,14 @@ function main() {
     var INPUT_CHAR_LIMIT = 119;
     var isTouch = ("ontouchstart" in window);
     var API_END_POINT = "https://aibot.neurosoph.com:5000/webhooks/rest/webhook";
-    var isChatbotIconMini = false;
-    var CHATBOT_MINI_ICON_STATE = "chatbot-mini-icon-state";
     var isChatbotOpen = false;
     var CHATBOT_WINDOW_OPEN_STATE = "chatbot-window-open-state";
+    var CHATBOT_WINDOW_FONT_SIZE = "chatbot-window-font-size";
     $(document).ready(function () {
-      $(".chatbot-welcome-image-container.chatbot-logo").focus();
-
-      if (getChatbotIconState()) {
-        isChatbotIconMini = true;
-        switchChatbotIcons();
-      }
+      setTimeout(function () {
+        focusOnChatbotIcon();
+      }, 100);
+      updateFontSizeFromState();
 
       if (localStorage.getItem(CHATBOT_TAB_COUNT)) {
         localStorage.setItem(CHATBOT_TAB_COUNT, parseInt(localStorage.getItem(CHATBOT_TAB_COUNT)) + 1);
@@ -93,15 +97,19 @@ function main() {
         showChatBot();
         setTimeout(function () {
           scrollToBottomOfResults();
+          $("#chatbot-logo-tagline").focus();
         }, 50);
       }
     });
     /* Animate the chatbot from right to left */
 
-    document.querySelector("#chatbot-logos-container").style.transform = "translate(-20%)";
-    setTimeout(function () {
-      document.querySelector("#chatbot-logos-container").style.transform = "translate(20%)";
-    }, 400);
+    if (!isChatbotIconMini) {
+      document.querySelector("#chatbot-logos-container").style.transform = "translate(-20%)";
+      setTimeout(function () {
+        document.querySelector("#chatbot-logos-container").style.transform = "translate(20%)";
+      }, 400);
+    }
+
     msg = "Sorry, the chat is offline. Please try again later. You can also call <a href='tel:2-1-1'>2-1-1</a> to speak with a person about the vaccine, or try <a href='https://search.mass.gov/'>searching on mass.gov</a>";
     /* Disable chatbot on language change */
 
@@ -121,7 +129,7 @@ function main() {
 
     function isWebSpeechSupported() {
       var agent = window.navigator.userAgent.toLowerCase();
-      return agent.indexOf("chrome") > -1 && !!window.chrome && !(agent.indexOf("edg/") > -1) && location.protocol == "https:" && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) ? true : false;
+      return agent.indexOf("chrome") > -1 && !!window.chrome && !(agent.indexOf("edg/") > -1) && location.protocol == "http:" && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) ? true : false;
     }
 
     function getBotUserHistory() {
@@ -164,15 +172,18 @@ function main() {
       sessionStorage.setItem(BOT_USER_HISTORY, $(".chatbot-msgs").html());
     }
 
+    function updateFontSizeFromState() {
+      var fontSizeState = getChatbotFontSizeState();
+
+      if (fontSizeState) {
+        fontSize = fontSizeState;
+      }
+    }
+
     function loadHistoryToChatbot(history) {
       $(".chatbot-msgs").html(history);
       sessionStarted = true;
       $("#chatbot-keypad").attr("disabled", false);
-    }
-
-    function toggleMicrophoneMessage() {
-      var chatbotPopup = document.getElementById("chatbot-myPopup");
-      chatbotPopup.classList.toggle("chatbot-show-elem");
     }
     /* Check if web speech api is suported by the browser if not disable(hide) the microphone */
 
@@ -211,13 +222,11 @@ function main() {
 
         recognition.addEventListener("start", function () {
           micOn = true;
-          toggleMicrophoneMessage();
           toggleMic();
         });
         /* Send the message of the user upon the end of voice recognition */
 
         recognition.addEventListener("end", function () {
-          toggleMicrophoneMessage();
           toggleMic();
           sendMessage();
           micOn = false;
@@ -225,7 +234,13 @@ function main() {
         /* Disable(hide) the chatbot if there is any error  */
 
         recognition.addEventListener("error", function (e) {
-          if (e.error != "no-speech") $("#chatbot-mic-btn-off").toggleClass("chatbot-hide-elem");
+          if (e.error === "not-allowed") {
+            $("#chatbot-mic-btn-on").toggleClass("chatbot-hide-elem");
+          }
+
+          if (e.error != "no-speech") {
+            $("#chatbot-mic-btn-off").toggleClass("chatbot-hide-elem");
+          }
         });
         /*  Turn of the voice recognition  */
 
@@ -279,6 +294,8 @@ function main() {
       $(".chatbot-menu-chips").each(function (i, el) {
         return el.setAttribute("style", "font-size:".concat(fontSize, "px"));
       });
+      setBotUserHistory();
+      updateFontSizeState(fontSize);
     }
     /* Update Font Settings */
 
@@ -607,6 +624,13 @@ function main() {
         handleChatBotHiding();
       }, 100);
       $(".chatbot-settings").addClass("chatbot-hide-elem");
+      setTimeout(function () {
+        if (isChatbotIconMini) {
+          $(".chatbot-logo-mini").focus();
+        } else {
+          $(".chatbot-welcome-image-container.chatbot-logo").focus();
+        }
+      }, 150);
     }
     /* Show Chatbot */
 
@@ -629,14 +653,14 @@ function main() {
     }
 
     function getChatbotIconState() {
-      var lSChatbotMiniIconState = localStorage.getItem(CHATBOT_MINI_ICON_STATE) === "true";
-      var sSChatbotMiniIconState = sessionStorage.getItem(CHATBOT_MINI_ICON_STATE) === "true";
+      var lSChatbotMiniIconState = localStorage.getItem(CHATBOT_MINI_ICON_STATE);
+      var sSChatbotMiniIconState = sessionStorage.getItem(CHATBOT_MINI_ICON_STATE);
 
-      if (lSChatbotMiniIconState) {
-        return lSChatbotMiniIconState;
-      } else if (sSChatbotMiniIconState) {
-        localStorage.setItem(CHATBOT_MINI_ICON_STATE, sSChatbotMiniIconState);
-        return sSChatbotMiniIconState;
+      if (lSChatbotMiniIconState != null) {
+        return lSChatbotMiniIconState == "true";
+      } else if (sSChatbotMiniIconState != null) {
+        localStorage.setItem(CHATBOT_MINI_ICON_STATE, sSChatbotMiniIconState == "true");
+        return sSChatbotMiniIconState == "true";
       }
 
       return null;
@@ -733,6 +757,25 @@ function main() {
       }
     }
 
+    function updateFontSizeState(size) {
+      localStorage.setItem(CHATBOT_WINDOW_FONT_SIZE, size);
+      sessionStorage.setItem(CHATBOT_WINDOW_FONT_SIZE, size);
+    }
+
+    function getChatbotFontSizeState() {
+      var lSChatbotWindowFontSize = parseInt(localStorage.getItem(CHATBOT_WINDOW_FONT_SIZE));
+      var sSChatbotWindowFontSize = parseInt(sessionStorage.getItem(CHATBOT_WINDOW_FONT_SIZE));
+
+      if (lSChatbotWindowFontSize) {
+        return lSChatbotWindowFontSize;
+      } else if (sSChatbotWindowFontSize) {
+        localStorage.setItem(CHATBOT_WINDOW_FONT_SIZE, sSChatbotWindowFontSize);
+        return sSChatbotWindowFontSize;
+      }
+
+      return null;
+    }
+
     function updateChatbotWindowState(state) {
       localStorage.setItem(CHATBOT_WINDOW_OPEN_STATE, state);
       sessionStorage.setItem(CHATBOT_WINDOW_OPEN_STATE, state);
@@ -740,14 +783,14 @@ function main() {
 
     function getChatbotWindowState() {
       var tabCount = parseInt(localStorage.getItem(CHATBOT_TAB_COUNT));
-      var lSChatbotWindowOpenState = localStorage.getItem(CHATBOT_WINDOW_OPEN_STATE) === "true";
-      var sSChatbotWindowOpenState = sessionStorage.getItem(CHATBOT_WINDOW_OPEN_STATE) === "true";
+      var lSChatbotWindowOpenState = localStorage.getItem(CHATBOT_WINDOW_OPEN_STATE);
+      var sSChatbotWindowOpenState = sessionStorage.getItem(CHATBOT_WINDOW_OPEN_STATE);
 
-      if (lSChatbotWindowOpenState) {
-        return lSChatbotWindowOpenState;
-      } else if (sSChatbotWindowOpenState && (tabCount <= 1 || isNaN(tabCount))) {
-        localStorage.setItem(CHATBOT_WINDOW_OPEN_STATE, sSChatbotWindowOpenState);
-        return sSChatbotWindowOpenState;
+      if (lSChatbotWindowOpenState != null) {
+        return lSChatbotWindowOpenState == "true";
+      } else if (sSChatbotWindowOpenState != null && (tabCount <= 1 || isNaN(tabCount))) {
+        localStorage.setItem(CHATBOT_WINDOW_OPEN_STATE, sSChatbotWindowOpenState == "true");
+        return sSChatbotWindowOpenState == "true";
       }
 
       return null;
@@ -802,6 +845,16 @@ function main() {
       $("#chatbot-logos-container").toggleClass("chatbot-hide-elem");
       $(".chatbot-logo-mini").toggleClass("chatbot-hide-elem");
     }
+
+    function focusOnChatbotIcon() {
+      setTimeout(function () {
+        if (isChatbotIconMini) {
+          $(".chatbot-logo-mini").focus();
+        } else {
+          $(".chatbot-welcome-image-container.chatbot-logo").focus();
+        }
+      }, 300);
+    }
     /* *** EVENT Listeners *** */
 
 
@@ -814,6 +867,7 @@ function main() {
           localStorage.removeItem(CHATBOT_TAB_COUNT);
           localStorage.removeItem(CHATBOT_MINI_ICON_STATE);
           localStorage.removeItem(CHATBOT_WINDOW_OPEN_STATE);
+          localStorage.removeItem(CHATBOT_WINDOW_FONT_SIZE);
         } else localStorage.setItem(CHATBOT_TAB_COUNT, chatbotTabId - 1);
       }
     });
@@ -825,12 +879,29 @@ function main() {
     });
     $("#first-shortcut").keydown(function (e) {
       if (e.shiftKey && e.keyCode == 9) {
+        // $("#dummy-shortcut").focus();
+        e.preventDefault();
+        $("#last-shortcut").focus();
+      }
+    });
+    $(".chatbot-shortcut-list span").keydown(function (e) {
+      if (e.keyCode == 27) {
         handleSettings();
+        e.stopPropagation();
+        setTimeout(function () {
+          $("#chatbot-setting-container").focus();
+        }, 150);
       }
     });
     $("#last-shortcut").keydown(function (e) {
       if (e.keyCode == 9) {
-        handleSettings();
+        e.preventDefault();
+        $("#first-shortcut").focus(); // handleSettings();
+      }
+    });
+    $("#chatbot-widget").keydown(function (e) {
+      if (e.keyCode == 27) {
+        hideChatBot();
       }
     });
     /* Increase Font Size */
@@ -864,25 +935,18 @@ function main() {
     /* Close Welcome Message */
 
     $(".close-welcome-message").click(function () {
-      // $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
-      // $(".close-welcome-message").addClass("chatbot-hide-elem");
-      // $(".chatbot-welcome-text").addClass("shift");
-      // $(".chatbot-logo img").addClass("center-chatbot-logo");
-      $("#chatbot-logos-container").addClass("chatbot-hide-elem");
-      $(".chatbot-logo-mini").removeClass("chatbot-hide-elem");
       isChatbotIconMini = true;
       updateChatbotIconState(isChatbotIconMini);
+      switchChatbotIcons();
+      focusOnChatbotIcon();
     });
     $(".close-welcome-message").keypress(function (e) {
       if (e.keyCode == 13 || e.keyCode == 32) {
-        e.preventDefault(); //   $("#chatbot-welcome-popup").addClass("chatbot-hide-elem");
-        //   $(".close-welcome-message").addClass("chatbot-hide-elem");
-        //   $(".chatbot-welcome-text").addClass("shift");
-
-        $("#chatbot-logos-container").addClass("chatbot-hide-elem");
-        $(".chatbot-logo-mini").removeClass("chatbot-hide-elem");
+        e.preventDefault();
         isChatbotIconMini = true;
         updateChatbotIconState(isChatbotIconMini);
+        switchChatbotIcons();
+        focusOnChatbotIcon();
       }
     });
     /* Reset Button */
@@ -890,13 +954,17 @@ function main() {
     $(".chatbot-reset-bot").click(resetBot);
     /* Send Button */
 
-    $("#chatbot-send-btn").click(sendData);
-    $("#chatbot-send-btn").keypress(function (e) {
+    $("#chatbot-send-btn").keydown(function (e) {
       if (e.keyCode == 13 || e.keyCode == 32) {
+        e.preventDefault(); // sendData();
+      }
+
+      if (e.keyCode == 9) {
         e.preventDefault();
-        sendData();
+        hideChatBot();
       }
     });
+    $("#chatbot-send-btn").click(sendData);
     /* Show send message tooltip on hover */
 
     $("#chatbot-send-btn").hover(showTooltip, hideTooltip);
@@ -905,7 +973,7 @@ function main() {
     $(".chatbot-logo,.chatbot-logo-mini").click(function () {
       launchChatbot();
     });
-    $(".chatbot-logo").keypress(function (e) {
+    $(".chatbot-logo,.chatbot-logo-mini").keypress(function (e) {
       if (e.keyCode == 13 || e.keyCode == 32) {
         e.preventDefault();
         launchChatbot();
@@ -950,7 +1018,9 @@ function main() {
         e.preventDefault();
         isChatbotOpen = false;
         updateChatbotWindowState(isChatbotOpen);
-        hideChatBot();
+        closeChatbot();
+        clearLocalStorage();
+        sessionStorage.removeItem(BOT_USER_HISTORY);
       }
     });
     /* Show close tooltip on hover */
@@ -998,10 +1068,8 @@ function main() {
     function doc_keyUp(e) {
       // this would test for whichever key is 40 and the ctrl key at the same time
       if (e.altKey && e.keyCode == 79) {
-        if (chatBotOpened) {
-          $("#minimize").click();
-        } else {
-          $(".chatbot-logo").click();
+        if (!chatBotOpened) {
+          launchChatbot();
         }
       }
 
@@ -1050,6 +1118,9 @@ function main() {
     $(window).blur(function (e) {// if ($("#chatbot-widget").is(":visible")) hideChatBot();
     });
     $(window).focus(function (e) {
+      var a = getChatbotWindowState();
+      updateFontSizeFromState();
+
       if (getChatbotIconState() && !isChatbotIconMini) {
         isChatbotIconMini = true;
         switchChatbotIcons();
@@ -1070,9 +1141,16 @@ function main() {
 
       var chatbotCanvas = $(".chatbot-msgs").html();
 
+      if (getBotSessionId()) {
+        idPayload = getBotSessionId();
+      } else {
+        idPayload = getUid();
+        setBotSessionId(idPayload);
+      }
+
       if (chatbotCanvas.length > 0 && localStorage.getItem(BOT_USER_HISTORY) == null) {
-        sessionStarted = false;
-        clearLocalStorage();
+        sessionStarted = false; //clearLocalStorage();
+
         return;
       }
 

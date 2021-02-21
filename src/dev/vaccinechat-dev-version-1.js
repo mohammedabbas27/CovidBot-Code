@@ -104,13 +104,13 @@ function main() {
                           <li class="chatbot-shortcut-list">
                             <span tabindex=0 class="chatbot-shortcuts-info">
                               <span class="chatbot-settings-label">Increase font:</span>
-                              <span class="chatbot-settings-value">Alt + <span id="increase-font-icon" aria-label="up arrow" class="material-icons">trending_flat</span></span>
+                              <span class="chatbot-settings-value">Alt + <span id="increase-font-icon" aria-label="up arrow" class="material-icons"><span aria-hidden="true">trending_flat</span></span></span>
                             </span>
                           </li>
                           <li class="chatbot-shortcut-list">
                             <span tabindex=0 class="chatbot-shortcuts-info">
                               <span class="chatbot-settings-label">Decrease font:</span>
-                              <span class="chatbot-settings-value">Alt + <span id="decrease-font-icon" aria-label="down arrow" class="material-icons">trending_flat</span></span>
+                              <span class="chatbot-settings-value">Alt + <span id="decrease-font-icon" aria-label="down arrow" class="material-icons"><span aria-hidden="true">trending_flat</span></span></span>
                             </span>
                           </li>
                           <li class="chatbot-shortcut-list">
@@ -630,6 +630,7 @@ function main() {
           height: 12%;
           transition: 0.35s;
           transform: translate(400%);
+          z-index: 999;
         }
 
         .chatbot-button-suggestions {
@@ -1006,7 +1007,7 @@ function main() {
         return agent.indexOf("chrome") > -1 &&
           !!window.chrome &&
           !(agent.indexOf("edg/") > -1) &&
-          location.protocol == "http:" &&
+          location.protocol == "https:" &&
           ("SpeechRecognition" in window || "webkitSpeechRecognition" in window)
           ? true
           : false;
@@ -2045,11 +2046,9 @@ function main() {
       document.addEventListener("keyup", doc_keyUp, false);
       $(window).blur(function (e) {
         // if ($("#chatbot-widget").is(":visible")) hideChatBot();
-        console.log("Focus is lost");
       });
       $(window).focus(function (e) {
         let a = getChatbotWindowState();
-        console.log("Focus is back", a);
         updateFontSizeFromState();
         if (getChatbotIconState() && !isChatbotIconMini) {
           isChatbotIconMini = true;
@@ -2070,10 +2069,8 @@ function main() {
         let chatbotCanvas = $(".chatbot-msgs").html();
         if (getBotSessionId()) {
           idPayload = getBotSessionId();
-          console.log("Session ID found in Storage :", idPayload);
         } else {
           idPayload = getUid();
-          console.log("New Chatbot Session id is:", idPayload);
           setBotSessionId(idPayload);
         }
         if (
