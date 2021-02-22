@@ -54,7 +54,7 @@ function main() {
           }">
                 <div class="chatbot-welcome-text">
                   <div class="chatbot-inner-bubble">
-                    <div style="display:flex;">
+                    <div style="display:flex;justify-content:center;">
                     <div tabindex=0 role="button" aria-label="Open vaccine chat window to ask a COVID-19 vaccine question" class="chatbot-welcome-image-container chatbot-logo">
                     <img aria-hidden="true" alt="" src="${CHATBOT_ICON_PATH}"/>
                     </div>
@@ -68,7 +68,7 @@ function main() {
               <div class="chatbot-widget" id="chatbot-widget">
                 <div class="chatbot-header">
                   <!--Add the name of the bot here -->
-                  <span aria-label="Vaccine chat Window" id="chatbot-logo-tagline" tabindex=0 style="color: white; margin-left: 5px"
+                  <span aria-label="Vaccine chat Window" class="chatbot-logo-tagline" id="chatbot-logo-tagline" tabindex=0
                     >Vaccine Chat</span>
                   <div style="float:right;display:flex;">
                     <span data-tooltipid="tooltip-dec-font" role="button" tabindex=0 aria-label="Decrease Chatbot Font Size" class="chatbot-action-btns" id="chatbot-decrease-font">
@@ -200,7 +200,6 @@ function main() {
                     autocomplete="off"
                   />
 
-                  <div class="chatbot-popup">
                     <span role="button"
                       data-tooltipid="tooltip-voice"
                       tabindex=0
@@ -214,7 +213,6 @@ function main() {
                       role="button" >
                       <span class="material-icons" style="font-size: 38px;margin-top: 16px;color: #e82719;font-weight: bold;">mic</span>
                     </div>
-                    </div>
                   <div id="tooltip-voice" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -29px;left: 327.72px;">Chat with your voice</div>
                     <span aria-label="Send"
                     role="button"
@@ -222,7 +220,7 @@ function main() {
                     tabindex=0
                     id="chatbot-send-btn">
                     <span class="material-icons" style="margin-top: 14px;font-size: 34px;color: #388557;">send</span></span>
-                  <div id="tooltip-send-msg" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -29px;left: 357.72px;">Send message</div>
+                    <div id="tooltip-send-msg" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -29px;left: 357.72px;">Send message</div>
                     <i
                     title="Reset bot"
                     role="button"
@@ -243,17 +241,20 @@ function main() {
         text-decoration-color: #388557; 
         text-decoration-thickness: 20%; 
         transition:none;
+        border: 2px solid transparent;
       }
       .chatbot-logo-mini{
         bottom: 0;
         position: fixed;
-        right: 0;
+        right: -7px;
         z-index: 90;
         cursor: pointer;
+        border: 2px solid transparent;
       }
 
       .chatbot-logo-mini img{
         height: 85px;
+        max-width: 83%;
       }
             .tooltip{
               position: absolute;
@@ -265,7 +266,6 @@ function main() {
             }
             .chatbot-logo img{
               width:70px;
-              margin-left: 35px;
             }
             .center-chatbot-logo{
               margin-left: 20px !important;
@@ -293,7 +293,6 @@ function main() {
             }
             .chatbot-welcome-image-container{
               display: flex;
-              flex-grow: 2;
               align-items: center;
               justify-content: center;
             }
@@ -302,7 +301,7 @@ function main() {
               outline:none;
             } 
             .chatbot-container *:focus{
-              outline: 2px solid #0078d7;
+              border: 2px solid #0078d7 !important;
             } 
 
             #increase-font-icon{
@@ -332,6 +331,9 @@ function main() {
             cursor:pointer;
             display:flex;
             margin-top:10px;
+            margin-left: 15px;
+            border: 2px solid transparent;
+            height: 100%;
           }
 
           .close-welcome-message i{
@@ -480,6 +482,9 @@ function main() {
         div.chatbot-bot-msg::-webkit-scrollbar-thumb:hover {
           background: #b30000;
         }
+        #chatbot-close{
+          border:2px solid transparent;
+        }
 
         #chatbot-close,
         #minimize {
@@ -507,6 +512,7 @@ function main() {
           box-sizing: border-box;
           /* max-height: 250px;
           overflow-y: auto;*/
+          border: 2px solid transparent;
         }
 
         .chatbot-user-msg {
@@ -527,6 +533,7 @@ function main() {
           min-width: 25%;
           line-height: 1.5em;
           box-sizing: border-box;
+          border: 2px solid transparent;
         }
 
         .chatbot-msg-card {
@@ -599,6 +606,7 @@ function main() {
           color: #fff;
           border-radius: 7px;
           text-align: left;
+          border: 2px solid transparent;
         }
 
         .chatbot-menu-chips:hover {
@@ -713,6 +721,9 @@ function main() {
           margin-left: auto;
           margin-right: auto;
         }
+        div#chatbot-loading-msg:focus{
+          border: 2px solid #0078d7 !important;
+        }
 
         div#chatbot-loading-msg .chatbot-loading-dot {
           display: inline-block;
@@ -748,6 +759,7 @@ function main() {
           display:flex;
           flex-direction: column;
           margin-bottom: 10px;
+          border: 2px solid transparent;
         }
 
         .chatbot-shortcuts-info > * {
@@ -773,6 +785,12 @@ function main() {
           top: 65px;
         }
 
+        #chatbot-logo-tagline{
+          border: 2px solid transparent;
+          color: white;
+          margin-left: 5px
+        }
+
         .chatbot-settings::before {
           content: "";
           position: absolute;
@@ -796,6 +814,7 @@ function main() {
           -moz-user-select: none;
           -o-user-select: none;
           user-select: none;
+          border: 2px solid transparent;
         }
 
 
@@ -814,6 +833,7 @@ function main() {
         #chatbot-send-btn {
           font-size: 30px;
           padding-left: 3px;
+          border: 2px solid transparent;
         }
 
         .chatbot-reset-bot {
@@ -823,6 +843,7 @@ function main() {
         #chatbot-keypad {
           font-size: 14px;
           height: 35px;
+          border: 2px solid transparent;
         }
         .yes-no-btn{
           padding: 8px;
@@ -852,6 +873,8 @@ function main() {
 
         .chatbot-logo{
           cursor:pointer;
+          margin-left: 50px;
+          border: 2px solid transparent;
         }
 
         .limit-reached{
@@ -878,11 +901,15 @@ function main() {
           .chatbot-welcome-text.shift{
             left: 51%;
           }
-          #chatbot-logo-tagline{
-            font-size:16px;
-          }
+
           .chatbot-action-btns{
-            margin-right: 3px;
+            margin-right: 0px;
+          }
+          #chatbot-logo-tagline{
+            font-size: 16px;
+          }
+          .chatbot-logo-mini{
+            right:-4px;
           }
           .chatbot-inner-bubble:after{
             right: 32px;
@@ -962,7 +989,7 @@ function main() {
           setBotSessionId(idPayload);
         }
         if (getChatbotWindowState()) {
-          showChatBot();
+          launchChatbot();
           setTimeout(() => {
             scrollToBottomOfResults();
             $("#chatbot-logo-tagline").focus();
@@ -1230,7 +1257,7 @@ function main() {
       /* Set user response */
       function setUserResponse(val) {
         /*disable the user input */
-        toggleUserInput(false);
+        toggleUserInput(true);
 
         var userResponse =
           `<p class="chatbot-user-msg" style="font-size:${fontSize}px" tabindex=0>` +
@@ -1715,7 +1742,7 @@ function main() {
       }
 
       function launchChatbot() {
-        if ($("#chatbot-msgs").text().length == 0 || !sessionStarted) {
+        if ($("#chatbot-msgs").text().length == 0) {
           sessionStarted = true;
           isNewSession = true;
           send("/session_start", "message");
@@ -1885,13 +1912,14 @@ function main() {
       $("#chatbot-send-btn").keydown(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
-          // sendData();
+          sendData();
         }
         if (e.keyCode == 9) {
           e.preventDefault();
-          hideChatBot();
+          $("#chatbot-logo-tagline").focus();
         }
       });
+
       $("#chatbot-send-btn").click(sendData);
 
       /* Show send message tooltip on hover */
@@ -1996,6 +2024,23 @@ function main() {
         $(".chatbot-suggestions").remove(); //delete the suggestions
       });
 
+      var specifiedElement = document.getElementById("chatbot-settings");
+
+      //I'm using "click" but it works with any event
+      $("#chatbot-widget").on("click", function (event) {
+        var isClickInside = specifiedElement.contains(event.target);
+
+        if (!isClickInside) {
+          //the click was outside the specifiedElement, do something
+          if (event.target.closest("#chatbot-setting-container")) {
+            return;
+          }
+          if (!specifiedElement.classList.contains("chatbot-hide-elem")) {
+            specifiedElement.classList.add("chatbot-hide-elem");
+          }
+        }
+      });
+
       // define a handler
       function doc_keyUp(e) {
         // this would test for whichever key is 40 and the ctrl key at the same time
@@ -2078,12 +2123,12 @@ function main() {
           localStorage.getItem(BOT_USER_HISTORY) == null
         ) {
           sessionStarted = false;
+          $("#chatbot-msgs").empty();
           //clearLocalStorage();
           return;
         }
         let chatbotHistory = getBotUserHistory();
         if (chatbotHistory) {
-          //   if (chatbotHistory.length > chatbotCanvas.length) {
           if (chatbotHistory.length > 0) {
             loadHistoryToChatbot(chatbotHistory);
             scrollToBottomOfResults();
@@ -2091,6 +2136,7 @@ function main() {
         } else {
           if (chatbotCanvas.length > 0) {
             sessionStarted = false;
+            $("#chatbot-msgs").empty();
           }
         }
       });
