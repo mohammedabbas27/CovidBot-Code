@@ -2083,11 +2083,6 @@ function main() {
         }
       });
 
-      $(".chatbot-shortcuts-info").keydown(function (e) {
-        console.log(e.target);
-        console.log(e.keyCode);
-      });
-
       // define a handler
       function doc_keyUp(e) {
         // this would test for whichever key is 40 and the ctrl key at the same time
