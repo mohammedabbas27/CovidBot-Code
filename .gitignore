@@ -2,4 +2,4 @@
 /src/react-app
 /.vscode
 /src/Azure-Prod
-/dist/vaccinechat.zip
+/dist/vaccinechat*.zip

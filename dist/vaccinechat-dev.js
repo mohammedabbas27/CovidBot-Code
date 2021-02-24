@@ -24,7 +24,7 @@ function main() {
     /* Load Google Fonts(Roboto) stylesheet */
 
     $("head").append('<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu&display=swap"rel="stylesheet"/>');
-    var CHATBOT_ICON_PATH = "https://www.mass.gov/media/2246916/download";
+    var CHATBOT_ICON_PATH = "https://aibot.neurosoph.com:5000/Chatbot_Icon_01-Green.png";
     var isChatbotIconMini = false;
     var CHATBOT_MINI_ICON_STATE = "chatbot-mini-icon-state";
 
@@ -66,7 +66,7 @@ function main() {
     var CHATBOT_TAB_COUNT = "chatbot-tab-count";
     var INPUT_CHAR_LIMIT = 119;
     var isTouch = ("ontouchstart" in window);
-    var API_END_POINT = "https://chatbot.neurosoph.io:15005/webhooks/rest/webhook";
+    var API_END_POINT = "https://aibot.neurosoph.com:5000/webhooks/rest/webhook";
     var isChatbotOpen = false;
     var CHATBOT_WINDOW_OPEN_STATE = "chatbot-window-open-state";
     var CHATBOT_WINDOW_FONT_SIZE = "chatbot-window-font-size";
