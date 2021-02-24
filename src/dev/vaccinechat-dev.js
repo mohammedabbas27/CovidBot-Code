@@ -75,14 +75,6 @@ function main() {
                   </span>
                   <div id="tooltip-inc-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 290px;">Increase font</div>
 
-                  <span tabindex=0 aria-label="Reset Chatbot" title="Reset Chabot" class="chatbot-action-btns chatbot-hide-elem" id="chatbot-reset-bot">
-                    <i
-                      title="Reset bot"
-                      class="fas fa-history chatbot-reset-bot"
-                      style="margin-top: 3px"
-                    ></i>
-                  </span>
-
                   <span aria-label="Chatbot Help Shortcuts" data-tooltipid="tooltip-help" style="margin-top: 5px;" tabindex=0 aria-expanded="false" role="button" class="chatbot-action-btns" id="chatbot-setting-container">
                     <i class="material-icons">help</i>
                   </span>
@@ -99,13 +91,13 @@ function main() {
                           <li class="chatbot-shortcut-list">
                             <span tabindex=0 class="chatbot-shortcuts-info">
                               <span class="chatbot-settings-label">Increase font:</span>
-                              <span class="chatbot-settings-value">Alt + <span id="increase-font-icon" aria-label="up arrow" class="material-icons"><span aria-hidden="true">trending_flat</span></span></span>
+                              <span class="chatbot-settings-value">Alt + <span id="increase-font-icon" aria-label="up arrow" class="material-icons"><span aria-hidden="true">trending_flat</span><span class="visuallyHidden">up arrow</span></span></span>
                             </span>
                           </li>
                           <li class="chatbot-shortcut-list">
                             <span tabindex=0 class="chatbot-shortcuts-info">
                               <span class="chatbot-settings-label">Decrease font:</span>
-                              <span class="chatbot-settings-value">Alt + <span id="decrease-font-icon" aria-label="down arrow" class="material-icons"><span aria-hidden="true">trending_flat</span></span></span>
+                              <span class="chatbot-settings-value">Alt + <span id="decrease-font-icon" aria-label="down arrow" class="material-icons"><span aria-hidden="true">trending_flat</span><span class="visuallyHidden">down arrow</span></span></span>
                             </span>
                           </li>
                           <li class="chatbot-shortcut-list">
@@ -129,12 +121,6 @@ function main() {
                             <span tabindex=0 id="last-shortcut" class="chatbot-shortcuts-info">
                               <span class="chatbot-settings-label">Close/Reopen help:</span>
                               <span class="chatbot-settings-value">Alt + i </span>
-                            </span>
-                          </li>
-                          <li class="visuallyHidden">
-                            <span id="dummy-shortcut" tabindex=-1 class="chatbot-shortcuts-info">
-                              <span class="chatbot-settings-label">Reset Bot:</span>
-                              <span class="chatbot-settings-value">Alt + q </span>
                             </span>
                           </li>
                         </ul>
@@ -994,10 +980,6 @@ function main() {
         }
         if (getChatbotWindowState()) {
           launchChatbot();
-          setTimeout(() => {
-            scrollToBottomOfResults();
-            $("#chatbot-logo-tagline").focus();
-          }, 50);
         }
       });
 
@@ -1303,7 +1285,7 @@ function main() {
         $(".chatbot-suggestions").remove();
         noUserInput = false;
         var botResponse =
-          `<div class="chatbot-bot-msg" tabindex=0 aria-label="waiting for chatbot response" id="typing" style="font-size:${fontSize}px;border:0px;">` +
+          `<div class="chatbot-bot-msg" role="alert" tabindex=0 aria-label="waiting for chatbot response" id="typing" style="font-size:${fontSize}px;border:0px;">` +
           `<div id="chatbot-loading-msg">
                         <span class="chatbot-loading-dot"></span>
                         <span class="chatbot-loading-dot"></span>
@@ -1315,9 +1297,7 @@ function main() {
         var ele = $(".chatbot-user-msg")
           .last()
           .nextAll(".chatbot-bot-msg:first");
-        console.log(ele);
-        ele.focus();
-        // $("#typing").focus();
+        // ele.focus();
       }
 
       /* Scroll to the bottom of the chats */
@@ -1532,10 +1512,12 @@ function main() {
               }
             }
             scrollToBottomOfResults();
-            $(".chatbot-user-msg")
-              .last()
-              .nextAll(".chatbot-bot-msg:first")
-              .focus();
+            setTimeout(() => {
+              $(".chatbot-user-msg")
+                .last()
+                .nextAll(".chatbot-bot-msg:first")
+                .focus();
+            }, 100);
           }
         }, 500);
       }
@@ -1789,9 +1771,9 @@ function main() {
         }
         showChatBot();
         setTimeout(() => {
-          $("#chatbot-logo-tagline").focus();
           scrollToBottomOfResults();
-        }, 50);
+          $("#chatbot-logo-tagline").focus();
+        }, 400);
       }
 
       function clearLocalStorage() {
@@ -1834,7 +1816,7 @@ function main() {
           } else {
             $(".chatbot-welcome-image-container.chatbot-logo").focus();
           }
-        }, 300);
+        }, 400);
       }
 
       /* *** EVENT Listeners *** */
@@ -1873,15 +1855,15 @@ function main() {
         }
       });
 
-      $(".chatbot-shortcut-list span").keydown(function (e) {
-        if (e.keyCode == 27) {
-          handleSettings();
-          e.stopPropagation();
-          setTimeout(() => {
-            $("#chatbot-setting-container").focus();
-          }, 150);
-        }
-      });
+      // $(".chatbot-shortcut-list span").keydown(function (e) {
+      //   if (e.keyCode == 27) {
+      //     handleSettings();
+      //     e.stopPropagation();
+      //     setTimeout(() => {
+      //       $("#chatbot-setting-container").focus();
+      //     }, 150);
+      //   }
+      // });
 
       $("#last-shortcut").keydown(function (e) {
         if (e.keyCode == 9) {
@@ -1893,6 +1875,14 @@ function main() {
 
       $("#chatbot-widget").keydown(function (e) {
         if (e.keyCode == 27) {
+          if (!$("#chatbot-settings").hasClass("chatbot-hide-elem")) {
+            handleSettings();
+            setTimeout(() => {
+              $("#chatbot-setting-container").focus();
+            }, 150);
+            return;
+          }
+
           hideChatBot();
         }
       });
@@ -1950,7 +1940,7 @@ function main() {
       });
 
       /* Reset Button */
-      $(".chatbot-reset-bot").click(resetBot);
+      // $(".chatbot-reset-bot").click(resetBot);
 
       /* Send Button */
       $("#chatbot-send-btn").keydown(function (e) {
@@ -2091,6 +2081,11 @@ function main() {
             specifiedElement.classList.add("chatbot-hide-elem");
           }
         }
+      });
+
+      $(".chatbot-shortcuts-info").keydown(function (e) {
+        console.log(e.target);
+        console.log(e.keyCode);
       });
 
       // define a handler
