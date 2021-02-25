@@ -66,19 +66,19 @@ function main() {
                   <span aria-label="Vaccine chat Window" class="chatbot-logo-tagline" id="chatbot-logo-tagline" tabindex=0
                     >Vaccine Chat</span>
                   <div style="float:right;display:flex;">
-                    <span data-tooltipid="tooltip-dec-font" role="button" tabindex=0 aria-label="Decrease Chatbot Font Size" class="chatbot-action-btns" id="chatbot-decrease-font">
-                    A<span>-</span>
-                    </span>
-                    <div id="tooltip-dec-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 255px;">Decrease font</div>
-                    <span data-tooltipid="tooltip-inc-font" role="button" tabindex=0 aria-label="Increase Chatbot Font Size" class="chatbot-action-btns" id="chatbot-increase-font">
-                    A<span>+</span>
-                  </span>
-                  <div id="tooltip-inc-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 290px;">Increase font</div>
+                    <div data-tooltipid="tooltip-dec-font" role="button" tabindex=0 aria-label="Decrease Chatbot Font Size" class="chatbot-action-btns" id="chatbot-decrease-font">
+                    A<span aria-hidden="true">-</span>
+                    </div>
+                    <div id="tooltip-dec-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 255px;" aria-hidden="true">Decrease font</div>
+                    <div data-tooltipid="tooltip-inc-font" role="button" tabindex=0 aria-label="Increase Chatbot Font Size" class="chatbot-action-btns" id="chatbot-increase-font">
+                    A<span aria-hidden="true">+</span>
+                  </div>
+                  <div id="tooltip-inc-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 290px;" aria-hidden="true">Increase font</div>
 
-                  <span aria-label="Chatbot Help Shortcuts" data-tooltipid="tooltip-help" style="margin-top: 5px;" tabindex=0 aria-expanded="false" role="button" class="chatbot-action-btns" id="chatbot-setting-container">
+                  <div aria-label="Chatbot Help Shortcuts" aria-describedby="Chatbot Help Shortcuts" data-tooltipid="tooltip-help" style="margin-top: 5px;" tabindex=0 aria-expanded="false" role="button" class="chatbot-action-btns" id="chatbot-setting-container">
                     <i class="material-icons">help</i>
-                  </span>
-                  <div id="tooltip-help" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 318px;">Chatbot shortcuts</div>
+                  </div>
+                  <div id="tooltip-help" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 318px;" aria-hidden="true">Chatbot shortcuts</div>
                     <div tabindex=-1 class="chatbot-settings chatbot-hide-elem" id="chatbot-settings">
                       <div>
                         <ul style="list-style: none;padding-left: 10px;">
@@ -91,13 +91,13 @@ function main() {
                           <li class="chatbot-shortcut-list">
                             <span tabindex=0 class="chatbot-shortcuts-info">
                               <span class="chatbot-settings-label">Increase font:</span>
-                              <span class="chatbot-settings-value">Alt + <span id="increase-font-icon" aria-label="up arrow" class="material-icons"><span aria-hidden="true">trending_flat</span><span class="visuallyHidden">up arrow</span></span></span>
+                              <span class="chatbot-settings-value">Alt + <span class="visuallyHidden">up arrow</span> <span id="increase-font-icon" aria-hidden="true" class="material-icons"><span aria-hidden="true">trending_flat</span></span></span>
                             </span>
                           </li>
                           <li class="chatbot-shortcut-list">
                             <span tabindex=0 class="chatbot-shortcuts-info">
                               <span class="chatbot-settings-label">Decrease font:</span>
-                              <span class="chatbot-settings-value">Alt + <span id="decrease-font-icon" aria-label="down arrow" class="material-icons"><span aria-hidden="true">trending_flat</span><span class="visuallyHidden">down arrow</span></span></span>
+                              <span class="chatbot-settings-value">Alt + <span class="visuallyHidden">down arrow</span><span id="decrease-font-icon" aria-hidden="true" class="material-icons"><span aria-hidden="true">trending_flat</span></span></span>
                             </span>
                           </li>
                           <li class="chatbot-shortcut-list">
@@ -126,7 +126,7 @@ function main() {
                         </ul>
                       </div>
                     </div>
-                    <span
+                    <div
                     role="button"
                     tabindex=0
                     data-tooltipid="tooltip-minimize"
@@ -136,9 +136,9 @@ function main() {
                     id="minimize"
                   >
                     <i class="material-icons">minimize</i>
-                  </span>
-                  <div id="tooltip-minimize" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 350px;">Minimize chatbot</div>
-                  <span
+                  </div>
+                  <div id="tooltip-minimize" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 350px;" aria-hidden="true">Minimize chatbot</div>
+                  <div
                   role="button"
                   aria-label="Close Chatbot"
                   data-tooltipid="tooltip-close"
@@ -151,8 +151,8 @@ function main() {
                     id="chatbot-close"
                   >
                     <i class="material-icons">close</i>
-                  </span>
-                  <div id="tooltip-close" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 374.72px;">Close chatbot</div>
+                  </div>
+                  <div id="tooltip-close" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 374.72px;" aria-hidden="true">Close chatbot</div>
                   </div>
                   <div>
                     <span
@@ -186,7 +186,7 @@ function main() {
                       tabindex=0
                       aria-label="Turn on Microphone"
                       id="chatbot-mic-btn-off"><span class="material-icons" style="font-size: 38px;margin-top: 16px;color: #388557;font-weight: bold;">mic</span></span>
-                  <div id="tooltip-voice-off" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -40px;left: 327.72px;">Turn on microphone</div>
+                  <div id="tooltip-voice-off" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -40px;left: 327.72px;" aria-hidden="true">Turn on microphone</div>
                     <div
                       id="chatbot-mic-btn-on"
                       class="chatbot-hide-elem"
@@ -196,7 +196,7 @@ function main() {
                       role="button" >
                       <span class="material-icons" style="font-size: 38px;margin-top: 16px;color: #e82719;font-weight: bold;">mic</span>
                     </div>
-                  <div id="tooltip-voice-on" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -35px;left: 360.72px;">Speak now</div>
+                  <div id="tooltip-voice-on" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -35px;left: 360.72px;" aria-hidden="true">Speak now</div>
 
                     <span aria-label="Send"
                     role="button"
@@ -204,7 +204,7 @@ function main() {
                     tabindex=0
                     id="chatbot-send-btn">
                     <span class="material-icons" style="margin-top: 14px;font-size: 34px;color: #388557;">send</span></span>
-                    <div id="tooltip-send-msg" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -40px;left: 370.72px;">Send message</div>
+                    <div id="tooltip-send-msg" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -40px;left: 370.72px;" aria-hidden="true">Send message</div>
                     <i
                     title="Reset bot"
                     role="button"
@@ -917,7 +917,7 @@ function main() {
           }
          }
         `;
-
+      $(document).focus(function (e) {});
       /* Attach the chatbot-StyleSheet to the body of the page */
       var style = document.createElement("style");
       style.innerHTML = DOMPurify.sanitize(cssMarkup);
@@ -1285,7 +1285,7 @@ function main() {
         $(".chatbot-suggestions").remove();
         noUserInput = false;
         var botResponse =
-          `<div class="chatbot-bot-msg" role="alert" tabindex=0 aria-label="waiting for chatbot response" id="typing" style="font-size:${fontSize}px;border:0px;">` +
+          `<div class="chatbot-bot-msg" role="alert" aria-label="waiting for chatbot response" id="typing" style="font-size:${fontSize}px;border:0px;">` +
           `<div id="chatbot-loading-msg">
                         <span class="chatbot-loading-dot"></span>
                         <span class="chatbot-loading-dot"></span>
@@ -1294,10 +1294,10 @@ function main() {
           '</div><div class="chatbot-clearfix"></div>';
         addBotResponse(botResponse, false);
         scrollToBottomOfResults();
-        var ele = $(".chatbot-user-msg")
-          .last()
-          .nextAll(".chatbot-bot-msg:first");
-        // ele.focus();
+        // $(".chatbot-bot-msg").last().nextAll(".chatbot-bot-msg:first").focus();
+        // $("#typing").focus();
+        // .last()
+        // .nextAll(".chatbot-bot-msg:first");
       }
 
       /* Scroll to the bottom of the chats */
@@ -1354,7 +1354,7 @@ function main() {
       /* Add the bot response to the window */
       function addBotResponse(markup, store = true) {
         markup = DOMPurify.sanitize(markup, { ADD_ATTR: ["target"] });
-        $(markup).appendTo(".chatbot-msgs").hide().fadeIn(50);
+        $(markup).appendTo(".chatbot-msgs").hide().fadeIn(0);
         setTimeout(() => {
           if (store) {
             setBotUserHistory();
@@ -1517,7 +1517,7 @@ function main() {
                 .last()
                 .nextAll(".chatbot-bot-msg:first")
                 .focus();
-            }, 100);
+            }, 150);
           }
         }, 500);
       }
@@ -1655,7 +1655,7 @@ function main() {
               suggestions[i].payload +
               "'>" +
               suggestions[i].title +
-              "</div>";
+              "</div><div/>";
 
             // $(markup).appendTo("." + type);
           }
