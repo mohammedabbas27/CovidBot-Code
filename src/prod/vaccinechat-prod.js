@@ -52,7 +52,7 @@ function main() {
                     <div tabindex=0 role="button" aria-label="Open vaccine chat window to ask a COVID-19 vaccine question" class="chatbot-welcome-image-container chatbot-logo">
                     <img aria-hidden="true" alt="" src="${CHATBOT_ICON_PATH}"/>
                     </div>
-                    <div tabindex=0 role="button" aria-label="close chatbot popup message" class="close-welcome-message"><i
+                    <div tabindex=0 role="button" aria-label="Close chat popup message" class="close-welcome-message"><i
                       class="material-icons">close</i></div>
                     </div>
                       <h5 tabindex=0 tabindex=-1 class="chatbot-logo" id="chatbot-welcome-popup">Have a COVID-19 vaccine question?</h5>
@@ -62,22 +62,22 @@ function main() {
               <div class="chatbot-widget" id="chatbot-widget">
                 <div class="chatbot-header">
                   <!--Add the name of the bot here -->
-                  <span aria-label="Vaccine chat Window" class="chatbot-logo-tagline" id="chatbot-logo-tagline" tabindex=0
+                  <span aria-label="Vaccine chat window" class="chatbot-logo-tagline" id="chatbot-logo-tagline" tabindex=0
                     >Vaccine Chat</span>
                   <div style="float:right;display:flex;">
-                    <div data-tooltipid="tooltip-dec-font" role="button" tabindex=0 aria-label="Decrease Chatbot Font Size" class="chatbot-action-btns" id="chatbot-decrease-font">
+                    <div data-tooltipid="tooltip-dec-font" role="button" tabindex=0 aria-label="Decrease chat font size" class="chatbot-action-btns" id="chatbot-decrease-font">
                     A<span aria-hidden="true">-</span>
                     </div>
-                    <div id="tooltip-dec-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 255px;" aria-hidden="true">Decrease font</div>
-                    <div data-tooltipid="tooltip-inc-font" role="button" tabindex=0 aria-label="Increase Chatbot Font Size" class="chatbot-action-btns" id="chatbot-increase-font">
+                    <div id="tooltip-dec-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 220px;" aria-hidden="true">Decrease chat font size</div>
+                    <div data-tooltipid="tooltip-inc-font" role="button" tabindex=0 aria-label="Increase chat font size" class="chatbot-action-btns" id="chatbot-increase-font">
                     A<span aria-hidden="true">+</span>
                   </div>
-                  <div id="tooltip-inc-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 290px;" aria-hidden="true">Increase font</div>
+                  <div id="tooltip-inc-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 260px;" aria-hidden="true">Increase chat font size</div>
 
-                  <div aria-label="Chatbot Help Shortcuts" aria-describedby="Chatbot Help Shortcuts" data-tooltipid="tooltip-help" style="margin-top: 5px;" tabindex=0 aria-expanded="false" role="button" class="chatbot-action-btns" id="chatbot-setting-container">
+                  <div aria-label="Chat help shortcuts" data-tooltipid="tooltip-help" style="margin-top: 5px;" tabindex=0 aria-expanded="false" role="button" class="chatbot-action-btns" id="chatbot-setting-container">
                     <i class="material-icons">help</i>
                   </div>
-                  <div id="tooltip-help" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 318px;" aria-hidden="true">Chatbot shortcuts</div>
+                  <div id="tooltip-help" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 295px;" aria-hidden="true">Chatbot help shortcuts</div>
                     <div tabindex=-1 class="chatbot-settings chatbot-hide-elem" id="chatbot-settings">
                       <div>
                         <ul style="list-style: none;padding-left: 10px;">
@@ -129,17 +129,17 @@ function main() {
                     role="button"
                     tabindex=0
                     data-tooltipid="tooltip-minimize"
-                    aria-label="Minnimize Chatbot"
+                    aria-label="Minimize chat"
                     class="chatbot-action-btns"
                     style="margin-top: 0px;padding-top:0px"
                     id="minimize"
                   >
                     <i class="material-icons">minimize</i>
                   </div>
-                  <div id="tooltip-minimize" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 350px;" aria-hidden="true">Minimize chatbot</div>
+                  <div id="tooltip-minimize" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 370px;" aria-hidden="true">Minimize chat</div>
                   <div
                   role="button"
-                  aria-label="Close Chatbot"
+                  aria-label="Close Chat"
                   data-tooltipid="tooltip-close"
                   tabindex=0
                     style="
@@ -151,7 +151,7 @@ function main() {
                   >
                     <i class="material-icons">close</i>
                   </div>
-                  <div id="tooltip-close" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 374.72px;" aria-hidden="true">Close chatbot</div>
+                  <div id="tooltip-close" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 395px;" aria-hidden="true">Close chat</div>
                   </div>
                   <div>
                     <span
@@ -181,36 +181,19 @@ function main() {
                   />
 
                     <span role="button"
-                      data-tooltipid="tooltip-voice-off"
+                      data-tooltipid="tooltip-voice"
                       tabindex=0
-                      aria-label="Turn on Microphone"
-                      id="chatbot-mic-btn-off"><span class="material-icons" style="font-size: 38px;margin-top: 16px;color: #388557;font-weight: bold;">mic</span></span>
-                  <div id="tooltip-voice-off" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -40px;left: 327.72px;" aria-hidden="true">Turn on microphone</div>
-                    <div
-                      id="chatbot-mic-btn-on"
-                      class="chatbot-hide-elem"
-                      tabindex=0
-                      aria-label="Turn off Microphone"
-                      data-tooltipid="tooltip-voice-on"
-                      role="button" >
-                      <span class="material-icons" style="font-size: 38px;margin-top: 16px;color: #e82719;font-weight: bold;">mic</span>
-                    </div>
-                  <div id="tooltip-voice-on" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -35px;left: 360.72px;" aria-hidden="true">Speak now</div>
-
-                    <span aria-label="Send"
+                      aria-label="Turn on microphone"
+                      class="chatbot-mic-btn"
+                      id="chatbot-mic-btn"><span class="material-icons" style="font-size: 38px;margin-top: 16px;font-weight: bold;">mic</span></span>
+                  <div id="tooltip-voice" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -40px;left: 327px;" aria-hidden="true">Turn on microphone</div>
+                    <span aria-label="Send message"
                     role="button"
                     data-tooltipid="tooltip-send-msg"
                     tabindex=0
                     id="chatbot-send-btn">
                     <span class="material-icons" style="margin-top: 14px;font-size: 34px;color: #388557;">send</span></span>
                     <div id="tooltip-send-msg" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: -40px;left: 370.72px;" aria-hidden="true">Send message</div>
-                    <i
-                    title="Reset bot"
-                    role="button"
-                    tabindex=0
-                    class="fas fa-history fa-2x chatbot-reset-bot chatbot-hide-elem"
-                    style="cursor: pointer; margin-left: 3px; margin-top: 5px"
-                  ></i>
                 </div>
               </div>
               <!--bot widget -->
@@ -218,6 +201,12 @@ function main() {
         `;
 
       var cssMarkup = `
+      .chatbot-mic-btn span{
+        color:#388557;
+      }
+      .chatbot-mic-btn.mic-on span{
+        color:#e82719;
+      }
       .chatbot-links{
         text-decoration: underline;
         -webkit-text-decoration-color: #388557;
@@ -635,8 +624,7 @@ function main() {
         }
 
         #chatbot-send-btn:hover,
-        #chatbot-mic-btn-on:hover,
-        #chatbot-mic-btn-off:hover {
+        #chatbot-mic-btn:hover {
           cursor: pointer;
         }
 
@@ -819,8 +807,7 @@ function main() {
           color: white;
         }
 
-        #chatbot-mic-btn-on,
-        #chatbot-mic-btn-off,
+        #chatbot-mic-btn,
         #chatbot-send-btn {
           font-size: 30px;
           padding-left: 3px;
@@ -915,6 +902,11 @@ function main() {
             border-color: #97c2a9 #97c2a9 transparent transparent;
           }
          }
+
+         .chatbot-keypad *:focus, .chatbot-shortcuts-info *:focus, .chatbot-inner-bubble *:focus {
+            outline: none !important;
+            border-color: #0078d7 !important;
+          }
         `;
       $(document).focus(function (e) {});
       /* Attach the chatbot-StyleSheet to the body of the page */
@@ -1098,8 +1090,16 @@ function main() {
         // speech recognition API supported
         /* Toggle the mic on and off based on the user input */
         function toggleMic() {
-          $("#chatbot-mic-btn-off").toggleClass("chatbot-hide-elem");
-          $("#chatbot-mic-btn-on").toggleClass("chatbot-hide-elem");
+          $("#chatbot-mic-btn").toggleClass("mic-on");
+          if ($("#chatbot-mic-btn").hasClass("mic-on")) {
+            $("#tooltip-voice").text("Speak now");
+            $("#tooltip-voice").css({ left: "364px" });
+            $("#chatbot-mic-btn").attr("aria-label", "Turn off microphone");
+          } else {
+            $("#tooltip-voice").text("Turn on microphone");
+            $("#tooltip-voice").css({ left: "327px" });
+            $("#chatbot-mic-btn").attr("aria-label", "Turn on microphone");
+          }
         }
 
         /* Initialize the Webspeech API */
@@ -1129,7 +1129,6 @@ function main() {
             micOn = true;
             toggleMic();
             $("#tooltip-voice-on").removeClass("chatbot-hide-elem");
-            // $("#chatbot-mic-btn-on").focus();
           });
           /* Send the message of the user upon the end of voice recognition */
           recognition.addEventListener("end", function () {
@@ -1137,61 +1136,58 @@ function main() {
             sendMessage();
             micOn = false;
             $("#tooltip-voice-on").addClass("chatbot-hide-elem");
-
-            // $("#chatbot-mic-btn-off").focus();
           });
 
           /* Disable(hide) the chatbot if there is any error  */
           recognition.addEventListener("error", function (e) {
             if (e.error === "not-allowed") {
-              $("#chatbot-mic-btn-on").toggleClass("chatbot-hide-elem");
+              $("#chatbot-mic-btn").toggleClass("mic-on");
             }
             if (e.error != "no-speech") {
-              $("#chatbot-mic-btn-off").toggleClass("chatbot-hide-elem");
+              $("#chatbot-mic-btn").toggleClass("mic-on");
             }
+            setTimeout(() => {
+              $("#chatbot-mic-btn").focus();
+            }, 150);
           });
 
-          /*  Turn of the voice recognition  */
-          $("#chatbot-mic-btn-on").click(function () {
-            recognition.stop();
-          });
-          $("#chatbot-mic-btn-on").keypress(function (e) {
-            if (e.keyCode == 13 || e.keyCode == 32) {
-              e.preventDefault();
+          /*  Turn on/off the voice recognition */
+          $("#chatbot-mic-btn").click(function () {
+            if (!$("#chatbot-mic-btn").hasClass("mic-on")) {
+              recognition.start();
+            } else {
               recognition.stop();
             }
           });
 
-          /*  Turn on the voice recognition */
-          $("#chatbot-mic-btn-off").click(function () {
-            recognition.start();
-          });
-
-          $("#chatbot-mic-btn-off").keypress(function (e) {
+          $("#chatbot-mic-btn").keypress(function (e) {
             if (e.keyCode == 13 || e.keyCode == 32) {
               e.preventDefault();
-              recognition.start();
+              if (!$("#chatbot-mic-btn").hasClass("mic-on")) {
+                recognition.start();
+              } else {
+                recognition.stop();
+                setTimeout(() => {
+                  $("#chatbot-mic-btn").focus();
+                }, 150);
+              }
             }
           });
 
           /* Show/hide voice tooltip on hover */
-          $("#chatbot-mic-btn-off").hover(showTooltip, hideTooltip);
-          $("#chatbot-mic-btn-off").focusin(showTooltip);
-          $("#chatbot-mic-btn-off").focusout(hideTooltip);
-
-          // $("#chatbot-mic-btn-on").hover(showTooltip, hideTooltip);
-          // $("#chatbot-mic-btn-on").focusin(showTooltip);
-          // $("#chatbot-mic-btn-on").focusout(hideTooltip);
+          $("#chatbot-mic-btn").hover(showTooltip, hideTooltip);
+          $("#chatbot-mic-btn").focusin(showTooltip);
+          $("#chatbot-mic-btn").focusout(hideTooltip);
 
           /* Stop listening the user */
           function stopListening() {
             recognition.stop();
           }
         } catch (exception) {
-          $("#chatbot-mic-btn-off").toggleClass("chatbot-hide-elem");
+          $("#chatbot-mic-btn").toggleClass("chatbot-hide-elem");
         }
       } else {
-        $("#chatbot-mic-btn-off").toggleClass("chatbot-hide-elem");
+        $("#chatbot-mic-btn").toggleClass("chatbot-hide-elem");
       }
 
       /* Generate a random Unique Id */
@@ -1281,7 +1277,6 @@ function main() {
         setBotUserHistory();
         $(userResponse).appendTo(".chatbot-msgs").show("slow");
         $(".chatbot-user-input").val("");
-        $(".chatbot-suggestions").remove();
         noUserInput = false;
         var botResponse =
           `<div class="chatbot-bot-msg" role="alert" aria-label="waiting for chatbot response" id="typing" style="font-size:${fontSize}px;border:0px;">` +
@@ -1293,10 +1288,6 @@ function main() {
           '</div><div class="chatbot-clearfix"></div>';
         addBotResponse(botResponse, false);
         scrollToBottomOfResults();
-        // $(".chatbot-bot-msg").last().nextAll(".chatbot-bot-msg:first").focus();
-        // $("#typing").focus();
-        // .last()
-        // .nextAll(".chatbot-bot-msg:first");
       }
 
       /* Scroll to the bottom of the chats */
@@ -1346,7 +1337,6 @@ function main() {
       function enableUserInput() {
         setTimeout(function () {
           toggleUserInput(false);
-          //   $(".chatbot-user-input").focus();
         }, 1500);
       }
 
@@ -1454,7 +1444,6 @@ function main() {
                   var hyperPoints = data.hyper_bullets;
                   var markup = data.text + "<ul>";
                   hyperPoints.forEach((point) => {
-                    //   markup += `<li>${point}</li>`;
                     for (var prop in point) {
                       var link = point[prop][0];
                       var text = point[prop][1];
@@ -1516,7 +1505,7 @@ function main() {
                 .last()
                 .nextAll(".chatbot-bot-msg:first")
                 .focus();
-            }, 150);
+            }, 250);
           }
         }, 500);
       }
@@ -1629,15 +1618,6 @@ function main() {
         setTimeout(function () {
           var suggestions = textToAdd;
           var suggLength = textToAdd.length;
-          // $(
-          //   ' <div class="chatbot-msg-card"> <div class="chatbot-button-suggestions chatbot-suggestions"><div class="' +
-          //     type +
-          //     '"></div></div></diV>'
-          // )
-          //   .appendTo(".chatbot-msgs")
-          //   .hide()
-          //   .fadeIn(1000);
-          // Loop through suggestions
           var markup = ``;
           for (let i = 0; i < suggLength; i++) {
             markup += `<div role="button" style="font-size:${fontSize}px" class="chatbot-menu-chips ${
@@ -1655,8 +1635,6 @@ function main() {
               "'>" +
               suggestions[i].title +
               "</div><div/>";
-
-            // $(markup).appendTo("." + type);
           }
           markup = ` <div class="chatbot-msg-card"> <div class="chatbot-button-suggestions chatbot-suggestions"><div class="${type}">${markup}</div></div></diV>`;
           $.when($(markup).appendTo(".chatbot-msgs").hide().fadeIn(50)).done(
@@ -1763,7 +1741,7 @@ function main() {
         if ($("#chatbot-msgs").text().length == 0) {
           sessionStarted = true;
           isNewSession = true;
-          send("/session_start", "message");
+          send("/greet", "message");
           firstMessageSent = true;
           $("#chatbot-msgs").empty();
           $(".chatbot-user-input").val("");
@@ -1854,16 +1832,6 @@ function main() {
         }
       });
 
-      // $(".chatbot-shortcut-list span").keydown(function (e) {
-      //   if (e.keyCode == 27) {
-      //     handleSettings();
-      //     e.stopPropagation();
-      //     setTimeout(() => {
-      //       $("#chatbot-setting-container").focus();
-      //     }, 150);
-      //   }
-      // });
-
       $("#last-shortcut").keydown(function (e) {
         if (e.keyCode == 9) {
           e.preventDefault();
@@ -1937,9 +1905,6 @@ function main() {
           focusOnChatbotIcon();
         }
       });
-
-      /* Reset Button */
-      // $(".chatbot-reset-bot").click(resetBot);
 
       /* Send Button */
       $("#chatbot-send-btn").keydown(function (e) {
@@ -2062,7 +2027,6 @@ function main() {
         }
         setUserResponse(text);
         send(payload, "message");
-        $(".chatbot-suggestions").remove(); //delete the suggestions
       });
 
       var specifiedElement = document.getElementById("chatbot-settings");
@@ -2106,7 +2070,7 @@ function main() {
             if (micOn) {
               $("#chatbot-mic-btn-on").click();
             } else {
-              $("#chatbot-mic-btn-off").click();
+              $("#chatbot-mic-btn").click();
             }
           }
         }
@@ -2130,9 +2094,7 @@ function main() {
         }
       }
       document.addEventListener("keyup", doc_keyUp, false);
-      $(window).blur(function (e) {
-        // if ($("#chatbot-widget").is(":visible")) hideChatBot();
-      });
+      $(window).blur(function (e) {});
       $(window).focus(function (e) {
         let a = getChatbotWindowState();
         updateFontSizeFromState();
@@ -2165,7 +2127,6 @@ function main() {
         ) {
           sessionStarted = false;
           $("#chatbot-msgs").empty();
-          //clearLocalStorage();
           return;
         }
         let chatbotHistory = getBotUserHistory();
