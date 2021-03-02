@@ -1012,7 +1012,7 @@ function main() {
         return agent.indexOf("chrome") > -1 &&
           !!window.chrome &&
           !(agent.indexOf("edg/") > -1) &&
-          location.protocol == "http:" &&
+          location.protocol == "https:" &&
           ("SpeechRecognition" in window || "webkitSpeechRecognition" in window)
           ? true
           : false;
