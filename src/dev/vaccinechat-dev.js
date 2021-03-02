@@ -75,8 +75,11 @@ function main() {
                   </div>
                   <div id="tooltip-inc-font" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 260px;" aria-hidden="true">Increase chat font size</div>
 
-                  <div aria-label="Chat help shortcuts" data-tooltipid="tooltip-help" style="margin-top: 5px;" tabindex=0 aria-expanded="false" role="button" class="chatbot-action-btns" id="chatbot-setting-container">
+                  <div aria-label="Chat help shortcuts" data-tooltipid="tooltip-help" style="margin-top: 5px;" tabindex=0 aria-expanded="false" role="button" class="chatbot-action-btns" id="chatbot-setting-container" aria-describedby="chatbot-shortcuts-intsuctions">
                     <i class="material-icons">help</i>
+                  </div>
+                  <div aria-hidden="true" id="chatbot-shortcuts-intsuctions" class="visuallyHidden">
+                      To browse the shortcut list, use TAB and SHIFT + TAB. You can leave the list with ESC anytime.
                   </div>
                   <div id="tooltip-help" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 295px;" aria-hidden="true">Chatbot help shortcuts</div>
                     <div tabindex=-1 class="chatbot-settings chatbot-hide-elem" id="chatbot-settings">
@@ -155,16 +158,13 @@ function main() {
                   <div id="tooltip-close" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 395px;" aria-hidden="true">Close chat</div>
                   </div>
                   <div>
-                    <span
-                      class="chatbot-sub-tagline"
-                      >Ask a COVID-19 vaccine question
-                    </span>
+                    <span class="chatbot-sub-tagline">Ask a COVID-19 vaccine question</span>
                   </div>
                 </div>
                 <!--Chatbot contents goes here -->
 
                 <div class="chatbot-canvas" id="chatbot-canvas">
-                  <div class="chatbot-clearfix"></div>
+                  <div class="chatbot-clearfix" aria-hidden="true"></div>
                   <div class="chatbot-msgs" id="chatbot-msgs" style="margin-top: 10px"></div>
                 </div>
 
@@ -1012,7 +1012,7 @@ function main() {
         return agent.indexOf("chrome") > -1 &&
           !!window.chrome &&
           !(agent.indexOf("edg/") > -1) &&
-          location.protocol == "https:" &&
+          location.protocol == "http:" &&
           ("SpeechRecognition" in window || "webkitSpeechRecognition" in window)
           ? true
           : false;
@@ -1273,7 +1273,7 @@ function main() {
         var userResponse =
           `<p class="chatbot-user-msg" style="font-size:${fontSize}px" tabindex=0>` +
           val +
-          ' </p><div class="chatbot-clearfix"></div>';
+          ' </p><div class="chatbot-clearfix" aria-hidden="true"></div>';
         userResponse = DOMPurify.sanitize(userResponse);
         setBotUserHistory();
         $(userResponse).appendTo(".chatbot-msgs").show("slow");
@@ -1286,7 +1286,7 @@ function main() {
                         <span class="chatbot-loading-dot"></span>
                         <span class="chatbot-loading-dot"></span>
                         </div>` +
-          '</div><div class="chatbot-clearfix"></div>';
+          '</div><div class="chatbot-clearfix" aria-hidden="true"></div>';
         addBotResponse(botResponse, false);
         scrollToBottomOfResults();
       }
@@ -1372,7 +1372,7 @@ function main() {
             var markup =
               `<p class="chatbot-bot-msg" style="font-size:${fontSize}px;" tabindex=0>` +
               msg +
-              '</p><div class="chatbot-clearfix"></div>';
+              '</p><div class="chatbot-clearfix" aria-hidden="true"></div>';
             addBotResponse(markup);
           } else {
             //if we get response from Rasa
@@ -1388,7 +1388,7 @@ function main() {
                   var markup =
                     `<p class="chatbot-bot-msg" style="font-size:${fontSize}px;" tabindex=0>` +
                     data.text +
-                    '</p><div class="chatbot-clearfix"></div>';
+                    '</p><div class="chatbot-clearfix" aria-hidden="true"></div>';
                   addBotResponse(markup);
                 } else if (type == "bullet_points") {
                   var bulletPoints = data.bullet_points;
@@ -1400,7 +1400,7 @@ function main() {
                   var botResponse =
                     `<div class="chatbot-bot-msg style="font-size:${fontSize}px;" overflow-scroll" tabindex=0>` +
                     markup +
-                    '</div><div class="chatbot-clearfix"></div>';
+                    '</div><div class="chatbot-clearfix" aria-hidden="true"></div>';
                   addBotResponse(botResponse);
                   addSuggestion(data.buttons, "chatbot-buttons-menu");
                 } else if (type == "checkbox") {
@@ -1416,7 +1416,7 @@ function main() {
                   var botResponse =
                     `<div class="chatbot-bot-msg overflow-scroll" style="font-size:${fontSize}px;" tabindex=0>` +
                     markup +
-                    '</div><div class="chatbot-clearfix"></div>';
+                    '</div><div class="chatbot-clearfix" aria-hidden="true"></div>';
                   addBotResponse(botResponse);
                   var submitButton = [
                     {
@@ -1444,7 +1444,8 @@ function main() {
                   }
 
                   markup +=
-                    linkData + '</p><div class="chatbot-clearfix"></div>';
+                    linkData +
+                    '</p><div class="chatbot-clearfix" aria-hidden="true"></div>';
 
                   addBotResponse(markup);
                 } else if (type == "hyper_bullets") {
@@ -1461,7 +1462,7 @@ function main() {
                   var botResponse =
                     `<div class="chatbot-bot-msg style="font-size:${fontSize}px;" overflow-scroll" tabindex=0>` +
                     markup +
-                    '</div><div class="chatbot-clearfix"></div>';
+                    '</div><div class="chatbot-clearfix" aria-hidden="true"></div>';
                   addBotResponse(botResponse);
                 }
               }
@@ -1486,13 +1487,14 @@ function main() {
                   markup += `<a class="chatbot-links" href="${delimeter}" >${
                     val[i].text.split(delimeter)[1]
                   }</a> `;
-                  markup += '</p><div class="chatbot-clearfix"></div>';
+                  markup +=
+                    '</p><div class="chatbot-clearfix" aria-hidden="true"></div>';
                   addBotResponse(markup);
                 } else {
                   var markup =
                     `<p class="chatbot-bot-msg" style="font-size:${fontSize}px;" tabindex=0>` +
                     val[i].text +
-                    '</p><div class="chatbot-clearfix"></div>';
+                    '</p><div class="chatbot-clearfix" aria-hidden="true"></div>';
                   addBotResponse(markup);
                 }
               }
@@ -1563,13 +1565,14 @@ function main() {
           handleChatBotHiding();
         }, 100);
         $(".chatbot-settings").addClass("chatbot-hide-elem");
-        setTimeout(() => {
-          if (isChatbotIconMini) {
-            $(".chatbot-logo-mini").focus();
-          } else {
-            $(".chatbot-welcome-image-container.chatbot-logo").focus();
-          }
-        }, 150);
+        // setTimeout(() => {
+        //   if (isChatbotIconMini) {
+        //     $(".chatbot-logo-mini").focus();
+        //   } else {
+        //     $(".chatbot-welcome-image-container.chatbot-logo").focus();
+        //   }
+        // }, 150);
+        $("body").focus();
       }
 
       /* Show Chatbot */
@@ -1947,7 +1950,7 @@ function main() {
       /* Toggle Settings */
       $("#chatbot-setting-container").on("click", handleSettings);
 
-      $("#chatbot-setting-container").keypress(function (e) {
+      $("#chatbot-setting-container").keydown(function (e) {
         if (e.keyCode == 13 || e.keyCode == 32) {
           e.preventDefault();
           e.preventDefault();
