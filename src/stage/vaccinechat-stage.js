@@ -320,7 +320,6 @@ function main() {
               border-radius: 12px;
               padding: 8px 0;
               position: absolute;
-              z-index: 999;
               bottom: 20%;
               left: -76%;
               margin-left: -80px;
@@ -611,7 +610,7 @@ function main() {
           height: 12%;
           transition: 0.35s;
           transform: translate(400%);
-          z-index: 999;
+          z-index: 899;
         }
 
         .chatbot-button-suggestions {
@@ -867,9 +866,9 @@ function main() {
             font-size: 1.1rem;
           }
           .chatbot-welcome-text{
-            max-width: 161px;
+            max-width: 166px;
             bottom: -27%;
-            left: -20%;
+            left: -27%;
           }
 
           .chatbot-logo img{
