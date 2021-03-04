@@ -155,7 +155,7 @@ function main() {
                   >
                     <i class="material-icons">close</i>
                   </div>
-                  <div id="tooltip-close" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 395px;" aria-hidden="true">Close chat</div>
+                  <div id="tooltip-close" role="tooltip" tabindex="-1" class="tooltip chatbot-hide-elem" style="top: 50px;left: 395px;" aria-hidden="true">End chat</div>
                   </div>
                   <div>
                     <span class="chatbot-sub-tagline">Ask a COVID-19 vaccine question</span>
@@ -907,6 +907,24 @@ function main() {
             outline: none !important;
             border-color: #0078d7 !important;
           }
+
+          #chatbot-skip-link:not(:focus){
+            position: absolute;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            width: 1px;
+            margin: -1px;
+            padding: 0;
+            border: 0;
+            width: 240px;
+          }
+          #chatbot-skip-link:focus{
+            display: block;
+            margin: 0 auto;
+            width: 240px;
+            text-align: center;
+          }
         `;
       $(document).focus(function (e) {});
       /* Attach the chatbot-StyleSheet to the body of the page */
@@ -948,9 +966,23 @@ function main() {
       var CHATBOT_WINDOW_FONT_SIZE = "chatbot-window-font-size";
 
       $(document).ready(function () {
-        setTimeout(() => {
-          focusOnChatbotIcon();
-        }, 100);
+        var skipLinkMarkup = `<a href="#" tabindex="0" id="chatbot-skip-link" aria-label="skip to chatbot">Skip to chatbot</a>`;
+        var fragment = document.createElement("div");
+        fragment.innerHTML = skipLinkMarkup;
+        try {
+          $(".ma__header__hamburger").append(fragment);
+          $("#chatbot-skip-link").click(function (e) {
+            focusOnChatbotIcon();
+          });
+
+          $("#chatbot-skip-link").keypress((e) => {
+            if (e.keyCode == 13 || e.keyCode == 32) {
+              e.preventDefault();
+              focusOnChatbotIcon();
+            }
+          });
+        } catch (error) {}
+
         updateFontSizeFromState();
 
         if (getTabId()) {
