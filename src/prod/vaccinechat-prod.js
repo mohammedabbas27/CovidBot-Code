@@ -859,6 +859,9 @@ function main() {
          }
 
          @media (max-width: 540px){
+          #chatbot-setting-container{
+            display:none;
+          }
           .close-welcome-message i{
             font-size:25px;
           }
@@ -965,7 +968,7 @@ function main() {
       var CHATBOT_WINDOW_FONT_SIZE = "chatbot-window-font-size";
 
       $(document).ready(function () {
-        var skipLinkMarkup = `<a href="#" tabindex="0" id="chatbot-skip-link" aria-label="skip to chatbot">Skip to chatbot</a>`;
+        var skipLinkMarkup = `<a href="#" tabindex="0" id="chatbot-skip-link" aria-label="Skip to Vaccine Chat">Skip to Vaccine Chat</a>`;
         var fragment = document.createElement("div");
         fragment.innerHTML = skipLinkMarkup;
         try {
@@ -1002,6 +1005,10 @@ function main() {
         }
         if (getChatbotWindowState()) {
           launchChatbot();
+        }
+
+        if (isTouch) {
+          $("#chatbot-setting-container").css({ display: "none" });
         }
       });
 
