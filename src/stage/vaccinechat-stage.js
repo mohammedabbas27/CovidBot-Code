@@ -29,6 +29,8 @@ function main() {
       );
 
       const CHATBOT_ICON_PATH = "https://www.mass.gov/media/2246916/download";
+      const CHATBOT_MINI_ICON_PATH =
+        "https://www.mass.gov/doc/chatbot-mobile-icon/download";
       var isChatbotIconMini = false;
       var CHATBOT_MINI_ICON_STATE = "chatbot-mini-icon-state";
 
@@ -41,7 +43,7 @@ function main() {
         <div tabindex="0" role="button" id="chatbot-logo-mini" aria-label="Open vaccine chat window to ask a COVID-19 vaccine question" class="chatbot-logo-mini ${
           isChatbotIconMini ? "" : "chatbot-hide-elem"
         }">
-            <img alt="" src="http://chatbot.neurosoph.com/chatbot/State-2-Icon_Mobile_01.png"/>
+            <img alt="" src="${CHATBOT_MINI_ICON_PATH}"/>
           </div>
           <div id="chatbot-logos-container ${
             !isChatbotIconMini ? "" : "chatbot-hide-elem"
@@ -1006,7 +1008,6 @@ function main() {
         if (getChatbotWindowState()) {
           launchChatbot();
         }
-
         if (isTouch) {
           $("#chatbot-setting-container").css({ display: "none" });
         }
